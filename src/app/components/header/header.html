@@ -1,0 +1,73 @@
+<header>
+  <mat-toolbar color="primary" class="custom-toolbar">
+    <!-- Logo y título -->
+    <div class="logo-section">
+      <img src="favicon.ico" alt="Nahuel Personal Site" class="logo" />
+      <span class="app-title">Nahuel Dev</span>
+    </div>
+
+    <span class="spacer"></span>
+
+    <!-- Navegación desktop -->
+    <nav class="nav-links">
+      <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>home</mat-icon>
+        Home
+      </a>
+      <a mat-button routerLink="/about" routerLinkActive="active-link">
+        <mat-icon>person</mat-icon>
+        About
+      </a>
+      <a mat-button routerLink="/projects" routerLinkActive="active-link">
+        <mat-icon>code</mat-icon>
+        Projects
+      </a>
+      <a mat-button routerLink="/contact" routerLinkActive="active-link">
+        <mat-icon>mail</mat-icon>
+        Contact
+      </a>
+    </nav>
+
+    <!-- Toggle tema -->
+    <button mat-icon-button class="theme-toggle" (click)="toggleTheme()" [title]="isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'">
+      <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+
+    <!-- Botón menú móvil -->
+    <button class="btn-menu-mobile" mat-icon-button (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen">
+      <mat-icon>{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <!-- Menú móvil -->
+  <nav class="mobile-menu" [class.show]="isMobileMenuOpen">
+    <div class="mobile-menu-content">
+      <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
+        <mat-icon>home</mat-icon>
+        Home
+      </a>
+      <a mat-button routerLink="/about" routerLinkActive="active-link" (click)="closeMobileMenu()">
+        <mat-icon>person</mat-icon>
+        About
+      </a>
+      <a mat-button routerLink="/projects" routerLinkActive="active-link" (click)="closeMobileMenu()">
+        <mat-icon>code</mat-icon>
+        Projects
+      </a>
+      <a mat-button routerLink="/contact" routerLinkActive="active-link" (click)="closeMobileMenu()">
+        <mat-icon>mail</mat-icon>
+        Contact
+      </a>
+      
+      <div class="mobile-theme-toggle">
+        <button mat-stroked-button (click)="toggleTheme()">
+          <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+          {{ isDarkTheme ? 'Light Mode' : 'Dark Mode' }}
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Overlay para cerrar el menú -->
+  <div class="mobile-menu-overlay" [class.show]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+</header>
