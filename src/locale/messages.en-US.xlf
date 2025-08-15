@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es-AR" target-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="6544292891804316575" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>home<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Home </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>home<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Home </target>
+      </trans-unit>
+      <trans-unit id="8447167887846711092" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>person_raised_hand<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Sobre mi </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>person_raised_hand<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> About me </target>
+      </trans-unit>
+      <trans-unit id="655181978036330349" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>article_person<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Mi Curriculum </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>article_person<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Resume </target>
+      </trans-unit>
+      <trans-unit id="8524765736003526090" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>mail<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Contacto </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>mail<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Contact </target>
+      </trans-unit>
+      <trans-unit id="4663957482092466797" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>mail<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Contact </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>mail<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Contact </target>
+      </trans-unit>
+      <trans-unit id="4134439023515253104" datatype="html">
+        <source> Sobre mí <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;tagline&quot;&gt;"/>Full‑Stack / Angular / IA<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> About me <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;tagline&quot;&gt;"/>Full‑Stack / Angular / AI<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> </target>
+      </trans-unit>
+      <trans-unit id="4546458009532801804" datatype="html">
+        <source>Tecnologías</source>
+        <target>Technologies</target>
+      </trans-unit>
+      <trans-unit id="861159449543640924" datatype="html">
+        <source> Ver mi experiencia </source>
+        <target> View my experience </target>
+      </trans-unit>
+      <trans-unit id="7064037261478945127" datatype="html">
+        <source> Contacto </source>
+        <target> Contact </target>
+      </trans-unit>
+      <trans-unit id="3434016298475986307" datatype="html">
+        <source> Contacto <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;tagline&quot;&gt;"/>Hablemos sobre tu proyecto<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Contact <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;tagline&quot;&gt;"/>Let's talk about your project<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> </target>
+      </trans-unit>
+      <trans-unit id="3785866792659780844" datatype="html">
+        <source> Escribime con los detalles de tu proyecto o consulta. También podés contactarme por redes. </source>
+        <target> Send me your project details or question. You can also reach me on social media. </target>
+      </trans-unit>
+      <trans-unit id="1946313421164554768" datatype="html">
+        <source>Tu nombre</source>
+        <target>Your name</target>
+      </trans-unit>
+      <trans-unit id="2014443633083909637" datatype="html">
+        <source>El nombre es obligatorio</source>
+        <target>Name is required</target>
+      </trans-unit>
+      <trans-unit id="3409093352917035943" datatype="html">
+        <source>Mínimo 2 caracteres</source>
+        <target>Minimum 2 characters</target>
+      </trans-unit>
+      <trans-unit id="648685163795563212" datatype="html">
+        <source>Tu email</source>
+        <target>Your email</target>
+      </trans-unit>
+      <trans-unit id="6184346418417423112" datatype="html">
+        <source>El email es obligatorio</source>
+        <target>Email is required</target>
+      </trans-unit>
+      <trans-unit id="2296616669536661618" datatype="html">
+        <source>Formato de correo inválido</source>
+        <target>Invalid email format</target>
+      </trans-unit>
+      <trans-unit id="6181392829528060012" datatype="html">
+        <source>Mensaje</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit id="6439036450005021411" datatype="html">
+        <source>El mensaje es obligatorio</source>
+        <target>Message is required</target>
+      </trans-unit>
+      <trans-unit id="4771087784610522782" datatype="html">
+        <source>Mínimo 10 caracteres</source>
+        <target>Minimum 10 characters</target>
+      </trans-unit>
+      <trans-unit id="2074614989310782446" datatype="html">
+        <source> Limpiar </source>
+        <target> Clear </target>
+      </trans-unit>
+      <trans-unit id="4563427787802800193" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>send<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Enviar </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>send<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Send </target>
+      </trans-unit>
+      <trans-unit id="4188128349301340919" datatype="html">
+        <source> Nunca compartiré tu email. Solo lo uso para responder tu consulta. </source>
+        <target> I'll never share your email. I only use it to reply to your inquiry. </target>
+      </trans-unit>
+      <trans-unit id="586341112727268928" datatype="html">
+        <source>Hola, soy</source>
+        <target>Hi, I'm</target>
+      </trans-unit>
+      <trans-unit id="3788312728866271604" datatype="html">
+        <source>Nahuel. Hago apps que la gente disfruta.</source>
+        <target>Nahuel. I build apps people enjoy.</target>
+      </trans-unit>
+      <trans-unit id="1372400386769417420" datatype="html">
+        <source>Full-Stack con foco en performance y resposividad.</source>
+        <target>Full‑Stack focused on performance and responsiveness.</target>
+      </trans-unit>
+      <trans-unit id="9104945347874860848" datatype="html">
+        <source>Años de experiencia</source>
+        <target>Years of experience</target>
+      </trans-unit>
+      <trans-unit id="1872099000671699527" datatype="html">
+        <source>Proyectos</source>
+        <target>Projects</target>
+      </trans-unit>
+      <trans-unit id="3254634860928936451" datatype="html">
+        <source>Sectores</source>
+        <target>Sectors</target>
+      </trans-unit>
+      <trans-unit id="7482270925561627437" datatype="html">
+        <source>Mi Experiencia Profesional</source>
+        <target>My Professional Experience</target>
+      </trans-unit>
+      <trans-unit id="8110810501697551358" datatype="html">
+        <source>Mi trayectoria profesional y logros</source>
+        <target>My professional journey and achievements</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

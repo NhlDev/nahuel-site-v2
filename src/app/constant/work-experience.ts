@@ -11,7 +11,7 @@ export interface WorkExperience {
 }
 
 export const workExperiences: { [lang: string]: WorkExperience[] } = {
-    'es': [
+    'es-AR': [
         {
             company: "Freelance",
             position: "Desarrollador Front-End",
@@ -142,5 +142,78 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
             companyColor: "#76c042"
         }
     ],
-    en: []
+    'en-US': [
+        {
+            company: "Flux IT",
+            position: "Full-Stack Developer",
+            startDate: new Date(2020, 6, 1), // July 2020
+            endDate: new Date(2021, 5, 30), // June 2021
+            responsibilities: [
+                "Developed web applications using Angular and .NET",
+                "Collaborated with cross-functional teams to define and implement new features",
+                "Participated in code reviews and maintained high code quality"
+            ],
+            technologiesUsed: ["Angular", ".NET", "TypeScript", "JavaScript"],
+            location: "Argentina",
+            icon: "flux_it.png",
+            companyColor: "#326ae7"
+        },
+        {
+            company: "Kapsch Trafficom Argentina (through ITWarp)",
+            position: ".NET Developer",
+            startDate: new Date(2020, 0, 1), // January 2020
+            endDate: new Date(2020, 5, 30), // June 2020
+            responsibilities: [
+                "Diagnosed and resolved bugs in projects based on the Kapsch platform",
+                "Worked on the core back-end and custom code of each implementation",
+                "Analyzed and corrected errors in production and testing environments",
+                "Ensured the stability of critical solutions for different clients",
+                "Performed log analysis and advanced debugging",
+                "Maintained direct communication with functional and technical teams"
+            ],
+            technologiesUsed: ["C#", ".NET", "Debugging", "Log Analysis"],
+            location: "Argentina",
+            icon: "kapsch.jpg",
+            companyColor: "#eaca3e"
+        },
+        {
+            company: "Huenei IT Services",
+            position: "Software Developer",
+            startDate: new Date(2016, 7, 1), // August 2016
+            endDate: new Date(2020, 0, 31), // January 2020
+            responsibilities: [
+                "Developed various web and mobile solutions using Ionic 3/4, Angular, and .NET Web API",
+                "Worked on a hybrid app for managing virtual appointments",
+                "Developed an e-commerce site with Angular and Web API",
+                "Integrated Todo Pago and ElasticSearch to improve searches and user experience",
+                "Developed multiple Web APIs for internal mobile applications of Aeropuertos Argentina 2000",
+                "Created document management platforms and the website of the International Airport of Armenia",
+                "Applied responsive design and mobile-first approach"
+            ],
+            technologiesUsed: ["Ionic 3/4", "Angular", ".NET Web API", "jQuery", "Bootstrap", "ElasticSearch", "Todo Pago"],
+            location: "Argentina",
+            icon: "huenei.webp",
+            companyColor: "#f08830"
+        },
+        {
+            company: "Itrio S.A.",
+            position: "ASP.NET Developer",
+            startDate: new Date(2014, 0, 1), // January 2014
+            endDate: new Date(2016, 6, 31), // July 2016
+            responsibilities: [
+                "Provided outsourced services to companies in the financial sector (Banco Hipotecario and Prisma Medios de Pago)",
+                "Maintained institutional Intranet and websites (desktop and mobile) at Banco Hipotecario",
+                "Developed a complete card application page with jQuery and Bootstrap 3",
+                "Created triggers for access logging and a Java component to register queries",
+                "Served as a SQL Server database administrator at Prisma",
+                "Executed and validated scripts, managed user access, and resolved errors in DTS and Jobs",
+                "Performed backup and restore tasks",
+                "Developed an internal management system for ITRIO with ASP.NET WebForms and Entity Framework 6"
+            ],
+            technologiesUsed: ["ASP.NET WebForms", "ASP.NET MVC4", "jQuery", "Bootstrap 3", "SQL Server", "Entity Framework 6", "Java"],
+            location: "Argentina",
+            icon: "itrio_sa_logo.jpg",
+            companyColor: "#76c042"
+        }
+    ]
 }

@@ -1,11 +1,9 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, LOCALE_ID, OnDestroy, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
   imports: [
-    MatIcon,
     MatButtonModule,
   ],
   templateUrl: './home.html',
@@ -16,16 +14,26 @@ export class Home implements OnInit, OnDestroy {
   // Texto tipiado reactivo
   typedText = signal('');
 
+  // idioma de la app
+  lang = inject(LOCALE_ID);
+
   coreSkills = [
     'Angular', 'TypeScript', 'RxJS', 'Ionic', 'Web APIs', '.NET', 'Node.js'
   ];
 
   // Mejora de copy (más orientado a valor)
-  private readonly LINES = [
-    'Creo experiencias web rápidas, accesibles y escalables con Angular.',
-    'Especialista en arquitectura front‑end, performance y DX.',
-    'Integraciones, diseño de componentes, tooling y calidad de código.',
-  ];
+  private readonly LINES: Record<string, string[]> = {
+    'es-AR': [
+      'Creo experiencias web rápidas, accesibles y escalables con Angular.',
+      'Especialista en arquitectura front‑end, performance y DX.',
+      'Integraciones, diseño de componentes, tooling y calidad de código.',
+    ],
+    'en-US': [
+      'I create fast, accessible, and scalable web experiences with Angular.',
+      'Specialist in front-end architecture, performance, and DX.',
+      'Integrations, component design, tooling, and code quality.',
+    ]
+  };
 
   // Config de velocidades (ms)
   private readonly TYPE_MS = 24;
@@ -47,7 +55,7 @@ export class Home implements OnInit, OnDestroy {
     const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
     while (!this.stop) {
-      for (const line of this.LINES) {
+      for (const line of this.LINES[this.lang]) {
         if (this.stop) return;
 
         // Pausa inicial

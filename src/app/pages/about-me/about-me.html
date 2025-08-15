@@ -3,7 +3,7 @@
     <div class="about-hero__bg" aria-hidden="true"></div>
 
     <header class="about-head">
-      <h1 id="about-title" class="about-title">
+      <h1 id="about-title" class="about-title" i18n>
         Sobre mí
         <span class="tagline">Full‑Stack / Angular / IA</span>
       </h1>
@@ -16,7 +16,7 @@
         </article>
 
         <ul class="highlights" aria-label="Resumen de experiencia">
-          @for (item of highlights; track $index) {
+          @for (item of highlights[lang]; track $index) {
           <li class="hl">
             <span class="hl__num">{{ item.value }}</span>
             <span class="hl__label">{{ item.label }}</span>
@@ -25,7 +25,7 @@
         </ul>
 
         <section class="tech-stack" aria-label="Tecnologías principales">
-          <h2 class="visually-hidden">Tecnologías</h2>
+          <h2 class="visually-hidden" i18n>Tecnologías</h2>
           <ul
             class="tech-icons"
             #techIconsContainer
@@ -49,7 +49,7 @@
 
       <aside class="about-aside" aria-label="Información rápida">
         <ul class="quick-facts">
-          @for (fact of quickFacts; track $index) {
+          @for (fact of quickFacts[lang]; track $index) {
           <li class="qf">
             <span class="qf__icon" aria-hidden="true">{{ fact.icon }}</span>
             <span class="qf__text">{{ fact.text }}</span>
@@ -58,10 +58,10 @@
         </ul>
 
         <div class="about-cta">
-          <button mat-button (click)="scrollToSection('resume')">
+          <button mat-button (click)="scrollToSection('resume')" i18n>
             Ver mi experiencia
           </button>
-          <button mat-button (click)="scrollToSection('contact-me')">
+          <button mat-button (click)="scrollToSection('contact-me')" i18n>
             Contacto
           </button>
         </div>

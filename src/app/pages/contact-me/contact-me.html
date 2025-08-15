@@ -3,13 +3,13 @@
     <div class="contact-card__bg" aria-hidden="true"></div>
 
     <header class="contact-head">
-      <h1 id="contact-title" class="contact-title">
+      <h1 id="contact-title" class="contact-title" i18n>
         Contacto
         <span class="tagline">Hablemos sobre tu proyecto</span>
       </h1>
     </header>
 
-    <p class="contact-intro">
+    <p class="contact-intro" i18n>
       Escribime con los detalles de tu proyecto o consulta. También podés
       contactarme por redes.
     </p>
@@ -86,7 +86,7 @@
         novalidate
       >
         <mat-form-field appearance="outline" class="field">
-          <mat-label>Tu nombre</mat-label>
+          <mat-label i18n>Tu nombre</mat-label>
           <input
             matInput
             formControlName="name"
@@ -95,14 +95,14 @@
             aria-required="true"
           />
           @if (hasError('name','required')) {
-          <mat-error>El nombre es obligatorio</mat-error>
+          <mat-error i18n>El nombre es obligatorio</mat-error>
           } @if (hasError('name','minlength')) {
-          <mat-error>Mínimo 2 caracteres</mat-error>
+          <mat-error i18n>Mínimo 2 caracteres</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="field">
-          <mat-label>Tu email</mat-label>
+          <mat-label i18n>Tu email</mat-label>
           <input
             matInput
             type="email"
@@ -112,14 +112,14 @@
             aria-required="true"
           />
           @if (hasError('email','required')) {
-          <mat-error>El email es obligatorio</mat-error>
+          <mat-error i18n>El email es obligatorio</mat-error>
           } @if (hasError('email','email')) {
-          <mat-error>Formato de correo inválido</mat-error>
+          <mat-error i18n>Formato de correo inválido</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="field field--full">
-          <mat-label>Mensaje</mat-label>
+          <mat-label i18n>Mensaje</mat-label>
           <textarea
             matInput
             formControlName="message"
@@ -129,17 +129,17 @@
             cdkTextareaAutosize
           ></textarea>
           @if (hasError('message','required')) {
-          <mat-error>El mensaje es obligatorio</mat-error>
+          <mat-error i18n>El mensaje es obligatorio</mat-error>
           } @if (hasError('message','minlength')) {
-          <mat-error>Mínimo 10 caracteres</mat-error>
+          <mat-error i18n>Mínimo 10 caracteres</mat-error>
           }
         </mat-form-field>
 
         <div class="actions">
-          <button mat-button type="button" (click)="form.reset()">
+          <button mat-button type="button" (click)="form.reset()" i18n>
             Limpiar
           </button>
-          <button mat-button color="primary" type="submit">
+          <button mat-button color="primary" type="submit" i18n>
             <mat-icon>send</mat-icon>
             Enviar
           </button>
@@ -147,7 +147,7 @@
       </form>
     </div>
 
-    <p class="privacy-note">
+    <p class="privacy-note" i18n>
       Nunca compartiré tu email. Solo lo uso para responder tu consulta.
     </p>
   </section>

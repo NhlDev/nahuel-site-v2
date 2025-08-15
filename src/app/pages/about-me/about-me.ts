@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID, inject, LOCALE_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './about-me.scss'
 })
 export class AboutMe implements AfterViewInit, OnDestroy {
-
+  lang = inject(LOCALE_ID);
   aboutText = `Desarrollador Full‑Stack con 10+ años creando productos web y mobile end‑to‑end. En el front me especializo en Angular (arquitectura, performance, accesibilidad) e Ionic para experiencias móviles. En el back trabajo con Node.js y C# (.NET) diseñando APIs limpias y escalables. Actualmente amplío mi stack con IA aplicada: Python + TensorFlow para prototipos de machine y deep learning orientados a features inteligentes (búsquedas semánticas, recomendaciones, clasificación y automatización). Mi foco: convertir ideas en soluciones mantenibles, seguras y medibles que generen impacto real.`;
 
   technologies = [
@@ -20,21 +20,34 @@ export class AboutMe implements AfterViewInit, OnDestroy {
     { name: '.NET', file: 'dotnet.svg', label: 'Logo .NET' },
   ];
 
-  highlights = [
-    { value: '10+ años', label: 'Experiencia' },
-    { value: '5+ sectores', label: 'Industria' },
-  ];
+  highlights: Record<string, { value: string; label: string }[]> = {
+    'es-AR': [
+      { value: '10+ años', label: 'Experiencia' },
+      { value: '5+ sectores', label: 'Industria' },
+    ],
+    'en-US': [
+      { value: '10+ years', label: 'Experience' },
+      { value: '5+ sectors', label: 'Industry' },
+    ]
+  };
 
-  quickFacts = [
-    { icon: '📍', text: 'Buenos Aires, Argentina' },
-    { icon: '🗣️', text: 'Español nativo · Inglés B2' },
-    { icon: '🕒', text: 'Disponibilidad: Part/Full‑time' },
-    { icon: '🧩', text: 'Foco: Angular, TypeScript/JavaScript, .NET' },
-  ];
+  quickFacts: Record<string, { icon: string; text: string }[]> = {
+    'es-AR': [
+      { icon: '📍', text: 'Buenos Aires, Argentina' },
+      { icon: '🗣️', text: 'Español nativo · Inglés B2' },
+      { icon: '🕒', text: 'Disponibilidad: Part/Full‑time' },
+      { icon: '🧩', text: 'Foco: Angular, TypeScript/JavaScript, .NET' },
+    ],
+    'en-US': [
+      { icon: '📍', text: 'Buenos Aires, Argentina' },
+      { icon: '🗣️', text: 'Native Spanish · B2 English' },
+      { icon: '🕒', text: 'Availability: Part/Full‑time' },
+      { icon: '🧩', text: 'Focus: Angular, TypeScript/JavaScript, .NET' },
+    ]
+  };
 
   @ViewChild('techIconsContainer', { read: ElementRef }) techIconsContainer?: ElementRef<HTMLUListElement>;
-
-  // --- ADICIÓN: bandera usada por la plantilla ---
+  
   techIconsVisible = false;
 
   private observer?: IntersectionObserver;

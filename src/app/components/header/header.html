@@ -2,27 +2,27 @@
   <mat-toolbar color="primary" class="custom-toolbar">
     <div class="logo-section">
       <img src="logo.svg" alt="Nahuel Personal Site" class="logo" />
-      <span class="app-title">Nahuel Dev</span>
+      <span class="app-title">Nahuel Alderete</span>
     </div>
 
     <span class="spacer"></span>
 
     <nav class="nav-links">
-      <a mat-button (click)="scrollTo('home')">
+      <a mat-button (click)="scrollTo('home')" i18n>
         <mat-icon>home</mat-icon>
         Home
       </a>
-      <a mat-button (click)="scrollTo('about-me')">
+      <a mat-button (click)="scrollTo('about-me')" i18n>
         <mat-icon>person_raised_hand</mat-icon>
         Sobre mi
       </a>
-      <a mat-button (click)="scrollTo('resume')">
+      <a mat-button (click)="scrollTo('resume')" i18n>
         <mat-icon>article_person</mat-icon>
         Mi Curriculum
       </a>
-      <a mat-button (click)="scrollTo('contact-me')">
+      <a mat-button (click)="scrollTo('contact-me')" i18n>
         <mat-icon>mail</mat-icon>
-        Contact
+        Contacto
       </a>
     </nav>
 
@@ -47,19 +47,19 @@
 
   <nav class="mobile-menu" [class.show]="isMobileMenuOpen">
     <div class="mobile-menu-content">
-      <a mat-button (click)="scrollTo('home'); closeMobileMenu()">
+      <a mat-button (click)="scrollTo('home'); closeMobileMenu()" i18n>
         <mat-icon>home</mat-icon>
         Home
       </a>
-      <a mat-button (click)="scrollTo('about-me'); closeMobileMenu()">
+      <a mat-button (click)="scrollTo('about-me'); closeMobileMenu()" i18n>
         <mat-icon>person_raised_hand</mat-icon>
         Sobre mi
       </a>
-      <a mat-button (click)="scrollTo('resume'); closeMobileMenu()">
+      <a mat-button (click)="scrollTo('resume'); closeMobileMenu()" i18n>
         <mat-icon>article_person</mat-icon>
         Mi Curriculum
       </a>
-      <a mat-button (click)="scrollTo('contact-me'); closeMobileMenu()">
+      <a mat-button (click)="scrollTo('contact-me'); closeMobileMenu()" i18n>
         <mat-icon>mail</mat-icon>
         Contact
       </a>
