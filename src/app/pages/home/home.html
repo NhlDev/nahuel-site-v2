@@ -1,3 +1,47 @@
-<div class="home-container">
-  <p>{{ fakeConsoleText() }} <span class="cursor">|</span></p>
+<div class="home-container full-height">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <h1 id="hero-title" class="hero__title">
+        Hola, soy
+        <span class="accent">Nahuel. Hago apps que la gente disfruta.</span>
+        <span class="role"
+          >Full-Stack con foco en performance y resposividad.</span
+        >
+      </h1>
+
+      <p class="lead" role="status" aria-live="polite">
+        <span class="prompt">$ </span>
+        <span class="typed">{{ typedText() }}</span
+        ><span class="cursor" aria-hidden="true">|</span>
+      </p>
+
+      <div class="stack-chips" aria-label="Tecnologías principales">
+        @for (skill of coreSkills; track $index) {
+        <span class="chip">{{ skill }}</span>
+        }
+      </div>
+    </div>
+
+    <figure class="hero__visual" aria-hidden="true">
+      <div class="orb"></div>
+      <img src="techs/angular.svg" alt="" class="floating-logo" />
+    </figure>
+  </section>
+
+  <section class="quick-stats" aria-label="Resumen rápido">
+    <div class="stat">
+      <span class="stat__num">10+</span>
+      <span class="stat__label">Años de experiencia</span>
+    </div>
+    <div class="stat">
+      <span class="stat__num">15+</span>
+      <span class="stat__label">Proyectos</span>
+    </div>
+    <div class="stat">
+      <span class="stat__num">5+</span>
+      <span class="stat__label">Sectores</span>
+    </div>
+  </section>
 </div>

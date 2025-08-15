@@ -1,47 +1,76 @@
-import { Component, OnInit, signal } from '@angular/core';
-
-const TEXT_FOR_CONSOLE = `Welcome to Nahu Dev Site V2!
-This is a sample console text that will be displayed in the home component.`
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [
+    MatIcon,
+    MatButtonModule,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
-export class Home implements OnInit {
+export class Home implements OnInit, OnDestroy {
 
-  fakeConsoleText = signal('');
+  // Texto tipiado reactivo
+  typedText = signal('');
 
-  ngOnInit() {
+  coreSkills = [
+    'Angular', 'TypeScript', 'RxJS', 'Ionic', 'Web APIs', '.NET', 'Node.js'
+  ];
 
-    let index = 0;
-    const textLength = TEXT_FOR_CONSOLE.length;
+  // Mejora de copy (más orientado a valor)
+  private readonly LINES = [
+    'Creo experiencias web rápidas, accesibles y escalables con Angular.',
+    'Especialista en arquitectura front‑end, performance y DX.',
+    'Integraciones, diseño de componentes, tooling y calidad de código.',
+  ];
 
-    setInterval(() => {
+  // Config de velocidades (ms)
+  private readonly TYPE_MS = 24;
+  private readonly DELETE_MS = 12;
+  private readonly PAUSE_END_MS = 5000;
+  private readonly PAUSE_START_MS = 500;
 
-      if (index === 0) {
-        this.fakeConsoleText.set(''); // Clear text at the start
-      }
+  private stop = false;
 
-      if (index < textLength) {
+  ngOnInit(): void {
+    this.startTypingLoop();
+  }
 
-        // delay to simulate typing effect
-        if (index < 0) {
-          index++;
-          return;
+  ngOnDestroy(): void {
+    this.stop = true;
+  }
+
+  private async startTypingLoop() {
+    const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+    while (!this.stop) {
+      for (const line of this.LINES) {
+        if (this.stop) return;
+
+        // Pausa inicial
+        await sleep(this.PAUSE_START_MS);
+
+        // Tipear
+        for (let i = 0; i <= line.length; i++) {
+          if (this.stop) return;
+          this.typedText.set(line.slice(0, i));
+          await sleep(this.TYPE_MS);
         }
 
-        this.fakeConsoleText.update(text => text + TEXT_FOR_CONSOLE[index]);
-        index++;
-      } else {
+        // Pausa al final de la línea
+        await sleep(this.PAUSE_END_MS);
 
-        index = 20 * -100; // Reset index to simulate a pause before starting again
-
+        // Borrar
+        for (let i = line.length; i >= 0; i--) {
+          if (this.stop) return;
+          this.typedText.set(line.slice(0, i));
+          await sleep(this.DELETE_MS);
+        }
       }
-
-
-    }, 20);
+    }
   }
 
 }

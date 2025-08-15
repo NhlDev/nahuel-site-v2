@@ -1,9 +1,11 @@
 .custom-toolbar {
-  position: sticky;
+  background: transparent;
+  position: fixed;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
 
   @media (prefers-reduced-motion: no-preference) {
     transition: all 0.3s ease;
@@ -16,16 +18,17 @@
   gap: 0.75rem;
 
   .logo {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: 75px;
+    height: auto;
     object-fit: cover;
+    overflow: visible;
   }
 
   .app-title {
     font-weight: 600;
     font-size: 1.25rem;
     letter-spacing: -0.025em;
+    color: #fff;
   }
 }
 
@@ -48,6 +51,7 @@
     padding: 0.5rem 1rem;
     transition: all 0.2s ease;
     position: relative;
+    color: #fff;
 
     mat-icon {
       font-size: 1.125rem;
@@ -83,6 +87,7 @@
   margin-left: 0.5rem;
   border-radius: 50%;
   transition: all 0.2s ease;
+  color: white;
 
   &:hover {
     transform: rotate(180deg);
@@ -101,13 +106,15 @@
   }
 }
 
+$header-height: 56px;
+
 .mobile-menu {
   position: fixed;
-  top: 64px;
+  top: #{$header-height};
   right: -100%;
   width: 280px;
-  height: calc(100vh - 64px);
-  background: var(--mat-sys-background);
+  height: calc(100vh - #{$header-height});
+  background: var(--mat-app-background-color);
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
   z-index: 999;
   transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -169,10 +176,10 @@
 
 .mobile-menu-overlay {
   position: fixed;
-  top: 64px;
+  top: #{$header-height};
   left: 0;
   width: 100%;
-  height: calc(100vh - 64px);
+  height: calc(100vh - #{$header-height});
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   z-index: 998;

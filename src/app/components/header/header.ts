@@ -1,21 +1,12 @@
 import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
-
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    RouterLink,
-    RouterLinkActive,
-  ],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatToolbarModule],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
@@ -55,6 +46,13 @@ export class Header {
     this.isDarkTheme = !this.isDarkTheme;
     this.applyTheme();
     localStorage.setItem('theme', this.isDarkTheme ? 'dark' : 'light');
+  }
+
+  scrollTo(anchor: string): void {
+    const element = document.getElementById(anchor);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   private applyTheme(): void {

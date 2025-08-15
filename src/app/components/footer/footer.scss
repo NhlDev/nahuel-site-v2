@@ -1,0 +1,48 @@
+.app-footer {
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface-variant);
+  padding: 1rem 1.25rem;
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .copy {
+    font-size: .9rem;
+    letter-spacing: .01em;
+  }
+
+  .social {
+    display: inline-flex;
+    gap: .5rem;
+
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      color: var(--mat-sys-on-surface);
+      background: var(--mat-sys-surface-container-low);
+      border: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) 60%, transparent);
+      transition: transform .15s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--mat-sys-on-primary-container);
+        background: var(--mat-sys-primary-container);
+        border-color: color-mix(in srgb, var(--mat-sys-primary) 30%, var(--mat-sys-outline-variant));
+        transform: translateY(-1px);
+        outline: none;
+      }
+    }
+  }
+}

@@ -1,11 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es-AR" class="mat-light-theme">
   <head>
     <meta charset="utf-8" />
-    <title>NahuDevSiteV2</title>
+    <title>Nahuel Dev</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Nahuel Alderete — Desarrollador Full‑Stack (Angular, Ionic, Node.js, .NET). Creo experiencias web y móviles rápidas, accesibles y escalables." />
+    <link rel="canonical" href="/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:site_name" content="Nahuel Dev" />
+    <meta property="og:title" content="Nahuel Alderete — Desarrollador Full‑Stack" />
+    <meta property="og:description" content="Desarrollador Full‑Stack: Angular, Ionic, Node.js, .NET. IA aplicada con Python/TensorFlow." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nahuel Alderete — Desarrollador Full‑Stack" />
+    <meta name="twitter:description" content="Desarrollador Full‑Stack: Angular, Ionic, Node.js, .NET. IA aplicada con Python/TensorFlow." />
+    <meta name="twitter:image" content="/logo.svg" />
+
+    <!-- Structured data (Person) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nahuel Alderete",
+        "url": "/",
+        "sameAs": [
+          "https://github.com/NhlDev",
+          "https://www.linkedin.com/in/nahuel-alderete"
+        ],
+        "jobTitle": "Full-Stack / Frontend (Angular)",
+        "image": "/logo.svg",
+        "description": "Desarrollador Full-Stack con experiencia en Angular, Ionic, Node.js y .NET. Explorando IA aplicada con Python y TensorFlow."
+      }
+    </script>
+
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="logo.svg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -21,7 +56,10 @@
       rel="stylesheet"
     />
   </head>
-  <body class="mat-typography">
+  <body class="mat-typography mat-light-theme">
+    <!-- Skip link for keyboard users -->
+    <a class="skip-link" href="#home">Saltar al contenido</a>
+
     <app-root></app-root>
   </body>
 </html>
