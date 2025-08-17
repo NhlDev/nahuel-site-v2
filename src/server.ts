@@ -42,7 +42,7 @@ app.post('/api/contact', async (req, res) => {
     }
 
     // Envío de email
-    const to = process.env['MAIL_TO'] || process.env['SMTP_USER'];
+    const to = process.env['SMTP_USER'];
     const host = process.env['SMTP_HOST'];
     const port = Number(process.env['SMTP_PORT'] || 587);
     const user = process.env['SMTP_USER'];
@@ -51,7 +51,7 @@ app.post('/api/contact', async (req, res) => {
       return res.status(500).json({ message: 'SMTP not configured' });
     }
 
-    const nodemailer = await import('nodemailer');
+    const nodemailer = (await import('nodemailer')).default;
     const transporter = nodemailer.createTransport({
       host,
       port,
@@ -66,7 +66,7 @@ app.post('/api/contact', async (req, res) => {
 <p><strong>Mensaje:</strong><br>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`;
 
     await transporter.sendMail({
-      from: `"nahu-dev site" <${user}>`,
+      from: `"Sitio Web" <${user}>`,
       to,
       subject,
       text,
