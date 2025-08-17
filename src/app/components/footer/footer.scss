@@ -45,4 +45,25 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: .75rem;
+    }
+
+    .copy {
+      width: 100%;
+      text-align: center;
+    }
+
+    .social {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+  }
 }

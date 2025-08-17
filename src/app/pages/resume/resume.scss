@@ -319,20 +319,33 @@
   }
 
   .tl-rail {
-    left: 20px;
+    display: none;
   }
 
   .tl-item {
-    padding-left: 72px;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
 
     &::after {
-      left: -52px; /* 20px (rail) - 72px (padding-left) */
+      display: none; 
     }
   }
   .tl-dot {
-    left: 4px;
-    width: 28px;
-    height: 28px;
+  position: static; 
+  align-self: flex-end; 
+  order: -1; 
+  margin: 0 0 0.5rem auto; 
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+
+    .tl-dot__img {
+      border-radius: 8px;
+    }
   }
 
   .tl-card__head {

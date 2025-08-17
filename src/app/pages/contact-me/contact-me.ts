@@ -1,21 +1,28 @@
 import { Component, PLATFORM_ID, inject, LOCALE_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 import { Mailer } from '../../services/mailer';
-import { CAPTCHA_KEY } from '../../constant/indext';
+import { CAPTCHA_KEY } from '../../constant';
 
 declare const grecaptcha: any;
 
 @Component({
   selector: 'app-contact-me',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIcon, MatSnackBarModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIcon,
+    MatSnackBarModule
+  ],
   templateUrl: './contact-me.html',
   styleUrl: './contact-me.scss'
 })
@@ -31,11 +38,9 @@ export class ContactMe {
     message: ['', [Validators.required, Validators.minLength(10)]],
   });
 
-  // Enlaces rápidos (actualiza tus perfiles)
   linkedInUrl = 'https://www.linkedin.com/in/nahuel-alderete';
   githubUrl = 'https://github.com/NhlDev';
 
-  // Datos rápidos mostrados al costado del formulario
   metaFacts: Record<string, { icon: string; text: string }[]> = {
     'es-AR': [
       { icon: 'location_on', text: 'Buenos Aires, AR (UTC−3)' },

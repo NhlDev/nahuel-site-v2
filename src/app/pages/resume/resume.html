@@ -13,14 +13,6 @@
           class="tl-item"
           [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'"
         >
-          <span class="tl-dot">
-            <img
-              class="tl-dot__img"
-              src="companies/{{ experience.icon }}"
-              alt="{{ experience.company }} logo"
-            />
-          </span>
-
           <div class="tl-card">
             <header class="tl-card__head">
               <div class="titles">
@@ -54,6 +46,14 @@
               }
             </footer>
           </div>
+
+          <span class="tl-dot">
+            <img
+              class="tl-dot__img"
+              src="companies/{{ experience.icon }}"
+              alt="{{ experience.company }} logo"
+            />
+          </span>
         </article>
       }
     </div>

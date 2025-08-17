@@ -136,10 +136,22 @@
         </mat-form-field>
 
         <div class="actions">
-          <button mat-button type="button" (click)="form.reset()" i18n>
+          <button
+            mat-button
+            type="button"
+            (click)="form.reset()"
+            [disabled]="sending"
+            i18n
+          >
             Limpiar
           </button>
-          <button mat-button color="primary" type="submit" i18n>
+          <button
+            mat-button
+            color="primary"
+            type="submit"
+            [disabled]="sending"
+            i18n
+          >
             <mat-icon>send</mat-icon>
             Enviar
           </button>
