@@ -12,6 +12,5 @@ registerLocaleData(localeEnUS);
 
 bootstrapApplication(App, {
   providers: [
-    // ...existing providers sin provideRouter
   ]
 }).catch(err => console.error(err));

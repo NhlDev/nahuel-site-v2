@@ -70,7 +70,7 @@
         </ul>
 
         <ul class="meta-facts" aria-label="Datos rápidos">
-          @for (m of metaFacts; track $index) {
+          @for (m of metaFacts[locale]; track $index) {
           <li class="mf">
             <mat-icon class="mf__icon">{{ m.icon }}</mat-icon>
             <span class="mf__text">{{ m.text }}</span>

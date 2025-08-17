@@ -34,7 +34,7 @@
             @for (tech of technologies; track tech.name; let i = $index) {
             <li class="tech-icon" #techIcon [style.--i]="i">
               <img
-                [src]="'/techs/' + tech.file"
+                [src]="'techs/' + tech.file"
                 [alt]="tech.label"
                 width="64"
                 height="64"
