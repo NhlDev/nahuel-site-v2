@@ -1,0 +1,24 @@
+# Construye y publica la imagen usando tu Dockerfile
+substitutions:
+  _REGION: southamerica-east1
+  _REPO: cloud-run-source-deploy
+  _IMAGE: nahu-dev-site-v2
+
+options:
+  logging: CLOUD_LOGGING_ONLY   # evita el requisito de logs_bucket con service_account
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_IMAGE}:${COMMIT_SHA}
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_IMAGE}:${COMMIT_SHA}
+
+images:
+  - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_IMAGE}:${COMMIT_SHA}
