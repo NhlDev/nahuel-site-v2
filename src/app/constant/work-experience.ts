@@ -144,6 +144,60 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
     ],
     'en-US': [
         {
+            company: "Freelance",
+            position: "Front-End Developer",
+            startDate: new Date(2021, 3, 1), // April 2021
+            endDate: null,
+            responsibilities: [
+                "Developed cross-platform web and mobile apps focused on the healthcare sector",
+                "Participated in designing and implementing solutions for medical institutions",
+                "Implemented appointment scheduling, medical records, and patient follow-up",
+                "Created reusable UI components and smooth navigation",
+                "Integrated backend services through REST APIs",
+                "Prioritized usability and accessibility for clinical user profiles",
+                "Contributed to digitizing internal processes in healthcare centers"
+            ],
+            technologiesUsed: ["Angular 18", "Ionic 8", "TypeScript", "REST APIs"],
+            location: "Remote",
+            icon: "freelance.jpg",
+            companyColor: '#fe930f'
+        },
+        {
+            company: "Scoutt Inc.",
+            position: "Angular Front-End Developer",
+            startDate: new Date(2024, 11, 1), // December 2024
+            endDate: new Date(2025, 7, 1),
+            responsibilities: [
+                "Contributed to building an Angular 19 SaaS platform for an early-stage startup",
+                "Built an MVP that helps companies form engineering teams, using AI to shortlist candidates",
+                "Implemented modern interfaces and reusable components",
+                "Developed integration logic with APIs",
+                "Focused on delivery speed, scalability, and user experience"
+            ],
+            technologiesUsed: ["Angular 19", "TypeScript", "APIs", "AI"],
+            location: "Remote",
+            icon: "scoutt_co.jpg",
+            companyColor: "#36f"
+        },
+        {
+            company: "Infocorp Group",
+            position: "Senior Developer",
+            startDate: new Date(2021, 5, 1), // June 2021
+            endDate: new Date(2024, 11, 31), // December 2024
+            responsibilities: [
+                "Provided technical support and bug diagnostics for a digital marketing platform",
+                "Worked with large-scale financial institutions",
+                "Developed custom native integrations for hybrid frameworks",
+                "Improved interoperability with device services",
+                "Optimized performance in critical features",
+                "Ensured stability, scalability, and user experience in demanding environments"
+            ],
+            technologiesUsed: ["Ionic", "React Native", "JavaScript", "TypeScript"],
+            location: "Argentina",
+            icon: "icorp.png",
+            companyColor: "#2196f3"
+        },
+        {
             company: "Flux IT",
             position: "Full-Stack Developer",
             startDate: new Date(2020, 6, 1), // July 2020

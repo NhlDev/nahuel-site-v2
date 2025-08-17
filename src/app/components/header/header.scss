@@ -139,7 +139,7 @@ $header-height: 56px;
       border-radius: 12px;
       font-weight: 500;
       transition: all 0.2s ease;
-      color: var(--mat-sys-on-surface);
+      color: #fff;
 
       mat-icon {
         font-size: 1.25rem;
@@ -159,8 +159,12 @@ $header-height: 56px;
       }
     }
 
+    .lang-switch {
+      --mat-button-text-label-text-color: #fff;
+    }
+
+    .mobile-lang-toggle,
     .mobile-theme-toggle {
-      margin-top: 1rem;
       padding-top: 1rem;
       border-top: 1px solid var(--mat-sys-outline-variant);
 

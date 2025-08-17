@@ -55,6 +55,26 @@ export class Header {
     }
   }
 
+  get currentLocale(): 'es-AR' | 'en-US' {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/es-AR';
+    const seg1 = (path.split('/')[1] || '').trim();
+    return seg1 === 'en-US' ? 'en-US' : 'es-AR';
+  }
+
+  switchLocale(): void {
+    if (typeof window === 'undefined') return;
+    const { pathname, search, hash } = window.location;
+    const segs = pathname.split('/').filter(Boolean);
+    const to = this.currentLocale === 'es-AR' ? 'en-US' : 'es-AR';
+    if (segs.length && (segs[0] === 'es-AR' || segs[0] === 'en-US')) {
+      segs[0] = to;
+    } else {
+      segs.unshift(to);
+    }
+    const newPath = '/' + segs.join('/');
+    window.location.assign(newPath + search + hash);
+  }
+
   private applyTheme(): void {
     if (this.isBrowser) {
       const body = document.body;

@@ -1,7 +1,7 @@
 <header>
   <mat-toolbar color="primary" class="custom-toolbar">
     <div class="logo-section">
-      <img src="logo.svg" alt="Nahuel Personal Site" class="logo" />
+      <!-- <img src="logo.svg" alt="Nahuel Personal Site" class="logo" /> -->
       <span class="app-title">Nahuel Alderete</span>
     </div>
 
@@ -24,6 +24,12 @@
         <mat-icon>mail</mat-icon>
         Contacto
       </a>
+
+      <a mat-button (click)="switchLocale()">
+        <mat-icon>translate</mat-icon>
+        {{ currentLocale === 'es-AR' ? 'EN' : 'ES' }}
+      </a>
+      
     </nav>
 
     <button
@@ -68,6 +74,14 @@
         <button mat-stroked-button (click)="toggleTheme()">
           <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
           {{ isDarkTheme ? 'Light Mode' : 'Dark Mode' }}
+        </button>
+      </div>
+
+      <!-- Mobile language switch -->
+      <div class="mobile-lang-toggle">
+        <button mat-stroked-button (click)="switchLocale()">
+          <mat-icon>translate</mat-icon>
+          {{ currentLocale === 'es-AR' ? 'English' : 'Español' }}
         </button>
       </div>
     </div>

@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:localize": "ng build --localize",
+    "build:localize:prod": "ng build --localize --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "ssr": "node dist/nahu-dev-site-v2/server/server.mjs",
