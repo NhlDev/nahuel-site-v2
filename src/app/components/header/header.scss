@@ -205,6 +205,12 @@ $header-height: 56px;
 
   .btn-menu-mobile {
     display: flex;
+    color: #fff;
+  }
+
+  .mobile-menu-content {
+    align-items: flex-start;
+    color: #fff;
   }
 
   .theme-toggle {

@@ -29,7 +29,6 @@
         <mat-icon>translate</mat-icon>
         {{ currentLocale === 'es-AR' ? 'EN' : 'ES' }}
       </a>
-      
     </nav>
 
     <button
@@ -70,20 +69,14 @@
         Contact
       </a>
 
-      <div class="mobile-theme-toggle">
-        <button mat-stroked-button (click)="toggleTheme()">
-          <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
-          {{ isDarkTheme ? 'Light Mode' : 'Dark Mode' }}
-        </button>
-      </div>
-
-      <!-- Mobile language switch -->
-      <div class="mobile-lang-toggle">
-        <button mat-stroked-button (click)="switchLocale()">
-          <mat-icon>translate</mat-icon>
-          {{ currentLocale === 'es-AR' ? 'English' : 'Español' }}
-        </button>
-      </div>
+      <a mat-button (click)="toggleTheme()">
+        <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        {{ isDarkTheme ? 'Light Mode' : 'Dark Mode' }}
+      </a>
+      <a mat-button (click)="switchLocale()">
+        <mat-icon>translate</mat-icon>
+        {{ currentLocale === 'es-AR' ? 'English' : 'Español' }}
+      </a>
     </div>
   </nav>
 

@@ -1,3 +1,5 @@
+@use "../../../_mixins" as m;
+
 .home-container {
   display: grid;
   place-items: center;
@@ -31,16 +33,9 @@
   align-items: center;
   gap: clamp(2rem, 5vw, 3.5rem);
   border-radius: 20px;
-  background: color-mix(
-    in srgb,
-    var(--mat-sys-surface-container) 85%,
-    transparent
-  );
-  border: 1px solid
-    color-mix(in srgb, var(--mat-sys-outline-variant) 70%, transparent);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22),
-    inset 0 0 0 1px
-      color-mix(in srgb, var(--mat-sys-outline-variant) 35%, transparent);
+  @include m.card($bg-mix: 85%, $border-mix: 70%, $radius: 20px, $blur: 8px, $elevation: 4);
+  box-shadow: var(--mat-app-elevation-shadow-level-4),
+    inset 0 0 0 1px color-mix(in srgb, var(--mat-sys-outline-variant) 35%, transparent);
   backdrop-filter: blur(8px);
 
   @media (prefers-reduced-motion: no-preference) {

@@ -1,3 +1,5 @@
+@use "../../../_mixins" as m;
+
 .app-footer {
   border-top: 1px solid var(--mat-sys-outline-variant);
   background: var(--mat-sys-surface);
@@ -20,27 +22,20 @@
   }
 
   .social {
-    display: inline-flex;
+    display: flex;
     gap: .5rem;
 
-    .icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      color: var(--mat-sys-on-surface);
-      background: var(--mat-sys-surface-container-low);
+    a {
+      @include m.icon-button(40px);
       border: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) 60%, transparent);
       transition: transform .15s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+      @include m.hover-lift(-1px);
 
       &:hover,
       &:focus-visible {
         color: var(--mat-sys-on-primary-container);
         background: var(--mat-sys-primary-container);
         border-color: color-mix(in srgb, var(--mat-sys-primary) 30%, var(--mat-sys-outline-variant));
-        transform: translateY(-1px);
         outline: none;
       }
     }

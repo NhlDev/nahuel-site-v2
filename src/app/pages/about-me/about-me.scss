@@ -1,3 +1,5 @@
+@use "../../../_mixins" as m;
+
 .about-wrapper {
   display: grid;
   place-items: center;
@@ -9,14 +11,8 @@
 .about-hero {
   position: relative;
   max-width: 1050px;
-  background: color-mix(
-    in srgb,
-    var(--mat-sys-surface-container) 80%,
-    transparent
-  );
-  border: 1px solid
-    color-mix(in srgb, var(--mat-sys-outline-variant) 65%, transparent);
-  border-radius: 28px;
+  // Reemplaza fondo/borde/blur/sombra repetidos
+  @include m.card($radius: 28px, $elevation: 4);
   padding: clamp(2rem, 4vw, 3rem);
   display: flex;
   flex-direction: column;
@@ -69,7 +65,6 @@
   margin: 0;
   font-size: clamp(1rem, 1.35vw, 1.15rem);
   line-height: 1.55;
-  color: var(--mat-sys-on-surface);
   max-width: 74ch;
   text-wrap: pretty;
 }
@@ -78,16 +73,18 @@
   margin-top: 0.5rem;
 }
 
-/* Single-line, responsive, staggered fade-in triggered por la clase .visible en el contenedor */
+/* Responsive row of icons with staggered fade-in, triggered por la clase .visible en el contenedor */
+.tech-icons,
+.highlights,
+.quick-facts {
+  @include m.list-reset;
+}
+
 .tech-icons {
   --icon-size: 72px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   gap: clamp(1rem, 2vw, 1.5rem);
   flex-wrap: wrap;
-  -webkit-overflow-scrolling: touch;
   align-items: center;
   justify-content: space-evenly;
 
@@ -100,23 +97,15 @@
     display: grid;
     place-items: center;
 
-    /* estado inicial (oculto) */
     opacity: 0;
     transform: translateY(8px) scale(0.98);
     filter: blur(4px);
 
-    /* transición rápida: 300ms */
     transition: opacity 300ms ease,
       transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 300ms ease,
       box-shadow 300ms ease;
-
-    /* cada item recibe su índice en --i: la aparición se escala por 300ms * índice */
-    /* NOTA: el delay se aplica cuando el contenedor recibe .visible */
-    /* (primer icono: delay 0ms, segundo: 300ms, tercero: 600ms, ...) */
-    transition-delay: 0ms;
   }
 
-  /* cuando el contenedor entra en viewport, activar stagger vía delay por --i */
   &.visible {
     .tech-icon {
       opacity: 1;
@@ -137,18 +126,6 @@
     transform: none !important;
     filter: none !important;
   }
-}
-
-.visually-hidden {
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  border: 0;
 }
 
 /* Tema oscuro ajuste sutil */
@@ -172,11 +149,6 @@
       color-mix(in srgb, var(--mat-sys-secondary) 20%, transparent)
     ),
     var(--mat-sys-surface-container-high);
-  border-color: color-mix(
-    in srgb,
-    var(--mat-sys-outline-variant) 40%,
-    transparent
-  );
 }
 .about-grid {
   display: grid;
@@ -198,21 +170,12 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1rem);
-  list-style: none;
-  padding: 0;
   margin: 0.25rem 0 0;
 
   .hl {
     text-align: center;
     padding: 0.9rem 0.75rem;
-    border-radius: 16px;
-    background: color-mix(
-      in srgb,
-      var(--mat-sys-surface-container) 88%,
-      transparent
-    );
-    border: 1px solid
-      color-mix(in srgb, var(--mat-sys-outline-variant) 55%, transparent);
+    @include m.surface-panel($bg-mix: 88%, $border-mix: 55%, $radius: 16px);
 
     .hl__num {
       font-size: clamp(1rem, 2.6vw, 1.35rem);
@@ -238,9 +201,7 @@
 }
 
 .quick-facts {
-  list-style: none;
   margin: 0;
-  padding: 0;
   display: grid;
   gap: 0.5rem;
 
@@ -250,14 +211,7 @@
     align-items: center;
     gap: 0.6rem;
     padding: 0.6rem 0.75rem;
-    border-radius: 14px;
-    background: color-mix(
-      in srgb,
-      var(--mat-sys-surface-container) 88%,
-      transparent
-    );
-    border: 1px solid
-      color-mix(in srgb, var(--mat-sys-outline-variant) 50%, transparent);
+    @include m.surface-panel($bg-mix: 88%, $border-mix: 55%, $radius: 14px);
   }
   .qf__icon {
     font-size: 1rem;
@@ -272,34 +226,4 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-top: 0.5rem;
-}
-
-.btn {
-  --bg: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
-  --border: color-mix(in srgb, var(--mat-sys-outline-variant) 55%, transparent);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 0.9rem;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  background: var(--bg);
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    transform 0.15s ease;
-
-  &:hover {
-    transform: translateY(-1px);
-  }
-}
-
-.btn.primary {
-  --bg: color-mix(in srgb, var(--mat-sys-primary) 18%, transparent);
-  --border: color-mix(
-    in srgb,
-    var(--mat-sys-primary) 45%,
-    var(--mat-sys-outline-variant)
-  );
 }

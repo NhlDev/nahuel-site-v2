@@ -48,7 +48,7 @@ export class ContactMe {
       { icon: 'work', text: 'Disponibilidad: Part/Full‑time' },
     ],
     'en-US': [
-      { icon: 'location_on', text: 'San Francisco, CA (UTC−8)' },
+      { icon: 'location_on', text: 'Buenos Aires, AR (UTC−3)' },
       { icon: 'schedule', text: 'Typical response: 24–48h' },
       { icon: 'work', text: 'Availability: Part/Full‑time' },
     ]

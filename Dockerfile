@@ -8,16 +8,13 @@ RUN npm ci
 
 # Copiar el resto del código y compilar (browser + server)
 COPY . .
-RUN npm run build
+RUN npm run build:localize:prod
 
 # ---------- Runner ----------
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=4000
-
-# Certificados para TLS (SMTP/HTTPS)
-#RUN apk add --no-cache ca-certificates
 
 # Instalar solo deps de producción
 COPY package*.json ./

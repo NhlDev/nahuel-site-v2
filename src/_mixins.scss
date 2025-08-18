@@ -1,0 +1,63 @@
+// Mixins reutilizables para superficies, chips, botones icono y utilidades
+@use "sass:meta";
+
+@mixin card(
+  $bg-color: var(--mat-sys-surface-container),
+  $bg-mix: 80%,
+  $border-mix: 65%,
+  $radius: 24px,
+  $blur: 10px,
+  $elevation: 4
+) {
+  background: color-mix(in srgb, $bg-color $bg-mix, transparent);
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) $border-mix, transparent);
+  border-radius: $radius;
+  backdrop-filter: blur($blur);
+  box-shadow: var(--mat-app-elevation-shadow-level-#{$elevation});
+}
+
+@mixin surface-panel(
+  $bg-color: var(--mat-sys-surface-container),
+  $bg-mix: 88%,
+  $border-mix: 55%,
+  $radius: 12px
+) {
+  background: color-mix(in srgb, $bg-color $bg-mix, transparent);
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) $border-mix, transparent);
+  border-radius: $radius;
+}
+
+@mixin pill(
+  $bg: var(--mat-sys-secondary-container),
+  $fg: var(--mat-sys-on-secondary-container),
+  $border-mix: 25%,
+  $pad-y: 0.25rem,
+  $pad-x: 0.6rem,
+  $radius: 999px
+) {
+  background: $bg;
+  color: $fg;
+  border: 1px solid color-mix(in srgb, var(--mat-sys-secondary) $border-mix, var(--mat-sys-outline-variant));
+  padding: $pad-y $pad-x;
+  border-radius: $radius;
+}
+
+@mixin icon-button($size: 36px) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $size;
+  height: $size;
+  border-radius: 10px;
+}
+
+@mixin hover-lift($dy: -1px) {
+  transition: transform 0.15s ease;
+  &:hover { transform: translateY($dy); }
+}
+
+@mixin list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
