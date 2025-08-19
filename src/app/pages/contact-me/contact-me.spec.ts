@@ -1,5 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { provideZoneChangeDetection } from '@angular/core';
+
 import { ContactMe } from './contact-me';
 
 describe('ContactMe', () => {
@@ -8,9 +16,18 @@ describe('ContactMe', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContactMe]
+      imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIcon,
+        MatSnackBarModule,
+        ContactMe,
+      ],
+      providers: [provideZoneChangeDetection({ eventCoalescing: true })],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ContactMe);
     component = fixture.componentInstance;

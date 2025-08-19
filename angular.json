@@ -111,6 +111,8 @@
               "src/styles.scss"
             ],
             "polyfills": [
+              "zone.js",
+              "zone.js/testing",
               "@angular/localize/init"
             ]
           }

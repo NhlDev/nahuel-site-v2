@@ -10,8 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class AboutMe implements AfterViewInit, OnDestroy {
   lang = inject(LOCALE_ID);
-  aboutText = `Desarrollador Full‑Stack con 10+ años creando productos web y mobile end‑to‑end. En el front me especializo en Angular (arquitectura, performance, accesibilidad) e Ionic para experiencias móviles. En el back trabajo con Node.js y C# (.NET) diseñando APIs limpias y escalables. Actualmente amplío mi stack con IA aplicada: Python + TensorFlow para prototipos de machine y deep learning orientados a features inteligentes (búsquedas semánticas, recomendaciones, clasificación y automatización). Mi foco: convertir ideas en soluciones mantenibles, seguras y medibles que generen impacto real.`;
-
+  
   technologies = [
     { name: 'Angular', file: 'angular.svg', label: 'Logo Angular' },
     { name: 'JavaScript', file: 'javascript.svg', label: 'Logo JavaScript' },
