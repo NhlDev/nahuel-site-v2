@@ -7,6 +7,10 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 
+import helmet from 'helmet';
+import compression from 'compression';
+import rateLimit from 'express-rate-limit';
+
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
@@ -14,6 +18,38 @@ const angularApp = new AngularNodeAppEngine();
 
 // JSON body parsing
 app.use(express.json({ limit: '1mb' }));
+
+app.enable('trust proxy');
+
+// Seguridad básica (CSP adaptado a fuentes/recaptcha)
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: {
+        "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/"],
+        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        "font-src": ["'self'", "https://fonts.gstatic.com"],
+        "img-src": ["'self'", "data:"],
+        "connect-src": ["'self'"]
+      }
+    },
+    crossOriginEmbedderPolicy: false
+  })
+);
+
+// Compresión
+app.use(compression());
+
+// Rate limit para /api/contact
+const contactLimiter = rateLimit({
+  windowMs: 60_000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+app.use('/api/contact', contactLimiter);
 
 // Contact API protegido por reCAPTCHA v3 (antes de la redirección por locales)
 app.post('/api/contact', async (req, res) => {

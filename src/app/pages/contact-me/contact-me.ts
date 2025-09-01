@@ -66,6 +66,25 @@ export class ContactMe {
     return !!c && c.touched && c.hasError(err);
   }
 
+  private loadRecaptcha(): Promise<void> {
+    if (!this.isBrowser) return Promise.resolve();
+    if (typeof (window as any).grecaptcha !== 'undefined') return Promise.resolve();
+
+    return new Promise((resolve, reject) => {
+      const scriptId = 'recaptcha-v3';
+      if (document.getElementById(scriptId)) return resolve();
+
+      const s = document.createElement('script');
+      s.id = scriptId;
+      s.src = `https://www.google.com/recaptcha/api.js?render=${this.recaptchaSiteKey}`;
+      s.async = true;
+      s.defer = true;
+      s.onload = () => resolve();
+      s.onerror = (e) => reject(e);
+      document.head.appendChild(s);
+    });
+  }
+
   async onSubmit() {
     if (this.form.invalid || this.sending) {
       this.form.markAllAsTouched();
@@ -75,36 +94,23 @@ export class ContactMe {
 
     try {
       let recaptchaToken = '';
-      if (this.isBrowser && typeof grecaptcha !== 'undefined') {
-
+      if (this.isBrowser) {
+        await this.loadRecaptcha();
         recaptchaToken = await new Promise((resolve, reject) => {
           grecaptcha.ready(() => {
             grecaptcha.execute(this.recaptchaSiteKey, { action: 'submit' })
-              .then((token: string) => {
-                resolve(token);
-              })
-              .catch((error: Error) => {
-                console.error("Error executing reCAPTCHA", error);
-                reject(error);
-              });
+              .then((token: string) => resolve(token))
+              .catch((error: Error) => reject(error));
           });
         });
-
-        const { name, email, message } = this.form.value as { name: string; email: string; message: string };
-
-        await this.mailer.sendContact({
-          name,
-          email,
-          message,
-          recaptchaToken,
-          locale: this.locale as string,
-        });
-
-        this.openSnack(this.locale === 'en-US'
-          ? 'Message sent! I will get back to you soon.'
-          : '¡Mensaje enviado! Te responderé pronto.');
-        this.form.reset();
       }
+
+      const { name, email, message } = this.form.value as { name: string; email: string; message: string };
+      await this.mailer.sendContact({ name, email, message, recaptchaToken, locale: this.locale as string });
+      this.openSnack(this.locale === 'en-US'
+        ? 'Message sent! I will get back to you soon.'
+        : '¡Mensaje enviado! Te responderé pronto.');
+      this.form.reset();
     } catch (e) {
       this.openSnack(this.locale === 'en-US'
         ? 'There was an error. Please try again later.'
