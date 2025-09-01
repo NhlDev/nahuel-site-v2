@@ -7,7 +7,7 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 
-import helmet from 'helmet';
+//import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 
@@ -22,21 +22,21 @@ app.use(express.json({ limit: '1mb' }));
 app.enable('trust proxy');
 
 // Seguridad básica (CSP adaptado a fuentes/recaptcha)
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      useDefaults: true,
-      directives: {
-        "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/"],
-        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        "font-src": ["'self'", "https://fonts.gstatic.com"],
-        "img-src": ["'self'", "data:"],
-        "connect-src": ["'self'"]
-      }
-    },
-    crossOriginEmbedderPolicy: false
-  })
-);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       useDefaults: true,
+//       directives: {
+//         "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/"],
+//         "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+//         "font-src": ["'self'", "https://fonts.gstatic.com"],
+//         "img-src": ["'self'", "data:"],
+//         "connect-src": ["'self'"]
+//       }
+//     },
+//     crossOriginEmbedderPolicy: false
+//   })
+// );
 
 // Compresión
 app.use(compression());
