@@ -5,7 +5,7 @@
   place-items: center;
   padding: 1.5rem;
   background-image: linear-gradient(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0.45)),
-     url("/bg-home.jpg");
+    url("/bg-home.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -33,9 +33,16 @@
   align-items: center;
   gap: clamp(2rem, 5vw, 3.5rem);
   border-radius: 20px;
-  @include m.card($bg-mix: 85%, $border-mix: 70%, $radius: 20px, $blur: 8px, $elevation: 4);
+  @include m.card(
+    $bg-mix: 85%,
+    $border-mix: 70%,
+    $radius: 20px,
+    $blur: 8px,
+    $elevation: 4
+  );
   box-shadow: var(--mat-app-elevation-shadow-level-4),
-    inset 0 0 0 1px color-mix(in srgb, var(--mat-sys-outline-variant) 35%, transparent);
+    inset 0 0 0 1px
+      color-mix(in srgb, var(--mat-sys-outline-variant) 35%, transparent);
   backdrop-filter: blur(8px);
 
   @media (prefers-reduced-motion: no-preference) {
@@ -82,6 +89,7 @@
     font-size: clamp(0.95rem, 2vw, 1.15rem);
     font-weight: 400;
     letter-spacing: 0.5px;
+    line-height: 2rem;
   }
 }
 
