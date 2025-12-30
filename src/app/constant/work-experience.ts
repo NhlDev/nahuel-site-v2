@@ -13,6 +13,22 @@ export interface WorkExperience {
 export const workExperiences: { [lang: string]: WorkExperience[] } = {
     'es-AR': [
         {
+            company: "Infocorp Group",
+            position: "Desarrollador Fullstack",
+            startDate: new Date(2025, 10, 1), // Noviembre 2025
+            endDate: null,
+            responsibilities: [
+                "Integro un equipo de desarrollo multidisciplinario encargado de la evolución estratégica de la plataforma de banca digital",
+                "Implemento nuevas funcionalidades end-to-end, orquestando soluciones desde el backend en .NET hasta interfaces reactivas en Angular y React Native",
+                "Garantizo la excelencia operativa mediante la identificación y resolución proactiva de incidencias (bugs) en entornos financieros críticos",
+                "Contribuyo a la robustez del ecosistema bancario aplicando estándares de calidad y patrones de diseño modernos"
+            ],
+            technologiesUsed: [".NET", "Angular", "React Native", "TypeScript", "C#"],
+            location: "Uruguay (Remoto)",
+            icon: "icorp.png",
+            companyColor: "#2196f3"
+        },
+        {
             company: "Freelance",
             position: "Desarrollador Front-End",
             startDate: new Date(2021, 3, 1), // Abril 2021
@@ -143,6 +159,22 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
         }
     ],
     'en-US': [
+        {
+            company: "Infocorp Group",
+            position: "Full-Stack Developer",
+            startDate: new Date(2025, 10, 1), // November 2025
+            endDate: null,
+            responsibilities: [
+                "Member of a multidisciplinary development team responsible for the strategic evolution of the digital banking platform",
+                "Implementing new end-to-end features, orchestrating solutions from the .NET backend to reactive interfaces in Angular and React Native",
+                "Ensuring operational excellence through proactive identification and resolution of technical issues (bugs) in critical financial environments",
+                "Contributing to the robustness of the banking ecosystem by applying quality standards and modern design patterns"
+            ],
+            technologiesUsed: [".NET", "Angular", "React Native", "TypeScript", "C#"],
+            location: "Uruguay (Remote)",
+            icon: "icorp.png",
+            companyColor: "#2196f3"
+        },
         {
             company: "Freelance",
             position: "Front-End Developer",

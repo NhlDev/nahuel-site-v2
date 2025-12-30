@@ -9,52 +9,46 @@
       <div class="tl-rail"></div>
 
       @for (experience of workExperiences; track $index) {
-        <article
-          class="tl-item"
-          [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'"
-        >
-          <div class="tl-card">
-            <header class="tl-card__head">
-              <div class="titles">
-                <h3 class="position">{{ experience.position }}</h3>
-                <h4 class="company">{{ experience.company }}</h4>
-              </div>
-              <span class="date">
-                {{ experience.startDate | date: 'MMM yyyy' }} –
-                {{ experience.endDate ? (experience.endDate | date: 'MMM yyyy') : 'Actualidad' }}
-              </span>
-            </header>
-
-            <div class="tl-meta">
-              <span class="badge">
-                <mat-icon>place</mat-icon>
-                {{ experience.location }}
-              </span>
+      <article class="tl-item" [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'">
+        <div class="tl-card">
+          <header class="tl-card__head">
+            <div class="titles">
+              <h3 class="position">{{ experience.position }}</h3>
+              <h4 class="company">{{ experience.company }}</h4>
             </div>
+            <span class="date">
+              {{ experience.startDate | date: 'MMM yyyy' }} –
+              {{ experience.endDate ? (experience.endDate | date: 'MMM yyyy') : 'Actualidad' }}
+            </span>
+          </header>
 
-            <section class="tl-body">
-              <ul class="responsibilities">
-                @for (description of experience.responsibilities; track $index) {
-                  <li>{{ description }}</li>
-                }
-              </ul>
-            </section>
-
-            <footer class="skills-chips">
-              @for (tech of experience.technologiesUsed; track $index) {
-                <span class="chip">{{ tech }}</span>
-              }
-            </footer>
+          <div class="tl-meta">
+            <span class="badge">
+              <mat-icon>place</mat-icon>
+              {{ experience.location }}
+            </span>
           </div>
 
-          <span class="tl-dot">
-            <img
-              class="tl-dot__img"
-              src="companies/{{ experience.icon }}"
-              alt="{{ experience.company }} logo"
-            />
-          </span>
-        </article>
+          <section class="tl-body">
+            <ul class="responsibilities">
+              @for (description of experience.responsibilities; track $index) {
+              <li>{{ description }}</li>
+              }
+            </ul>
+          </section>
+
+          <footer class="skills-chips">
+            @for (tech of experience.technologiesUsed; track $index) {
+            <span class="chip">{{ tech }}</span>
+            }
+          </footer>
+        </div>
+
+        <span class="tl-dot">
+          <img class="tl-dot__img" ngSrc="companies/{{ experience.icon }}" width="45" height="45"
+            alt="{{ experience.company }} logo" />
+        </span>
+      </article>
       }
     </div>
   </div>

@@ -1,13 +1,16 @@
-import { Component, inject, LOCALE_ID, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, LOCALE_ID, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   imports: [
     MatButtonModule,
+    NgOptimizedImage
   ],
   templateUrl: './home.html',
-  styleUrl: './home.scss'
+  styleUrl: './home.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Home implements OnInit, OnDestroy {
 

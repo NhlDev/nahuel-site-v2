@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID, inject, LOCALE_ID } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID, inject, LOCALE_ID, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -6,11 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-about-me',
   imports: [CommonModule, MatButtonModule],
   templateUrl: './about-me.html',
-  styleUrl: './about-me.scss'
+  styleUrl: './about-me.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AboutMe implements AfterViewInit, OnDestroy {
   lang = inject(LOCALE_ID);
-  
+
   technologies = [
     { name: 'Angular', file: 'angular.svg', label: 'Logo Angular' },
     { name: 'JavaScript', file: 'javascript.svg', label: 'Logo JavaScript' },
@@ -46,8 +47,8 @@ export class AboutMe implements AfterViewInit, OnDestroy {
   };
 
   @ViewChild('techIconsContainer', { read: ElementRef }) techIconsContainer?: ElementRef<HTMLUListElement>;
-  
-  techIconsVisible = false;
+
+  techIconsVisible = signal(false);
 
   private observer?: IntersectionObserver;
 
@@ -58,13 +59,13 @@ export class AboutMe implements AfterViewInit, OnDestroy {
 
     // SSR o navegador sin IntersectionObserver: fallback visible para evitar mismatch
     if (!isBrowser || typeof IntersectionObserver === 'undefined') {
-      this.techIconsVisible = true;
+      this.techIconsVisible.set(true);
       return;
     }
 
     const el = this.techIconsContainer?.nativeElement;
     if (!el) {
-      this.techIconsVisible = true;
+      this.techIconsVisible.set(true);
       return;
     }
 
@@ -72,7 +73,7 @@ export class AboutMe implements AfterViewInit, OnDestroy {
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            this.techIconsVisible = true;
+            this.techIconsVisible.set(true);
             this.observer?.disconnect();
             break;
           }
@@ -85,8 +86,8 @@ export class AboutMe implements AfterViewInit, OnDestroy {
 
     // Fallback defensivo: si algo falla, asegurarse que se muestren
     setTimeout(() => {
-      if (!this.techIconsVisible) {
-        this.techIconsVisible = true;
+      if (!this.techIconsVisible()) {
+        this.techIconsVisible.set(true);
       }
     }, 2000);
   }

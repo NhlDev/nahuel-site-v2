@@ -1,5 +1,5 @@
-import { Component, inject, LOCALE_ID } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, LOCALE_ID, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { MatIconModule } from '@angular/material/icon';
 
@@ -8,10 +8,12 @@ import { WorkExperience, workExperiences } from '../../constant/work-experience'
   selector: 'app-resume',
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    NgOptimizedImage
   ],
   templateUrl: './resume.html',
-  styleUrl: './resume.scss'
+  styleUrl: './resume.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Resume {
   lang = inject(LOCALE_ID);

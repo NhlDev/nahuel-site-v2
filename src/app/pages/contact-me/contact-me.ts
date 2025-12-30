@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, inject, LOCALE_ID } from '@angular/core';
+import { Component, PLATFORM_ID, inject, LOCALE_ID, signal, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +24,8 @@ declare const grecaptcha: any;
     MatSnackBarModule
   ],
   templateUrl: './contact-me.html',
-  styleUrl: './contact-me.scss'
+  styleUrl: './contact-me.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactMe {
   readonly locale = inject(LOCALE_ID);
@@ -58,7 +59,7 @@ export class ContactMe {
   private mailer = inject(Mailer);
   private snackBar = inject(MatSnackBar);
 
-  sending = false;
+  sending = signal(false);
   private readonly recaptchaSiteKey = CAPTCHA_KEY;
 
   hasError(ctrl: 'name' | 'email' | 'message', err: string) {
@@ -86,11 +87,11 @@ export class ContactMe {
   }
 
   async onSubmit() {
-    if (this.form.invalid || this.sending) {
+    if (this.form.invalid || this.sending()) {
       this.form.markAllAsTouched();
       return;
     }
-    this.sending = true;
+    this.sending.set(true);
 
     try {
       let recaptchaToken = '';
@@ -117,7 +118,7 @@ export class ContactMe {
         : 'Ocurrió un error. Intentá más tarde.');
       console.error(e);
     } finally {
-      this.sending = false;
+      this.sending.set(false);
     }
   }
 

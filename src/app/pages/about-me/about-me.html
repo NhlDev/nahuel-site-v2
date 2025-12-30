@@ -36,20 +36,10 @@
 
         <section class="tech-stack" aria-label="Tecnologías principales">
           <h2 class="visually-hidden" i18n>Tecnologías</h2>
-          <ul
-            class="tech-icons"
-            #techIconsContainer
-            [class.visible]="techIconsVisible"
-          >
+          <ul class="tech-icons" #techIconsContainer [class.visible]="techIconsVisible()">
             @for (tech of technologies; track tech.name; let i = $index) {
             <li class="tech-icon" #techIcon [style.--i]="i">
-              <img
-                [src]="'techs/' + tech.file"
-                [alt]="tech.label"
-                width="64"
-                height="64"
-                loading="lazy"
-              />
+              <img [src]="'techs/' + tech.file" [alt]="tech.label" width="64" height="64" loading="lazy" />
               <span class="tech-caption">{{ tech.name }}</span>
             </li>
             }

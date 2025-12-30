@@ -31,26 +31,18 @@
       </a>
     </nav>
 
-    <button
-      mat-icon-button
-      class="theme-toggle"
-      (click)="toggleTheme()"
-      [title]="isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'"
-    >
-      <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    <button mat-icon-button class="theme-toggle" (click)="toggleTheme()"
+      [title]="isDarkTheme() ? 'Switch to light mode' : 'Switch to dark mode'">
+      <mat-icon>{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
 
-    <button
-      class="btn-menu-mobile"
-      mat-icon-button
-      (click)="toggleMobileMenu()"
-      [attr.aria-expanded]="isMobileMenuOpen"
-    >
-      <mat-icon>{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    <button class="btn-menu-mobile" mat-icon-button (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen()">
+      <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
     </button>
   </mat-toolbar>
 
-  <nav class="mobile-menu" [class.show]="isMobileMenuOpen">
+  <nav class="mobile-menu" [class.show]="isMobileMenuOpen()">
     <div class="mobile-menu-content">
       <a mat-button (click)="scrollTo('home'); closeMobileMenu()" i18n>
         <mat-icon>home</mat-icon>
@@ -70,8 +62,8 @@
       </a>
 
       <a mat-button (click)="toggleTheme()">
-        <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
-        {{ isDarkTheme ? 'Light Mode' : 'Dark Mode' }}
+        <mat-icon>{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        {{ isDarkTheme() ? 'Light Mode' : 'Dark Mode' }}
       </a>
       <a mat-button (click)="switchLocale()">
         <mat-icon>translate</mat-icon>
@@ -80,9 +72,5 @@
     </div>
   </nav>
 
-  <div
-    class="mobile-menu-overlay"
-    (click)="closeMobileMenu()"
-    [class.show]="isMobileMenuOpen"
-  ></div>
+  <div class="mobile-menu-overlay" (click)="closeMobileMenu()" [class.show]="isMobileMenuOpen()"></div>
 </header>

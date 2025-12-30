@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -8,11 +8,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   selector: 'app-header',
   imports: [CommonModule, MatButtonModule, MatIconModule, MatToolbarModule],
   templateUrl: './header.html',
-  styleUrl: './header.scss'
+  styleUrl: './header.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Header {
-  isMobileMenuOpen = false;
-  isDarkTheme = false;
+  isMobileMenuOpen = signal(false);
+  isDarkTheme = signal(false);
   isBrowser = false;
   isServer = false;
 
@@ -21,16 +22,16 @@ export class Header {
     this.isServer = isPlatformServer(this.platformId);
 
     if (this.isBrowser) {
-      this.isDarkTheme = window.localStorage.getItem('theme') === 'dark';
+      this.isDarkTheme.set(window.localStorage.getItem('theme') === 'dark');
       this.applyTheme();
     }
   }
 
   toggleMobileMenu(): void {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.isMobileMenuOpen.update(v => !v);
 
     // Prevenir scroll del body cuando el menú está abierto
-    if (this.isMobileMenuOpen) {
+    if (this.isMobileMenuOpen()) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -38,14 +39,14 @@ export class Header {
   }
 
   closeMobileMenu(): void {
-    this.isMobileMenuOpen = false;
+    this.isMobileMenuOpen.set(false);
     document.body.style.overflow = '';
   }
 
   toggleTheme(): void {
-    this.isDarkTheme = !this.isDarkTheme;
+    this.isDarkTheme.update(v => !v);
     this.applyTheme();
-    localStorage.setItem('theme', this.isDarkTheme ? 'dark' : 'light');
+    localStorage.setItem('theme', this.isDarkTheme() ? 'dark' : 'light');
   }
 
   scrollTo(anchor: string): void {
@@ -80,7 +81,7 @@ export class Header {
       const body = document.body;
       const html = document.documentElement;
 
-      if (this.isDarkTheme) {
+      if (this.isDarkTheme()) {
         body.classList.remove('mat-light-theme');
         body.classList.add('mat-dark-theme');
         html.classList.remove('mat-light-theme');

@@ -1,8 +1,23 @@
 <app-header></app-header>
 <main>
   <app-home id="home"></app-home>
+
+  @defer (on viewport) {
   <app-about-me id="about-me"></app-about-me>
+  } @placeholder {
+  <div style="min-height: 50vh;"></div>
+  }
+
+  @defer (on viewport) {
   <app-resume id="resume"></app-resume>
+  } @placeholder {
+  <div style="min-height: 50vh;"></div>
+  }
+
+  @defer (on viewport) {
   <app-contact-me id="contact-me"></app-contact-me>
+  } @placeholder {
+  <div style="min-height: 50vh;"></div>
+  }
 </main>
 <app-footer></app-footer>
