@@ -13,7 +13,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class Header implements OnInit, OnDestroy {
   isMobileMenuOpen = signal(false);
-  isDarkTheme = signal(false);
   activeSection = signal<string>('home');
   isBrowser = false;
   isServer = false;
@@ -25,11 +24,6 @@ export class Header implements OnInit, OnDestroy {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.isServer = isPlatformServer(this.platformId);
-
-    if (this.isBrowser) {
-      this.isDarkTheme.set(window.localStorage.getItem('theme') === 'dark');
-      this.applyTheme();
-    }
   }
 
   ngOnInit(): void {
@@ -92,12 +86,6 @@ export class Header implements OnInit, OnDestroy {
     document.body.style.overflow = '';
   }
 
-  toggleTheme(): void {
-    this.isDarkTheme.update(v => !v);
-    this.applyTheme();
-    localStorage.setItem('theme', this.isDarkTheme() ? 'dark' : 'light');
-  }
-
   scrollTo(anchor: string): void {
     const element = document.getElementById(anchor);
     if (element) {
@@ -123,24 +111,5 @@ export class Header implements OnInit, OnDestroy {
     }
     const newPath = '/' + segs.join('/');
     window.location.assign(newPath + search + hash);
-  }
-
-  private applyTheme(): void {
-    if (this.isBrowser) {
-      const body = document.body;
-      const html = document.documentElement;
-
-      if (this.isDarkTheme()) {
-        body.classList.remove('mat-light-theme');
-        body.classList.add('mat-dark-theme');
-        html.classList.remove('mat-light-theme');
-        html.classList.add('mat-dark-theme');
-      } else {
-        body.classList.remove('mat-dark-theme');
-        body.classList.add('mat-light-theme');
-        html.classList.remove('mat-dark-theme');
-        html.classList.add('mat-light-theme');
-      }
-    }
   }
 }

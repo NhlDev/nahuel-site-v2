@@ -39,15 +39,6 @@
   100% { background-position: 36px 36px; }
 }
 
-:host-context(.mat-dark-theme) .home-container {
-  background-image: linear-gradient(rgb(0 0 0 / 0.3), rgb(0 0 0 / 0.3)),
-    url("/bg-home.jpg");
-}
-:host-context(.mat-light-theme) .home-container {
-  background-image: linear-gradient(rgb(0 0 0 / 0.55), rgb(0 0 0 / 0.55)),
-    url("/bg-home.jpg");
-}
-
 /* Hero card */
 .hero {
   max-width: 1080px;

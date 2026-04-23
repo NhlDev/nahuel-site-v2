@@ -1,23 +1,7 @@
 @use "@angular/material" as mat;
 @use "./_mixins" as m;
 
-// ── Palettes: azure (primary) + orange (tertiary) — comprobados funcionales ──
-// NOTE: Violet/cyan broke --md-sys-color-* token generation on Material v20.
-// Custom color personality is achieved via CSS variable overrides below.
-$light-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$orange-palette,
-    ),
-    typography: (),
-    density: (
-      scale: 0,
-    ),
-  )
-);
-
+// ── Dark Theme Configuration (Default) ──
 $dark-theme: mat.define-theme(
   (
     color: (
@@ -32,41 +16,20 @@ $dark-theme: mat.define-theme(
   )
 );
 
-// Core una sola vez
+// Core once
 @include mat.core();
 
-// Tema por defecto (light) para SSR/hydration inicial
+// Apply dark theme globally
 html {
-  @include mat.all-component-themes($light-theme);
-  @include mat.system-level-colors($light-theme);
-  @include mat.typography-hierarchy($light-theme);
-}
-
-/* Toggle mediante clases que ya maneja Header.applyTheme */
-html.mat-light-theme,
-.mat-light-theme {
-  @include mat.all-component-themes($light-theme);
-  @include mat.system-level-colors($light-theme);
-  @include mat.typography-hierarchy($light-theme);
-  color-scheme: light;
-}
-
-html.mat-dark-theme,
-.mat-dark-theme {
   @include mat.all-component-themes($dark-theme);
   @include mat.system-level-colors($dark-theme);
   @include mat.typography-hierarchy($dark-theme);
   color-scheme: dark;
 }
 
-/* Compat: variables usadas en CSS mapeadas a tokens M3 */
-:root,
-html,
-html.mat-light-theme,
-.mat-light-theme,
-html.mat-dark-theme,
-.mat-dark-theme {
-  /* App bg/text */
+/* Global variables and mappings */
+:root {
+  /* App bg/text based on Dark Theme tokens */
   --mat-app-background-color: var(--mat-sys-surface);
   --mat-app-text-color: var(--mat-sys-on-surface);
 
@@ -83,29 +46,21 @@ html,
 body {
   height: 100dvh;
   width: 100dvw;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
 }
 
-/* Fondo reactivo al tema */
 html,
 body,
 app-root,
 app-root > main {
-  background-color: var(--md-sys-color-surface);
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
 }
 
-html.mat-dark-theme body,
-html.mat-dark-theme app-root,
-html.mat-dark-theme app-root > main {
-  background-color: var(--md-sys-color-surface);
-}
-
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  color: var(--md-sys-color-on-surface);
-
   .full-height {
     min-height: calc(100vh - var(--header-height));
   }
@@ -132,8 +87,8 @@ app-contact-me {
   left: 1rem;
   z-index: 9999;
   padding: 0.6rem 1.25rem;
-  background: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
   border-radius: 0 0 8px 8px;
   font-weight: 600;
   font-size: 0.9rem;
@@ -143,18 +98,12 @@ app-contact-me {
 
   &:focus {
     top: 0;
-    outline: 3px solid var(--md-sys-color-on-primary);
+    outline: 3px solid var(--mat-sys-on-primary);
     outline-offset: 2px;
   }
 }
 
 /* ── Section entrance animations ───────────────────────────────────────────── */
-/*
-  SAFE approach: sections use CSS @keyframes animation triggered only when
-  .section-visible is added — sections are VISIBLE by default (no opacity:0 base).
-  This avoids the @defer timing problem where deferred elements don't exist
-  in the DOM when ngAfterViewInit sets up the IntersectionObserver.
-*/
 @media (prefers-reduced-motion: no-preference) {
   app-about-me.section-visible,
   app-resume.section-visible,

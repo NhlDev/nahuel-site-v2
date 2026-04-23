@@ -1,7 +1,6 @@
 <header>
   <mat-toolbar color="primary" class="custom-toolbar">
     <div class="logo-section">
-      <!-- <img src="logo.svg" alt="Nahuel Personal Site" class="logo" /> -->
       <span class="app-title">Nahuel Alderete</span>
     </div>
 
@@ -31,11 +30,6 @@
       </a>
     </nav>
 
-    <button mat-icon-button class="theme-toggle" (click)="toggleTheme()"
-      [title]="isDarkTheme() ? 'Switch to light mode' : 'Switch to dark mode'">
-      <mat-icon>{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</mat-icon>
-    </button>
-
     <button class="btn-menu-mobile" mat-icon-button (click)="toggleMobileMenu()"
       [attr.aria-expanded]="isMobileMenuOpen()">
       <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
@@ -61,10 +55,6 @@
         Contact
       </a>
 
-      <a mat-button (click)="toggleTheme()">
-        <mat-icon>{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</mat-icon>
-        {{ isDarkTheme() ? 'Light Mode' : 'Dark Mode' }}
-      </a>
       <a mat-button (click)="switchLocale()">
         <mat-icon>translate</mat-icon>
         {{ currentLocale === 'es-AR' ? 'English' : 'Español' }}
