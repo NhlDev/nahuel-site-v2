@@ -81,29 +81,48 @@
 }
 
 .tech-icons {
-  --icon-size: 72px;
+  --icon-size: clamp(80px, 10vw, 100px);
   display: flex;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(1rem, 2.5vw, 2rem);
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  padding: 1.5rem 0;
 
   .tech-icon {
     position: relative;
     width: var(--icon-size);
-    height: var(--icon-size);
-    min-width: var(--icon-size);
-    border-radius: 22px;
-    display: grid;
-    place-items: center;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0.5rem;
+    border-radius: 20px;
+    @include m.surface-panel($bg-mix: 92%, $border-mix: 60%, $radius: 20px);
+    
     opacity: 0;
-    transform: translateY(8px) scale(0.98);
+    transform: translateY(12px) scale(0.95);
     filter: blur(4px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 
-    transition: opacity 300ms ease,
-      transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 300ms ease,
-      box-shadow 300ms ease;
+    &:hover {
+      transform: translateY(-6px);
+      background: color-mix(in srgb, var(--mat-sys-primary-container) 15%, transparent);
+      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+      border-color: color-mix(in srgb, var(--mat-sys-primary) 40%, transparent);
+
+      img {
+        transform: scale(1.1);
+      }
+    }
+
+    img {
+      width: clamp(40px, 5vw, 48px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+      transition: transform 0.3s ease;
+    }
   }
 
   &.visible {
@@ -111,10 +130,19 @@
       opacity: 1;
       transform: translateY(0) scale(1);
       filter: blur(0);
-      box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.12);
-      transition-delay: calc(var(--i, 0) * 300ms);
+      transition-delay: calc(var(--i, 0) * 100ms);
     }
   }
+}
+
+.tech-caption {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--mat-sys-on-surface-variant);
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0.9;
 }
 
 /* reduce motion: mostrar sin animación */
@@ -212,6 +240,12 @@
     gap: 0.6rem;
     padding: 0.6rem 0.75rem;
     @include m.surface-panel($bg-mix: 88%, $border-mix: 55%, $radius: 14px);
+    transition: transform 0.15s ease, background-color 0.15s ease;
+
+    &:hover {
+      transform: translateX(4px);
+      background: color-mix(in srgb, var(--mat-sys-primary-container) 60%, transparent);
+    }
   }
   .qf__icon {
     font-size: 1rem;

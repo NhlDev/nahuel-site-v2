@@ -7,9 +7,10 @@
     <!-- SEO -->
     <meta
       name="description"
-      content="Nahuel Alderete — Desarrollador Full‑Stack (Angular, Ionic, Node.js, .NET). Creo experiencias web y móviles rápidas, accesibles y escalables."
+      content="Nahuel Alderete — Desarrollador Full‑Stack con 10+ años de experiencia en Angular, Ionic, Node.js y .NET. Creo experiencias web y móviles rápidas, accesibles y escalables."
     />
     <meta name="robots" content="index, follow" />
+    <meta name="author" content="Nahuel Alderete" />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:site_name" content="Nahuel Dev" />
@@ -22,8 +23,8 @@
       content="Desarrollador Full‑Stack: Angular, Ionic, Node.js, .NET. IA aplicada con Python/TensorFlow."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="/" />
-    <meta property="og:image" content="/logo.svg" />
+    <meta property="og:url" content="https://nahuel.dev/" />
+    <meta property="og:image" content="https://nahuel.dev/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -33,7 +34,7 @@
       name="twitter:description"
       content="Desarrollador Full‑Stack: Angular, Ionic, Node.js, .NET. IA aplicada con Python/TensorFlow."
     />
-    <meta name="twitter:image" content="/logo.svg" />
+    <meta name="twitter:image" content="https://nahuel.dev/og-image.png" />
 
     <!-- Structured data (Person) -->
     <script type="application/ld+json">
@@ -41,20 +42,26 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Nahuel Alderete",
-        "url": "/",
+        "url": "https://nahuel.dev/",
         "sameAs": [
           "https://github.com/NhlDev",
           "https://www.linkedin.com/in/nahuel-alderete"
         ],
         "jobTitle": "Full-Stack / Frontend (Angular)",
-        "image": "/logo.svg",
-        "description": "Desarrollador Full-Stack con experiencia en Angular, Ionic, Node.js y .NET. Explorando IA aplicada con Python y TensorFlow."
+        "image": "https://nahuel.dev/logo.svg",
+        "description": "Desarrollador Full-Stack con 10+ años de experiencia en Angular, Ionic, Node.js y .NET. Explorando IA aplicada con Python y TensorFlow."
       }
     </script>
 
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="logo.svg" />
+
+    <!-- Preconnect FIRST (before any font requests) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -63,16 +70,10 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="mat-typography mat-light-theme">
     <!-- Skip link for keyboard users -->
-    <a class="skip-link" href="#home" style="visibility: collapse;">Saltar al contenido</a>
+    <a class="skip-link" href="#home">Saltar al contenido</a>
 
     <app-root></app-root>
   </body>

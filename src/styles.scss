@@ -1,6 +1,9 @@
 @use "@angular/material" as mat;
 @use "./_mixins" as m;
 
+// ── Palettes: azure (primary) + orange (tertiary) — comprobados funcionales ──
+// NOTE: Violet/cyan broke --md-sys-color-* token generation on Material v20.
+// Custom color personality is achieved via CSS variable overrides below.
 $light-theme: mat.define-theme(
   (
     color: (
@@ -45,7 +48,7 @@ html.mat-light-theme,
   @include mat.all-component-themes($light-theme);
   @include mat.system-level-colors($light-theme);
   @include mat.typography-hierarchy($light-theme);
-  color-scheme: light; // asegura esquema claro
+  color-scheme: light;
 }
 
 html.mat-dark-theme,
@@ -53,33 +56,19 @@ html.mat-dark-theme,
   @include mat.all-component-themes($dark-theme);
   @include mat.system-level-colors($dark-theme);
   @include mat.typography-hierarchy($dark-theme);
-  color-scheme: dark; // asegura esquema oscuro
+  color-scheme: dark;
 }
 
-/* Compat: variables usadas en tu CSS mapeadas a tokens M3 */
+/* Compat: variables usadas en CSS mapeadas a tokens M3 */
 :root,
 html,
 html.mat-light-theme,
 .mat-light-theme,
 html.mat-dark-theme,
 .mat-dark-theme {
-  /* App bg/text (compat con header y layout) */
-  --mat-app-background-color: var(--md-sys-color-surface);
-  --mat-app-text-color: var(--md-sys-color-on-surface);
-
-  /* Map de --mat-sys-* a Material 3 (--md-sys-color-*) */
-  --mat-sys-primary: var(--md-sys-color-primary);
-  --mat-sys-secondary: var(--md-sys-color-secondary);
-  --mat-sys-on-surface: var(--md-sys-color-on-surface);
-  --mat-sys-on-surface-variant: var(--md-sys-color-on-surface-variant);
-  --mat-sys-outline-variant: var(--md-sys-color-outline-variant);
-  --mat-sys-surface: var(--md-sys-color-surface);
-  --mat-sys-surface-variant: var(--md-sys-color-surface-variant);
-  --mat-sys-surface-container: var(--md-sys-color-surface-container);
-  --mat-sys-primary-container: var(--md-sys-color-primary-container);
-  --mat-sys-on-primary-container: var(--md-sys-color-on-primary-container);
-  --mat-sys-secondary-container: var(--md-sys-color-secondary-container);
-  --mat-sys-on-secondary-container: var(--md-sys-color-on-secondary-container);
+  /* App bg/text */
+  --mat-app-background-color: var(--mat-sys-surface);
+  --mat-app-text-color: var(--mat-sys-on-surface);
 
   --header-height: 56px;
 
@@ -96,17 +85,16 @@ body {
   width: 100dvw;
 }
 
-/* Fondo reactivo al tema en todos los contenedores raíz */
+/* Fondo reactivo al tema */
 html,
 body,
 app-root,
 app-root > main {
-  background-color: var(--md-sys-color-surface); // usa directamente el token M3
+  background-color: var(--md-sys-color-surface);
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
 }
 
-/* Opcional: mayor especificidad para asegurar override al cambiar de clase */
 html.mat-dark-theme body,
 html.mat-dark-theme app-root,
 html.mat-dark-theme app-root > main {
@@ -123,10 +111,10 @@ body {
   }
 }
 
-/* Elevation helpers siguen siendo útiles */
+/* Elevation helpers */
 @include mat.elevation-classes();
 
-/* Navegación por anchors suave + compensación de header fijo */
+/* Smooth scroll + header offset */
 html { scroll-behavior: smooth; }
 
 app-home,
@@ -137,17 +125,63 @@ app-contact-me {
   scroll-margin-top: var(--header-height, 64px);
 }
 
-/* Modern, thin vertical scrollbar (global) */
-/* Firefox */
+/* ── Skip link for keyboard accessibility ──────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.6rem 1.25rem;
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border-radius: 0 0 8px 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  &:focus {
+    top: 0;
+    outline: 3px solid var(--md-sys-color-on-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* ── Section entrance animations ───────────────────────────────────────────── */
+/*
+  SAFE approach: sections use CSS @keyframes animation triggered only when
+  .section-visible is added — sections are VISIBLE by default (no opacity:0 base).
+  This avoids the @defer timing problem where deferred elements don't exist
+  in the DOM when ngAfterViewInit sets up the IntersectionObserver.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  app-about-me.section-visible,
+  app-resume.section-visible,
+  app-contact-me.section-visible {
+    animation: sectionFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes sectionFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Modern, thin vertical scrollbar (global) ─────────────────────────────── */
 * {
-  scrollbar-width: thin; /* thinner than default */
+  scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-/* WebKit (Chrome/Edge/Safari/Opera) */
 *::-webkit-scrollbar {
-  width: 8px; /* vertical scrollbar thickness */
-  /* Do not set height to avoid affecting horizontal scrollbar */
+  width: 8px;
 }
 
 *::-webkit-scrollbar-track {
@@ -157,7 +191,7 @@ app-contact-me {
 *::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb);
   border-radius: 999px;
-  border: 2px solid transparent; /* creates padding around the thumb */
+  border: 2px solid transparent;
   background-clip: content-box;
 }
 
@@ -165,7 +199,7 @@ app-contact-me {
   background-color: var(--scrollbar-thumb-hover);
 }
 
-/* Utilidades globales */
+/* ── Utility classes ───────────────────────────────────────────────────────── */
 .visually-hidden {
   position: absolute !important;
   width: 1px;

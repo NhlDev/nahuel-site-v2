@@ -61,3 +61,11 @@
   margin: 0;
   padding: 0;
 }
+
+@mixin gradient-text($from: var(--mat-sys-primary, #0078d4), $to: var(--mat-sys-tertiary-container, #ffb300)) {
+  color: $from; // Fallback
+  background: linear-gradient(135deg, $from 0%, $to 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

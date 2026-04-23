@@ -1,21 +1,26 @@
-import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Component, Inject, PLATFORM_ID, signal, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, signal, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatToolbarModule],
+  imports: [MatButtonModule, MatIconModule, MatToolbarModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Header {
+export class Header implements OnInit, OnDestroy {
   isMobileMenuOpen = signal(false);
   isDarkTheme = signal(false);
+  activeSection = signal<string>('home');
   isBrowser = false;
   isServer = false;
+
+  private sectionObserver?: IntersectionObserver;
+  private mutationObserver?: MutationObserver;
+  private observedSections = new Set<Element>();
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -27,10 +32,54 @@ export class Header {
     }
   }
 
+  ngOnInit(): void {
+    if (!this.isBrowser || typeof IntersectionObserver === 'undefined') return;
+
+    this.sectionObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+            this.activeSection.set(entry.target.id);
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    // Observe any sections already rendered
+    this.attachSectionObservers();
+
+    // Watch for @defer sections appearing later
+    if (typeof MutationObserver !== 'undefined') {
+      this.mutationObserver = new MutationObserver(() => {
+        this.attachSectionObservers();
+      });
+      this.mutationObserver.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  private attachSectionObservers(): void {
+    const ids = ['home', 'about-me', 'resume', 'contact-me'];
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (el && !this.observedSections.has(el)) {
+        this.observedSections.add(el);
+        this.sectionObserver!.observe(el);
+      }
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.sectionObserver?.disconnect();
+    this.mutationObserver?.disconnect();
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
+  }
+
   toggleMobileMenu(): void {
     this.isMobileMenuOpen.update(v => !v);
 
-    // Prevenir scroll del body cuando el menú está abierto
     if (this.isMobileMenuOpen()) {
       document.body.style.overflow = 'hidden';
     } else {

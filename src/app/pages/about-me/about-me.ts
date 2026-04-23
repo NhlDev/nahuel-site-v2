@@ -1,10 +1,10 @@
 import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID, inject, LOCALE_ID, signal, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-about-me',
-  imports: [CommonModule, MatButtonModule],
+  imports: [MatButtonModule],
   templateUrl: './about-me.html',
   styleUrl: './about-me.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -35,13 +35,13 @@ export class AboutMe implements AfterViewInit, OnDestroy {
     'es-AR': [
       { icon: '📍', text: 'Buenos Aires, Argentina' },
       { icon: '🗣️', text: 'Español nativo · Inglés B2' },
-      { icon: '🕒', text: 'Disponibilidad: Part/Full‑time' },
+      // { icon: '🕒', text: 'Disponibilidad: Part/Full‑time' },
       { icon: '🧩', text: 'Foco: Angular, TypeScript/JavaScript, .NET' },
     ],
     'en-US': [
       { icon: '📍', text: 'Buenos Aires, Argentina' },
       { icon: '🗣️', text: 'Native Spanish · B2 English' },
-      { icon: '🕒', text: 'Availability: Part/Full‑time' },
+      // { icon: '🕒', text: 'Availability: Part/Full‑time' },
       { icon: '🧩', text: 'Focus: Angular, TypeScript/JavaScript, .NET' },
     ]
   };

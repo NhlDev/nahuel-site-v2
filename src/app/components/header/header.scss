@@ -139,7 +139,7 @@ $header-height: 56px;
       border-radius: 12px;
       font-weight: 500;
       transition: all 0.2s ease;
-      color: #fff;
+      color: var(--mat-sys-on-surface);
 
       mat-icon {
         font-size: 1.25rem;
@@ -148,7 +148,7 @@ $header-height: 56px;
       }
 
       &:hover {
-        background-color: var(--mat-sys-surface-variant);
+        background-color: var(--mat-sys-surface-container-high);
         transform: translateX(4px);
       }
 

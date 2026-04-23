@@ -139,9 +139,16 @@ app.use((req, res, next) => {
 
 // Redirigir raíz o rutas sin prefijo a la locale negociada (excluir API)
 app.use((req, res, next) => {
+  const isDevServer = process.env['NODE_ENV'] === 'development';
   const seg1 = (req.path.split('/')[1] || '').trim();
   if (seg1 === 'api') return next();
+  
   if (!SUPPORTED_LOCALES.has(seg1)) {
+    if (isDevServer) {
+      // En modo desarrollo (ng serve), Angular CLI sirve directamente en la raíz
+      return next();
+    }
+
     const acceptLanguage = req.headers['accept-language'] as string | undefined;
     const locale = (() => {
       if (!acceptLanguage) return DEFAULT_LOCALE;
@@ -181,8 +188,11 @@ app.use(
 );
 
 // SSR bajo cada prefijo de locale
-for (const locale of SUPPORTED_LOCALES) {
-  app.use(`/${locale}`, (req, res, next) => {
+const isDevServer = process.env['NODE_ENV'] === 'development';
+
+if (isDevServer) {
+  // En desarrollo, el dev-server sirve en la raíz
+  app.use((req, res, next) => {
     angularApp
       .handle(req)
       .then((response) =>
@@ -190,6 +200,17 @@ for (const locale of SUPPORTED_LOCALES) {
       )
       .catch(next);
   });
+} else {
+  for (const locale of SUPPORTED_LOCALES) {
+    app.use(`/${locale}`, (req, res, next) => {
+      angularApp
+        .handle(req)
+        .then((response) =>
+          response ? writeResponseToNodeResponse(response, res) : next(),
+        )
+        .catch(next);
+    });
+  }
 }
 
 /**

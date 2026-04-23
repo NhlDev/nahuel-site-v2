@@ -8,19 +8,19 @@
     <span class="spacer"></span>
 
     <nav class="nav-links">
-      <a mat-button (click)="scrollTo('home')" i18n>
+      <a mat-button (click)="scrollTo('home')" [class.active-link]="activeSection() === 'home'" i18n>
         <mat-icon>home</mat-icon>
         Home
       </a>
-      <a mat-button (click)="scrollTo('about-me')" i18n>
+      <a mat-button (click)="scrollTo('about-me')" [class.active-link]="activeSection() === 'about-me'" i18n>
         <mat-icon>person_raised_hand</mat-icon>
         Sobre mí
       </a>
-      <a mat-button (click)="scrollTo('resume')" i18n>
+      <a mat-button (click)="scrollTo('resume')" [class.active-link]="activeSection() === 'resume'" i18n>
         <mat-icon>article_person</mat-icon>
         Mi Curriculum
       </a>
-      <a mat-button (click)="scrollTo('contact-me')" i18n>
+      <a mat-button (click)="scrollTo('contact-me')" [class.active-link]="activeSection() === 'contact-me'" i18n>
         <mat-icon>mail</mat-icon>
         Contacto
       </a>
@@ -44,19 +44,19 @@
 
   <nav class="mobile-menu" [class.show]="isMobileMenuOpen()">
     <div class="mobile-menu-content">
-      <a mat-button (click)="scrollTo('home'); closeMobileMenu()" i18n>
+      <a mat-button (click)="scrollTo('home'); closeMobileMenu()" [class.active-link]="activeSection() === 'home'" i18n>
         <mat-icon>home</mat-icon>
         Home
       </a>
-      <a mat-button (click)="scrollTo('about-me'); closeMobileMenu()" i18n>
+      <a mat-button (click)="scrollTo('about-me'); closeMobileMenu()" [class.active-link]="activeSection() === 'about-me'" i18n>
         <mat-icon>person_raised_hand</mat-icon>
         Sobre mí
       </a>
-      <a mat-button (click)="scrollTo('resume'); closeMobileMenu()" i18n>
+      <a mat-button (click)="scrollTo('resume'); closeMobileMenu()" [class.active-link]="activeSection() === 'resume'" i18n>
         <mat-icon>article_person</mat-icon>
         Mi Curriculum
       </a>
-      <a mat-button (click)="scrollTo('contact-me'); closeMobileMenu()" i18n>
+      <a mat-button (click)="scrollTo('contact-me'); closeMobileMenu()" [class.active-link]="activeSection() === 'contact-me'" i18n>
         <mat-icon>mail</mat-icon>
         Contact
       </a>
