@@ -1,0 +1,6 @@
+FROM qwen3.5:9b
+PARAMETER num_ctx 32000
+PARAMETER num_gpu 100
+# Esto ayuda a que el modelo no se "pierda" en los tags de OpenCode
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"

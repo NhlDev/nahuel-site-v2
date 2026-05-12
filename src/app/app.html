@@ -1,23 +1,41 @@
 <app-header></app-header>
 <main>
-  <app-home id="home"></app-home>
+<app-home id="home"></app-home>
 
-  @defer (on viewport) {
+<!-- About Me section, render immediately in tests -->
+<ng-container *ngIf="isTest; else deferAbout">
   <app-about-me id="about-me"></app-about-me>
-  } @placeholder {
+</ng-container>
+<ng-template #deferAbout>
+@defer (on viewport) {
+  <app-about-me id="about-me"></app-about-me>
+} @placeholder {
   <div style="min-height: 50vh;"></div>
-  }
+}
+</ng-template>
 
-  @defer (on viewport) {
+<!-- Resume section -->
+<ng-container *ngIf="isTest; else deferResume">
   <app-resume id="resume"></app-resume>
-  } @placeholder {
+</ng-container>
+<ng-template #deferResume>
+@defer (on viewport) {
+  <app-resume id="resume"></app-resume>
+} @placeholder {
   <div style="min-height: 50vh;"></div>
-  }
+}
+</ng-template>
 
-  @defer (on viewport) {
+<!-- Contact Me section -->
+<ng-container *ngIf="isTest; else deferContact">
   <app-contact-me id="contact-me"></app-contact-me>
-  } @placeholder {
+</ng-container>
+<ng-template #deferContact>
+@defer (on viewport) {
+  <app-contact-me id="contact-me"></app-contact-me>
+} @placeholder {
   <div style="min-height: 50vh;"></div>
-  }
+}
+</ng-template>
 </main>
 <app-footer></app-footer>

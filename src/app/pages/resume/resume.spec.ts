@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEsAR from '@angular/common/locales/es-AR';
+import { CommonModule } from '@angular/common';
 
 import { Resume } from './resume';
 import { workExperiences } from '../../constant/work-experience';
@@ -16,7 +17,7 @@ describe('Resume', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Resume],
+      imports: [CommonModule, Resume],
       providers: [
         provideZoneChangeDetection({ eventCoalescing: true }),
         { provide: LOCALE_ID, useValue: 'es-AR' },
@@ -34,7 +35,7 @@ describe('Resume', () => {
 
   it('should render header title and subtitle', () => {
     const el: HTMLElement = fixture.nativeElement;
-    const title = el.querySelector('.resume-header h1');
+    const title = el.querySelector('.resume-header h2');
     const subtitle = el.querySelector('.resume-header .subtitle');
 
     expect(title?.textContent?.trim()).toBe('Mi Experiencia Profesional');

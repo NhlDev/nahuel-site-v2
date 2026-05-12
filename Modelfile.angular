@@ -1,0 +1,36 @@
+FROM qwen3.5:9b-q8_0
+
+# --- PARAMETROS DE HARDWARE ---
+# Forzamos a que todas las capas (32-33) entren en los 16GB de la 9070 XT
+PARAMETER num_gpu 99
+# Aprovechamos los 24 hilos del Ryzen 9 7900X para el manejo de IO y tensores residuales
+PARAMETER num_thread 24
+# Tamaño de lote para que el prefill (lectura de código) sea masivo en la GPU
+PARAMETER num_batch 1024
+
+# --- PARAMETROS DE CONTEXTO ---
+PARAMETER num_ctx 42768
+# Mantenemos el modelo en memoria para que no haya delay entre pedidos de OpenCode
+# PARAMETER keep_alive -1
+
+# --- CONFIGURACION DE CODING ---
+# Temperatura baja para que el código sea determinista y no invente sintaxis
+PARAMETER temperature 0.2
+# Evitamos que se trabe en bucles infinitos de código repetitivo
+PARAMETER repeat_penalty 1.1
+# Tamaño máximo de respuesta (importante para archivos de test largos)
+PARAMETER num_predict 4096
+
+# --- STOP TOKENS (Vital para que OpenCode no se quede esperando) ---
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+PARAMETER stop "<task>"
+PARAMETER stop "</task>"
+
+# Mensaje de sistema optimizado para tu flujo
+SYSTEM """
+You are a Senior Full-Stack Developer expert in Angular and TypeScript.
+You provide concise, high-quality code. 
+When using tools, ensure the paths are absolute and the syntax is correct.
+Current environment: Linux (CachyOS), Ryzen 9 7900X, RX 9070 XT.
+"""

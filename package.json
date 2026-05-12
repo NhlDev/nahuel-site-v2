@@ -9,6 +9,7 @@
     "build:localize:prod": "ng build --localize --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:headless": "ng test --browsers=ChromeHeadless --watch=false",
     "ssr": "node dist/nahu-dev-site-v2/server/server.mjs",
     "ssr:es-AR": "node dist/nahu-dev-site-v2/server/es-AR/server.mjs",
     "ssr:en-US": "node dist/nahu-dev-site-v2/server/en-US/server.mjs"
