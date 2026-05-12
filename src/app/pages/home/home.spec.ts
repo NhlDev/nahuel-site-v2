@@ -29,7 +29,7 @@ describe('Home', () => {
 
     expect(title).toBeTruthy();
     expect(spans.length).toBe(3);
-    expect(spans[0].textContent?.trim()).toBe('Hola, soy');
+    expect(spans[0].textContent?.trim()).toBe('Hola, soy Nahuel');
     expect(spans[1].classList.contains('accent')).toBeTrue();
     expect(spans[2].classList.contains('role')).toBeTrue();
   });
