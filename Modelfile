@@ -1,6 +1,43 @@
-FROM qwen3.5:9b
-PARAMETER num_ctx 32000
-PARAMETER num_gpu 100
-# Esto ayuda a que el modelo no se "pierda" en los tags de OpenCode
+FROM qwen3.5:9b-q8_0
+
+# --- MÁXIMO CONTEXTO Y PERFORMANCE ---
+# Asegura el descarte total de capas a la GPU
+PARAMETER num_gpu 99
+
+# Duplicamos el contexto a 64k tokens nativos
+PARAMETER num_ctx 64000
+
+# OBLIGATORIO: Comprime la memoria del historial de conversación a la mitad. 
+# Sin esto, 64k de contexto en un modelo Q8 causarían un desborde inmediato (OOM).
+PARAMETER f16_kv true
+
+# --- AJUSTES DE INFERENCIA EN CONTEXTO MASIVO ---
+# Aumentamos sutilmente la temperatura. En contextos gigantes (64k), los valores 
+# muy bajos (0.1) hacen que el modelo se "olvide" de las instrucciones o entre en bucles.
+PARAMETER temperature 0.3
+PARAMETER min_p 0.05
+PARAMETER top_k 40
+PARAMETER top_p 0.95
+
+# Control estricto de repeticiones a lo largo de todo el buffer
+PARAMETER repeat_penalty 1.15
+PARAMETER repeat_last_n 128
+
+# Mantenemos un margen de salida alto para respuestas extensas
+PARAMETER num_predict 8192
+
+# --- SYSTEM PROMPT (VERSION RADICALMENTE DIRECTA) ---
+SYSTEM """
+Actúa como un Ingeniero de Software Senior experto y Arquitecto de Soluciones bajo la filosofía OpenCode. Tu único objetivo es entregar código funcional, eficiente y óptimo de forma directa.
+
+Directrices estrictas:
+1. Sin rodeos: Ve directo al grano. Está terminantemente PROHIBIDO saludar, hacer introducciones, dar explicaciones previas o usar frases de cortesía. Entrega el bloque de código o la solución técnica de inmediato.
+2. Código Completo: Entrega soluciones 100% funcionales y listas para producción. Queda estrictamente prohibido usar '// la lógica va aquí', '// TODO' o cualquier marcador de posición.
+3. Estándar: Aplica Clean Code, SOLID y manejo robusto de errores por defecto.
+4. Formato: Usa SIEMPRE bloques de código Markdown estándar (ej. ```typescript). Está prohibido responder con estructuras JSON (Function Calling).
+5. Idioma: El código va en inglés. Las explicaciones cortas, si son estrictamente necesarias, en español.
+"""
+
 PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|im_start|>"
 PARAMETER stop "<|endoftext|>"
