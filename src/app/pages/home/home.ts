@@ -84,4 +84,11 @@ export class Home implements OnInit, OnDestroy {
     }
   }
 
+  scrollTo(anchor: string): void {
+    const element = document.getElementById(anchor);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
 }

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { Mailer } from '../../services/mailer';
 import { CAPTCHA_KEY } from '../../constant';
@@ -14,14 +15,14 @@ declare const grecaptcha: any;
 
 @Component({
   selector: 'app-contact-me',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIcon,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './contact-me.html',
   styleUrl: './contact-me.scss',

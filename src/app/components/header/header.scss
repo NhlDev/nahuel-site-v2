@@ -1,11 +1,15 @@
+@use "../../../_mixins" as m;
+
 .custom-toolbar {
   background: transparent;
   position: fixed;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  background: color-mix(in srgb, var(--mat-sys-surface) 60%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) 30%, transparent);
+  padding-inline: max(1.25rem, calc((100% - 1400px) / 2));
 
   @media (prefers-reduced-motion: no-preference) {
     transition: all 0.3s ease;
@@ -61,7 +65,7 @@
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-1px);
+      @include m.hover-lift(-1px);
     }
 
     &.active-link {
@@ -106,14 +110,12 @@
   }
 }
 
-$header-height: 56px;
-
 .mobile-menu {
   position: fixed;
-  top: #{$header-height};
+  top: var(--header-height, 56px);
   right: -100%;
   width: 280px;
-  height: calc(100vh - #{$header-height});
+  height: calc(100vh - var(--header-height, 56px));
   background: var(--mat-app-background-color);
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
   z-index: 999;
@@ -180,10 +182,10 @@ $header-height: 56px;
 
 .mobile-menu-overlay {
   position: fixed;
-  top: #{$header-height};
+  top: var(--header-height, 56px);
   left: 0;
   width: 100%;
-  height: calc(100vh - #{$header-height});
+  height: calc(100vh - var(--header-height, 56px));
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   z-index: 998;

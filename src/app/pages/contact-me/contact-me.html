@@ -86,12 +86,20 @@
         </mat-form-field>
 
         <div class="actions">
-          <button mat-button type="button" (click)="form.reset()" [disabled]="sending" i18n>
+          <button mat-button type="button" (click)="form.reset()" [disabled]="sending()" i18n>
             Limpiar
           </button>
-          <button mat-flat-button color="primary" type="submit" [disabled]="sending" i18n>
-            <mat-icon>send</mat-icon>
-            Enviar
+          <button mat-flat-button color="primary" type="submit" [disabled]="sending()">
+            @if (sending()) {
+              <mat-spinner diameter="18" style="margin-right: 8px;"></mat-spinner>
+            } @else {
+              <mat-icon>send</mat-icon>
+            }
+            @if (sending()) {
+              <span i18n>Enviando...</span>
+            } @else {
+              <span i18n>Enviar</span>
+            }
           </button>
         </div>
       </form>

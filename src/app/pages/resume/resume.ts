@@ -1,5 +1,5 @@
 import { Component, inject, LOCALE_ID, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage, DatePipe } from '@angular/common';
 
 import { MatIconModule } from '@angular/material/icon';
 
@@ -7,7 +7,7 @@ import { WorkExperience, workExperiences } from '../../constant/work-experience'
 @Component({
   selector: 'app-resume',
   imports: [
-    CommonModule,
+    DatePipe,
     MatIconModule,
     NgOptimizedImage
   ],

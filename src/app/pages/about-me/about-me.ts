@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID, inject, LOCALE_ID, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, PLATFORM_ID, inject, LOCALE_ID, signal, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -51,8 +51,7 @@ export class AboutMe implements AfterViewInit, OnDestroy {
   techIconsVisible = signal(false);
 
   private observer?: IntersectionObserver;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  private platformId = inject(PLATFORM_ID);
 
   ngAfterViewInit(): void {
     const isBrowser = isPlatformBrowser(this.platformId);

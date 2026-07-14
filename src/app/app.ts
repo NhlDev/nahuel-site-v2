@@ -2,7 +2,6 @@ import { Component, inject, OnInit, AfterViewInit, OnDestroy, PLATFORM_ID, Chang
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Footer, Header } from './components';
-import { CommonModule } from '@angular/common';
 import { Home } from './pages/home/home';
 import { AboutMe } from './pages/about-me/about-me';
 import { Resume } from './pages/resume/resume';
@@ -10,7 +9,7 @@ import { ContactMe } from './pages/contact-me/contact-me';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, Header, Footer, Home, AboutMe, Resume, ContactMe],
+  imports: [Header, Footer, Home, AboutMe, Resume, ContactMe],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

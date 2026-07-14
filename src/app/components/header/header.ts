@@ -1,5 +1,5 @@
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Component, Inject, PLATFORM_ID, signal, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,8 +20,9 @@ export class Header implements OnInit, OnDestroy {
   private sectionObserver?: IntersectionObserver;
   private mutationObserver?: MutationObserver;
   private observedSections = new Set<Element>();
+  private platformId = inject(PLATFORM_ID);
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.isServer = isPlatformServer(this.platformId);
   }

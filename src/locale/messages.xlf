@@ -6,47 +6,47 @@
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>home<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Home </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">12,15</context>
+          <context context-type="linenumber">11,14</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">48,51</context>
+          <context context-type="linenumber">42,45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4855255963618997607" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>person_raised_hand<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Sobre mí </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">16,19</context>
+          <context context-type="linenumber">15,18</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">52,55</context>
+          <context context-type="linenumber">46,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="655181978036330349" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>article_person<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Mi Curriculum </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">20,23</context>
+          <context context-type="linenumber">19,22</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">56,59</context>
+          <context context-type="linenumber">50,53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8524765736003526090" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>mail<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Contacto </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">24,28</context>
+          <context context-type="linenumber">23,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4663957482092466797" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>mail<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Contact </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">60,64</context>
+          <context context-type="linenumber">54,58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4134439023515253104" datatype="html">
@@ -76,12 +76,20 @@
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
           <context context-type="linenumber">62</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7064037261478945127" datatype="html">
         <source> Contacto </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
           <context context-type="linenumber">65</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">28,29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3434016298475986307" datatype="html">
@@ -168,18 +176,25 @@
           <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4563427787802800193" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>send<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Enviar </source>
+      <trans-unit id="5731405754389427571" datatype="html">
+        <source>Enviando...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">93,95</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1896093879997026163" datatype="html">
+        <source>Enviar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
+          <context context-type="linenumber">101,102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4188128349301340919" datatype="html">
         <source> Nunca compartiré tu email. Solo lo uso para responder tu consulta. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">101,102</context>
+          <context context-type="linenumber">109,110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6074097540104231519" datatype="html">
@@ -207,42 +222,42 @@
         <source>10+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">32,33</context>
+          <context context-type="linenumber">41,42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9104945347874860848" datatype="html">
         <source>Años de experiencia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2427525893352070554" datatype="html">
         <source>15+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">36,37</context>
+          <context context-type="linenumber">45,46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1872099000671699527" datatype="html">
         <source>Proyectos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">37,38</context>
+          <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9116904662247646503" datatype="html">
         <source>5+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">40,41</context>
+          <context context-type="linenumber">49,50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3254634860928936451" datatype="html">
         <source>Sectores</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">41,42</context>
+          <context context-type="linenumber">50,51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7482270925561627437" datatype="html">

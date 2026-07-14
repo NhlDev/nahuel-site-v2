@@ -19,6 +19,15 @@
         <span class="chip">{{ skill }}</span>
         }
       </div>
+
+      <div class="hero-actions">
+        <button mat-flat-button color="primary" (click)="scrollTo('resume')" i18n>
+          Ver mi experiencia
+        </button>
+        <button mat-stroked-button (click)="scrollTo('contact-me')" i18n>
+          Contacto
+        </button>
+      </div>
     </div>
 
     <figure class="hero__visual" aria-hidden="true">

@@ -11,8 +11,6 @@
   max-width: 900px;
   @include m.card($radius: 24px, $elevation: 4);
   padding: clamp(1.5rem, 4vw, 2.5rem);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--mat-app-elevation-shadow-level-4);
 }
 
 .contact-intro {

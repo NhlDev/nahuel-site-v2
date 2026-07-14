@@ -133,24 +133,16 @@
 
 .tl-card {
   position: relative;
-  background: var(--mat-sys-surface-container);
-
-  --card-stroke: var(--mat-sys-outline-variant);
-  border: 1px solid var(--card-stroke);
-
-  border-radius: 16px;
+  @include m.card($bg-mix: 100%, $radius: 16px, $elevation: 10, $blur: 0px);
   padding: 1rem 1.25rem 1rem 1.25rem;
-
-  box-shadow: var(--mat-app-elevation-shadow-level-10);
-
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 
   &::before {
     content: "";
     position: absolute;
-    inset: 0 auto 0 0;
+    inset: 1px auto 1px 1px;
     width: 4px;
+    border-radius: 14px 0 0 14px;
     background: linear-gradient(
       to bottom,
       var(--company-color, var(--mat-sys-primary)) 0%,
@@ -170,7 +162,7 @@
   }
 
   &:hover {
-    transform: translateY(-2px);
+    @include m.hover-lift(-2px);
     border-color: color-mix(
       in srgb,
       var(--company-color, var(--mat-sys-primary)) 32%,
@@ -306,9 +298,9 @@
     font-size: 0.78rem;
     font-weight: 500;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
+    @include m.hover-lift(-1px);
 
     &:hover {
-      transform: translateY(-1px);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     }
   }
