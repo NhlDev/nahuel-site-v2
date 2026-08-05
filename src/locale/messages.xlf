@@ -2,6 +2,13 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="es-AR" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="4153752274313537500" datatype="html">
+        <source>Saltar al contenido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6544292891804316575" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>home<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Home </source>
         <context-group purpose="location">
@@ -63,11 +70,36 @@
           <context context-type="linenumber">16,23</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2202571323936679158" datatype="html">
+        <source>Resumen de experiencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1707265041735205615" datatype="html">
+        <source>Tecnologías principales</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4546458009532801804" datatype="html">
         <source>Tecnologías</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
           <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5823953683510939066" datatype="html">
+        <source>Información rápida</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">50,51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="861159449543640924" datatype="html">
@@ -104,6 +136,20 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
           <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3004043796243185374" datatype="html">
+        <source>Canales de contacto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7807686720987055921" datatype="html">
+        <source>Datos rápidos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
+          <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1946313421164554768" datatype="html">
@@ -218,6 +264,13 @@
           <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5032994010715033158" datatype="html">
+        <source>Resumen rápido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6427202078156702006" datatype="html">
         <source>10+</source>
         <context-group purpose="location">
@@ -272,6 +325,20 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
           <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4706687981368763398" datatype="html">
+        <source>Actualidad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2628961601867476622" datatype="html">
+        <source>Actual</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
+          <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
     </body>

@@ -25,7 +25,7 @@
           </p>
         </article>
 
-        <ul class="highlights" aria-label="Resumen de experiencia">
+        <ul class="highlights" i18n-aria-label aria-label="Resumen de experiencia">
           @for (item of highlights[lang]; track $index) {
           <li class="hl">
             <span class="hl__num">{{ item.value }}</span>
@@ -34,7 +34,7 @@
           }
         </ul>
 
-        <section class="tech-stack" aria-label="Tecnologías principales">
+        <section class="tech-stack" i18n-aria-label aria-label="Tecnologías principales">
           <h2 class="visually-hidden" i18n>Tecnologías</h2>
           <ul class="tech-icons" #techIconsContainer [class.visible]="techIconsVisible()">
             @for (tech of technologies; track tech.name; let i = $index) {
@@ -47,7 +47,7 @@
         </section>
       </main>
 
-      <aside class="about-aside" aria-label="Información rápida">
+      <aside class="about-aside" i18n-aria-label aria-label="Información rápida">
         <ul class="quick-facts">
           @for (fact of quickFacts[lang]; track $index) {
           <li class="qf">

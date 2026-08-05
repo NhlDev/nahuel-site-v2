@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ssr",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "ssr"],
+      "port": 4000
+    }
+  ]
+}

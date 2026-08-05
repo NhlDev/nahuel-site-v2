@@ -1,4 +1,14 @@
-import { Component, inject, OnInit, AfterViewInit, OnDestroy, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  PLATFORM_ID,
+  LOCALE_ID,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Footer, Header } from './components';
@@ -7,21 +17,52 @@ import { AboutMe } from './pages/about-me/about-me';
 import { Resume } from './pages/resume/resume';
 import { ContactMe } from './pages/contact-me/contact-me';
 
+const SITE_URL = 'https://nahuel.dev';
+
+interface LocaleSeo {
+  title: string;
+  description: string;
+  ogTitle: string;
+  ogLocale: string;
+  jobTitle: string;
+}
+
+const SEO_CONTENT: Record<'es-AR' | 'en-US', LocaleSeo> = {
+  'es-AR': {
+    title: 'Nahuel Alderete | Desarrollador Full-Stack',
+    description:
+      'Desarrollador Full-Stack con 10+ años de experiencia en Angular, .NET y Arquitectura de Software. Creando soluciones web y móviles escalables, rápidas y accesibles.',
+    ogTitle: 'Nahuel Alderete — Desarrollador Full-Stack',
+    ogLocale: 'es_AR',
+    jobTitle: 'Full-Stack / Frontend (Angular)',
+  },
+  'en-US': {
+    title: 'Nahuel Alderete | Full-Stack Developer',
+    description:
+      'Full-Stack Developer with 10+ years of experience in Angular, .NET, and Software Architecture. Building fast, accessible, and scalable web and mobile solutions.',
+    ogTitle: 'Nahuel Alderete — Full-Stack Developer',
+    ogLocale: 'en_US',
+    jobTitle: 'Full-Stack / Frontend Developer (Angular)',
+  },
+};
+
 @Component({
   selector: 'app-root',
   imports: [Header, Footer, Home, AboutMe, Resume, ContactMe],
   templateUrl: './app.html',
   styleUrl: './app.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App implements OnInit, AfterViewInit, OnDestroy {
-  public readonly isTest = typeof window !== 'undefined' && !!(window as any).__karma__;
+  public readonly isTest =
+    typeof window !== 'undefined' && !!(window as any).__karma__;
 
   protected title = 'nahu-dev-site-v2';
 
   private titleService = inject(Title);
   private metaService = inject(Meta);
   private platformId = inject(PLATFORM_ID);
+  private document = inject(DOCUMENT);
 
   // MutationObserver watches the DOM for @defer sections to appear,
   // then attaches IntersectionObserver to trigger entrance animations.
@@ -29,15 +70,111 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   private intersectionObserver?: IntersectionObserver;
   private observed = new Set<Element>();
 
+  localeId = inject(LOCALE_ID);
+
   ngOnInit(): void {
-    this.titleService.setTitle('Nahuel | Full Stack Developer');
-    this.metaService.updateTag({ name: 'description', content: 'Desarrollador Full Stack con 10+ años de experiencia en Angular, .NET y Arquitectura de Software. Creando soluciones web y móviles escalables, rápidas y accesibles.' });
+    const locale: 'es-AR' | 'en-US' =
+      this.localeId === 'en-US' ? 'en-US' : 'es-AR';
+    const otherLocale: 'es-AR' | 'en-US' =
+      locale === 'es-AR' ? 'en-US' : 'es-AR';
+    const seo = SEO_CONTENT[locale];
+    const canonicalUrl = `${SITE_URL}/${locale}/`;
+    const ogImageUrl = `${SITE_URL}/og-image.png`;
+
+    this.titleService.setTitle(seo.title);
+    this.metaService.updateTag({
+      name: 'description',
+      content: seo.description,
+    });
     this.metaService.updateTag({ name: 'author', content: 'Nahuel Alderete' });
     this.metaService.updateTag({ name: 'robots', content: 'index, follow' });
+
+    this.metaService.updateTag({
+      property: 'og:site_name',
+      content: 'Nahuel Dev',
+    });
+    this.metaService.updateTag({ property: 'og:title', content: seo.ogTitle });
+    this.metaService.updateTag({
+      property: 'og:description',
+      content: seo.description,
+    });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.metaService.updateTag({ property: 'og:image', content: ogImageUrl });
+    this.metaService.updateTag({
+      property: 'og:locale',
+      content: seo.ogLocale,
+    });
+    this.metaService.updateTag({
+      property: 'og:locale:alternate',
+      content: SEO_CONTENT[otherLocale].ogLocale,
+    });
+
+    this.metaService.updateTag({
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
+    this.metaService.updateTag({ name: 'twitter:title', content: seo.ogTitle });
+    this.metaService.updateTag({
+      name: 'twitter:description',
+      content: seo.description,
+    });
+    this.metaService.updateTag({ name: 'twitter:image', content: ogImageUrl });
+
+    this.upsertLink('canonical', canonicalUrl);
+    this.upsertLink('alternate', `${SITE_URL}/es-AR/`, 'es-AR');
+    this.upsertLink('alternate', `${SITE_URL}/en-US/`, 'en-US');
+    this.upsertLink('alternate', `${SITE_URL}/es-AR/`, 'x-default');
+
+    this.upsertJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Nahuel Alderete',
+      url: canonicalUrl,
+      sameAs: [
+        'https://github.com/NhlDev',
+        'https://www.linkedin.com/in/nahuel-alderete',
+      ],
+      jobTitle: seo.jobTitle,
+      image: `${SITE_URL}/logo.svg`,
+      description: seo.description,
+    });
+  }
+
+  private upsertLink(rel: string, href: string, hreflang?: string): void {
+    const selector = hreflang
+      ? `link[rel="${rel}"][hreflang="${hreflang}"]`
+      : `link[rel="${rel}"]`;
+    let link = this.document.head.querySelector<HTMLLinkElement>(selector);
+    if (!link) {
+      link = this.document.createElement('link');
+      link.setAttribute('rel', rel);
+      if (hreflang) link.setAttribute('hreflang', hreflang);
+      this.document.head.appendChild(link);
+    }
+    link.setAttribute('href', href);
+  }
+
+  private upsertJsonLd(data: Record<string, unknown>): void {
+    const id = 'person-jsonld';
+    let script = this.document.getElementById(id) as HTMLScriptElement | null;
+    if (!script) {
+      script = this.document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = id;
+      this.document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(data);
   }
 
   ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId) || typeof IntersectionObserver === 'undefined') return;
+    this.loadChatbot();
+
+    if (
+      !isPlatformBrowser(this.platformId) ||
+      typeof IntersectionObserver === 'undefined'
+    )
+      return;
 
     // IntersectionObserver: adds .section-visible to trigger CSS animation
     this.intersectionObserver = new IntersectionObserver(
@@ -49,7 +186,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
           }
         }
       },
-      { threshold: 0.08 }
+      { threshold: 0.08 },
     );
 
     const selectors = ['app-about-me', 'app-resume', 'app-contact-me'];
@@ -62,7 +199,10 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       this.mutationObserver = new MutationObserver(() => {
         this.attachToExisting(selectors);
       });
-      this.mutationObserver.observe(document.body, { childList: true, subtree: true });
+      this.mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
     }
   }
 
@@ -79,5 +219,24 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
         this.intersectionObserver!.observe(el);
       }
     }
+  }
+
+  private loadChatbot(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    if (this.document.getElementById('controlup-chatbot')) return;
+
+    // Load Chatbot Control Up script
+    const script = this.document.createElement('script');
+    script.id = 'controlup-chatbot';
+    script.src = 'https://app.chatbot.controlup.com.ar/integration-widget/chatbot.up.js';
+    script.setAttribute('data-api-key', 'pk_live_26b30110fc3045da');
+    script.setAttribute('data-mode', 'live');
+    script.setAttribute('data-title', 'Asistente de Nahuel.app');
+    script.setAttribute('data-theme-color', '#404957');
+    script.setAttribute('data-locale', this.localeId);
+    script.setAttribute('data-theme', 'dark');
+    script.async = true;
+    
+    this.document.body.appendChild(script);
   }
 }

@@ -8,18 +8,31 @@
     <div class="timeline-modern">
       <div class="tl-rail"></div>
 
-      @for (experience of workExperiences; track $index) {
-      <article class="tl-item" [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'">
+      @for (experience of workExperiences; track $index; let i = $index) {
+      <article class="tl-item" [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'"
+        [style.--i]="i">
         <div class="tl-card">
           <header class="tl-card__head">
             <div class="titles">
               <h3 class="position">{{ experience.position }}</h3>
-              <h4 class="company">{{ experience.company }}</h4>
+              <h4 class="company">
+                {{ experience.company }}
+                @if (experience.stintLabel) {
+                <span class="stint-note">{{ experience.stintLabel }}</span>
+                }
+              </h4>
             </div>
-            <span class="date">
-              {{ experience.startDate | date: 'MMM yyyy' }} –
-              {{ experience.endDate ? (experience.endDate | date: 'MMM yyyy') : 'Actualidad' }}
-            </span>
+            <div class="date-group">
+              <span class="date">
+                {{ experience.startDate | date: 'MMM yyyy' }} –
+                @if (experience.endDate) {
+                {{ experience.endDate | date: 'MMM yyyy' }}
+                } @else {
+                <span i18n>Actualidad</span>
+                }
+              </span>
+              <span class="duration">{{ experience.duration }}</span>
+            </div>
           </header>
 
           <div class="tl-meta">
@@ -27,6 +40,12 @@
               <mat-icon>place</mat-icon>
               {{ experience.location }}
             </span>
+            @if (!experience.endDate) {
+            <span class="badge badge--current">
+              <span class="badge--current__dot" aria-hidden="true"></span>
+              <span i18n>Actual</span>
+            </span>
+            }
           </div>
 
           <section class="tl-body">
@@ -45,7 +64,7 @@
         </div>
 
         <span class="tl-dot">
-          <img class="tl-dot__img" ngSrc="companies/{{ experience.icon }}" width="45" height="45"
+          <img class="tl-dot__img" ngSrc="companies/{{ experience.icon }}" width="56" height="56"
             alt="{{ experience.company }} logo" />
         </span>
       </article>

@@ -16,7 +16,7 @@
 
     <div class="contact-grid">
       <div class="contact-side">
-        <ul class="channels" aria-label="Canales de contacto">
+        <ul class="channels" i18n-aria-label aria-label="Canales de contacto">
           <li>
             <a class="channel" [href]="'mailto:' + ownerEmail">
               <mat-icon>mail</mat-icon>
@@ -43,7 +43,7 @@
           </li>
         </ul>
 
-        <ul class="meta-facts" aria-label="Datos rápidos">
+        <ul class="meta-facts" i18n-aria-label aria-label="Datos rápidos">
           @for (m of metaFacts[locale]; track $index) {
           <li class="mf">
             <mat-icon class="mf__icon">{{ m.icon }}</mat-icon>

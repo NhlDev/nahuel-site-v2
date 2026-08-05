@@ -27,11 +27,12 @@ app.use(
     contentSecurityPolicy: {
       useDefaults: true,
       directives: {
-        "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/"],
-        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/", "https://app.chatbot.controlup.com.ar"],
+        "script-src-attr": ["'unsafe-inline'"],
+        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://app.chatbot.controlup.com.ar"],
         "font-src": ["'self'", "https://fonts.gstatic.com"],
-        "img-src": ["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com"],
-        "connect-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"]
+        "img-src": ["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com", "https://app.chatbot.controlup.com.ar"],
+        "connect-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://app.chatbot.controlup.com.ar", "wss://app.chatbot.controlup.com.ar", "https://api.chatbot.controlup.com.ar"]
       }
     },
     crossOriginEmbedderPolicy: false
@@ -117,6 +118,62 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// Endpoint para el Chatbot de IA, autenticado mediante token (CHATBOT_API_TOKEN)
+app.post('/api/ai/send-email', async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization || (req.headers['x-api-key'] as string) || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
+    const expectedToken = process.env['CHATBOT_API_TOKEN'];
+    
+    if (!expectedToken || token !== expectedToken) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    const { name, email, message } = req.body || {};
+    if (!name || !email || !message) {
+      return res.status(400).json({ message: 'Missing fields' });
+    }
+
+    const to = process.env['SMTP_USER'];
+    const host = process.env['SMTP_HOST'];
+    const port = Number(process.env['SMTP_PORT'] || 587);
+    const user = process.env['SMTP_USER'];
+    const pass = process.env['SMTP_PASS'];
+    
+    if (!host || !user || !pass || !to) {
+      return res.status(500).json({ message: 'SMTP not configured' });
+    }
+
+    const nodemailer = (await import('nodemailer')).default;
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
+
+    const subject = `Mensaje desde Chatbot IA`;
+    const text = `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`;
+    const html = `<p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
+<p><strong>Email:</strong> ${escapeHtml(email)}</p>
+<p><strong>Mensaje:</strong><br>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`;
+
+    await transporter.sendMail({
+      from: `"Chatbot IA" <${user}>`,
+      to,
+      subject,
+      text,
+      html,
+      replyTo: email,
+    });
+
+    return res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Internal error' });
+  }
+});
+
 // helper
 function escapeHtml(s: string) {
   return String(s)
@@ -130,6 +187,16 @@ function escapeHtml(s: string) {
 // --- i18n config ---
 const SUPPORTED_LOCALES = new Set(['es-AR', 'en-US']);
 const DEFAULT_LOCALE = 'es-AR';
+
+// Archivos SEO/well-known que deben responder en la raíz real del dominio
+// (los assets de `public/` se duplican por locale, no existen en la raíz del build)
+for (const file of ['robots.txt', 'sitemap.xml', 'og-image.png']) {
+  app.get(`/${file}`, (req, res, next) => {
+    res.sendFile(file, { root: join(import.meta.dirname, `../browser/${DEFAULT_LOCALE}`) }, (err) => {
+      if (err) next(err);
+    });
+  });
+}
 
 // Añadir cabecera Vary para caches/CDN
 app.use((req, res, next) => {

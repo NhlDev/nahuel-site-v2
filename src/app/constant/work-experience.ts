@@ -231,15 +231,18 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
         },
         {
             company: "Flux IT",
-            position: "Full-Stack Developer",
-            startDate: new Date(2020, 6, 1), // July 2020
+            position: "Front-End Developer",
+            startDate: new Date(2020, 8, 1), // September 2020
             endDate: new Date(2021, 5, 30), // June 2021
             responsibilities: [
-                "Developed web applications using Angular and .NET",
-                "Collaborated with cross-functional teams to define and implement new features",
-                "Participated in code reviews and maintained high code quality"
+                "Developed cross-platform hybrid mobile applications",
+                "Participated in building internal shared libraries",
+                "Developed reusable features and custom visual components",
+                "Helped standardize design and speed up development of new apps",
+                "Applied modular architecture best practices",
+                "Implemented version control and technical documentation"
             ],
-            technologiesUsed: ["Angular", ".NET", "TypeScript", "JavaScript"],
+            technologiesUsed: ["Ionic 5", "Angular", "TypeScript", "JavaScript"],
             location: "Argentina",
             icon: "flux_it.png",
             companyColor: "#326ae7"
@@ -283,7 +286,7 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
         },
         {
             company: "Itrio S.A.",
-            position: "ASP.NET Developer",
+            position: ".NET Developer",
             startDate: new Date(2014, 0, 1), // January 2014
             endDate: new Date(2016, 6, 31), // July 2016
             responsibilities: [

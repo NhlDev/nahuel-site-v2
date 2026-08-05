@@ -36,22 +36,7 @@
     />
     <meta name="twitter:image" content="https://nahuel.dev/og-image.png" />
 
-    <!-- Structured data (Person) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Nahuel Alderete",
-        "url": "https://nahuel.dev/",
-        "sameAs": [
-          "https://github.com/NhlDev",
-          "https://www.linkedin.com/in/nahuel-alderete"
-        ],
-        "jobTitle": "Full-Stack / Frontend (Angular)",
-        "image": "https://nahuel.dev/logo.svg",
-        "description": "Desarrollador Full-Stack con 10+ años de experiencia en Angular, Ionic, Node.js y .NET. Explorando IA aplicada con Python y TensorFlow."
-      }
-    </script>
+    <!-- Structured data (Person), canonical & hreflang links are injected per-locale by App (app.ts) -->
 
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -72,9 +57,6 @@
     />
   </head>
   <body class="mat-typography mat-dark-theme">
-    <!-- Skip link for keyboard users -->
-    <a class="skip-link" href="#home">Saltar al contenido</a>
-
     <app-root></app-root>
   </body>
 </html>
