@@ -21,9 +21,12 @@
     inset: 0;
     background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
     background-size: 36px 36px;
-    animation: gridDrift 25s linear infinite;
     pointer-events: none;
     z-index: 0;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: gridDrift 25s linear infinite;
+    }
   }
 }
 
@@ -244,14 +247,20 @@
         color-mix(in srgb, var(--mat-sys-secondary-container) 55%, transparent));
     filter: blur(24px) saturate(140%);
     opacity: 0.55;
-    animation: pulse 6s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: pulse 6s ease-in-out infinite;
+    }
   }
 
   .floating-logo {
     position: absolute;
     width: clamp(90px, 18vw, 140px);
     filter: drop-shadow(0 8px 20px rgb(0 0 0 / 0.25));
-    animation: floatY 5.5s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: floatY 5.5s ease-in-out infinite;
+    }
   }
 }
 

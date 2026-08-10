@@ -1,10 +1,11 @@
 import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, PLATFORM_ID, inject, LOCALE_ID, signal, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-about-me',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './about-me.html',
   styleUrl: './about-me.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -33,16 +34,16 @@ export class AboutMe implements AfterViewInit, OnDestroy {
 
   quickFacts: Record<string, { icon: string; text: string }[]> = {
     'es-AR': [
-      { icon: '📍', text: 'Buenos Aires, Argentina' },
-      { icon: '🗣️', text: 'Español nativo · Inglés B2' },
-      // { icon: '🕒', text: 'Disponibilidad: Part/Full‑time' },
-      { icon: '🧩', text: 'Foco: Angular, TypeScript/JavaScript, .NET' },
+      { icon: 'location_on', text: 'Buenos Aires, Argentina' },
+      { icon: 'translate', text: 'Español nativo · Inglés B2' },
+      // { icon: 'schedule', text: 'Disponibilidad: Part/Full‑time' },
+      { icon: 'code', text: 'Foco: Angular, TypeScript/JavaScript, .NET' },
     ],
     'en-US': [
-      { icon: '📍', text: 'Buenos Aires, Argentina' },
-      { icon: '🗣️', text: 'Native Spanish · B2 English' },
-      // { icon: '🕒', text: 'Availability: Part/Full‑time' },
-      { icon: '🧩', text: 'Focus: Angular, TypeScript/JavaScript, .NET' },
+      { icon: 'location_on', text: 'Buenos Aires, Argentina' },
+      { icon: 'translate', text: 'Native Spanish · B2 English' },
+      // { icon: 'schedule', text: 'Availability: Part/Full‑time' },
+      { icon: 'code', text: 'Focus: Angular, TypeScript/JavaScript, .NET' },
     ]
   };
 

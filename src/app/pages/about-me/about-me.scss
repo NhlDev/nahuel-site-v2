@@ -246,7 +246,10 @@
     }
   }
   .qf__icon {
-    font-size: 1rem;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: var(--mat-sys-primary);
   }
   .qf__text {
     font-size: 0.9rem;

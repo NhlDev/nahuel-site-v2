@@ -51,7 +51,7 @@
         <ul class="quick-facts">
           @for (fact of quickFacts[lang]; track $index) {
           <li class="qf">
-            <span class="qf__icon" aria-hidden="true">{{ fact.icon }}</span>
+            <mat-icon class="qf__icon" aria-hidden="true">{{ fact.icon }}</mat-icon>
             <span class="qf__text">{{ fact.text }}</span>
           </li>
           }

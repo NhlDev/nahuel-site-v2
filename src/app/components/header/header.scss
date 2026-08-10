@@ -200,7 +200,11 @@
 }
 
 // Media queries
-@media screen and (max-width: 768px) {
+// Switch to the hamburger below 1024px: at narrower widths (tablets, small
+// laptops) the full nav-links row collides with the logo — see .nav-links
+// scrollWidth (~600px) vs available space once the logo and padding are
+// subtracted, which runs out well before 768px.
+@media screen and (max-width: 1024px) {
   .nav-links {
     display: none;
   }
