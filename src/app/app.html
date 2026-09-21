@@ -2,34 +2,43 @@
 
 <app-header></app-header>
 <main>
-  <app-home id="home"></app-home>
+  <section id="home">
+    <app-home></app-home>
+  </section>
 
   <!-- About Me section, render immediately in tests -->
-  @if (isTest) {
-  <app-about-me id="about-me"></app-about-me>
-  } @else { @defer (on viewport) {
-  <app-about-me id="about-me"></app-about-me>
-  } @placeholder {
-  <div style="min-height: 50vh"></div>
-  } }
+  <section id="about-me">
+    @if (isTest) {
+    <app-about-me></app-about-me>
+    } @else { @defer (on viewport; on idle) {
+    <app-about-me></app-about-me>
+    } @placeholder {
+    <div style="min-height: 50vh"></div>
+    } }
+  </section>
 
   <!-- Resume section -->
-  @if (isTest) {
-  <app-resume id="resume"></app-resume>
-  } @else { @defer (on viewport) {
-  <app-resume id="resume"></app-resume>
-  } @placeholder {
-  <div style="min-height: 50vh"></div>
-  } }
+  <section id="resume">
+    @if (isTest) {
+    <app-resume></app-resume>
+    } @else { @defer (on viewport; on idle) {
+    <app-resume></app-resume>
+    } @placeholder {
+    <div style="min-height: 50vh"></div>
+    } }
+  </section>
 
   <!-- Contact Me section -->
-  @if (isTest) {
-  <app-contact-me id="contact-me"></app-contact-me>
-  } @else { @defer (on viewport) {
-  <app-contact-me id="contact-me"></app-contact-me>
-  } @placeholder {
-  <div style="min-height: 50vh"></div>
-  } }
+  <section id="contact-me">
+    @if (isTest) {
+    <app-contact-me></app-contact-me>
+    } @else { @defer (on viewport; on idle) {
+    <app-contact-me></app-contact-me>
+    } @placeholder {
+    <div style="min-height: 50vh"></div>
+    } }
+  </section>
 </main>
 <app-footer></app-footer>
+
 

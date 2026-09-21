@@ -4,29 +4,79 @@
     <p class="subtitle" i18n>Mi trayectoria profesional y logros</p>
   </div>
 
+  <!-- ── Vista general cronológica (gantt) ─────────────────────────────── -->
+  <nav class="tl-overview" i18n-aria-label="@@resumeOverviewLabel" aria-label="Vista general cronológica de la experiencia">
+    <div class="tl-overview__years" aria-hidden="true">
+      @for (year of years; track year) {
+      <span class="tl-overview__year" [style.left.%]="yearPct(year)">
+        <span class="tl-overview__year-label">{{ year }}</span>
+      </span>
+      }
+    </div>
+
+    <div class="tl-overview__lanes" [style.--lanes]="laneCount">
+      @for (experience of workExperiences; track experience.id) {
+      <button
+        type="button"
+        class="tl-seg"
+        [class.is-active]="activeId() === experience.id"
+        [class.is-current]="!experience.endDate"
+        [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'"
+        [style.left.%]="experience.startPct"
+        [style.width.%]="experience.widthPct"
+        [style.--lane]="experience.lane"
+        [attr.aria-label]="experience.company + ' · ' + experience.position + ' · ' + (experience.startDate | date: 'MMM yyyy') + ' – ' + (experience.endDate ? (experience.endDate | date: 'MMM yyyy') : '')"
+        [attr.aria-current]="activeId() === experience.id ? 'true' : null"
+        [title]="experience.company + ' · ' + experience.duration"
+        (click)="jumpTo(experience.id)">
+        <span class="tl-seg__label">{{ experience.company }}</span>
+      </button>
+      }
+    </div>
+  </nav>
+
+  <!-- ── Timeline vertical ─────────────────────────────────────────────── -->
   <div class="timeline-container">
     <div class="timeline-modern">
-      <div class="tl-rail"></div>
+      <div class="tl-rail" aria-hidden="true">
+        <div class="tl-rail__fill"></div>
+      </div>
 
-      @for (experience of workExperiences; track $index; let i = $index) {
-      <article class="tl-item" [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'"
+      @for (experience of workExperiences; track experience.id; let i = $index) {
+      <article
+        class="tl-item"
+        [attr.data-id]="experience.id"
+        [class.is-active]="activeId() === experience.id"
+        [class.is-current]="!experience.endDate"
+        [style.--company-color]="experience.companyColor || 'var(--mat-sys-primary)'"
         [style.--i]="i">
-        <div class="tl-card">
+
+        <span class="tl-dot" aria-hidden="true">
+          <span class="tl-dot__logo">
+            <img class="tl-dot__img" ngSrc="companies/{{ experience.icon }}" width="56" height="56" alt="" />
+          </span>
+          <span class="tl-dot__year">{{ experience.startYear }}</span>
+        </span>
+
+        <div class="tl-card" tabindex="-1">
           <header class="tl-card__head">
             <div class="titles">
               <h3 class="position">{{ experience.position }}</h3>
-              <h4 class="company">
-                {{ experience.company }}
+              <p class="company">
+                <img class="company__logo" ngSrc="companies/{{ experience.icon }}" width="20" height="20"
+                  alt="{{ experience.company }} logo" />
+                <span>{{ experience.company }}</span>
                 @if (experience.stintLabel) {
                 <span class="stint-note">{{ experience.stintLabel }}</span>
                 }
-              </h4>
+              </p>
             </div>
             <div class="date-group">
               <span class="date">
-                {{ experience.startDate | date: 'MMM yyyy' }} –
+                <time [attr.datetime]="experience.startDate | date: 'yyyy-MM'">{{ experience.startDate | date: 'MMM yyyy' }}</time>
+                <span aria-hidden="true">–</span>
                 @if (experience.endDate) {
-                {{ experience.endDate | date: 'MMM yyyy' }}
+                <time [attr.datetime]="experience.endDate | date: 'yyyy-MM'">{{ experience.endDate | date: 'MMM yyyy' }}</time>
                 } @else {
                 <span i18n>Actualidad</span>
                 }
@@ -37,7 +87,7 @@
 
           <div class="tl-meta">
             <span class="badge">
-              <mat-icon>place</mat-icon>
+              <mat-icon aria-hidden="true">place</mat-icon>
               {{ experience.location }}
             </span>
             @if (!experience.endDate) {
@@ -50,23 +100,44 @@
 
           <section class="tl-body">
             <ul class="responsibilities">
-              @for (description of experience.responsibilities; track $index) {
+              @for (description of experience.responsibilities.slice(0, visibleCount); track $index) {
               <li>{{ description }}</li>
               }
             </ul>
+
+            @if (hiddenCount(experience) > 0) {
+            <div class="tl-more" [class.is-open]="isExpanded(experience.id)" [id]="'more-' + experience.id">
+              <div class="tl-more__inner">
+                <ul class="responsibilities" [attr.inert]="isExpanded(experience.id) ? null : ''">
+                  @for (description of experience.responsibilities.slice(visibleCount); track $index) {
+                  <li>{{ description }}</li>
+                  }
+                </ul>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="tl-toggle"
+              [attr.aria-expanded]="isExpanded(experience.id)"
+              [attr.aria-controls]="'more-' + experience.id"
+              (click)="toggleExpanded(experience.id)">
+              <mat-icon aria-hidden="true">expand_more</mat-icon>
+              @if (isExpanded(experience.id)) {
+              <span i18n="@@resumeShowLess">Ver menos</span>
+              } @else {
+              <span i18n="@@resumeShowMore">Ver {{ hiddenCount(experience) }} más</span>
+              }
+            </button>
+            }
           </section>
 
-          <footer class="skills-chips">
-            @for (tech of experience.technologiesUsed; track $index) {
+          <footer class="skills-chips" i18n-aria-label="@@resumeTechUsed" aria-label="Tecnologías utilizadas">
+            @for (tech of experience.technologiesUsed; track tech) {
             <span class="chip">{{ tech }}</span>
             }
           </footer>
         </div>
-
-        <span class="tl-dot">
-          <img class="tl-dot__img" ngSrc="companies/{{ experience.icon }}" width="56" height="56"
-            alt="{{ experience.company }} logo" />
-        </span>
       </article>
       }
     </div>

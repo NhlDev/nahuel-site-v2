@@ -5,40 +5,55 @@
     <header class="contact-head">
       <h2 id="contact-title" class="contact-title" i18n>
         Contacto
-        <span class="tagline">Hablemos sobre tu proyecto</span>
+        <span class="tagline">¿Tenés una idea o proyecto? Construyámoslo juntos.</span>
       </h2>
     </header>
 
     <p class="contact-intro" i18n>
-      Escribime con los detalles de tu proyecto o consulta. También podés
-      contactarme por redes.
+      Escribime con los detalles de tu requerimiento, consulta de consultoría o proyecto. Te responderé a la brevedad.
     </p>
 
     <div class="contact-grid">
       <div class="contact-side">
+        <h3 class="side-title" i18n>Canales Directos</h3>
         <ul class="channels" i18n-aria-label aria-label="Canales de contacto">
           <li>
             <a class="channel" [href]="'mailto:' + ownerEmail">
-              <mat-icon>mail</mat-icon>
-              <span>Email</span>
+              <div class="channel-icon">
+                <mat-icon>mail</mat-icon>
+              </div>
+              <div class="channel-info">
+                <span class="channel-name">Email</span>
+                <span class="channel-value">{{ ownerEmail }}</span>
+              </div>
             </a>
           </li>
           <li>
             <a class="channel" [href]="linkedInUrl" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                <path fill="currentColor"
-                  d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM14.5 9c-2.35 0-3.5 1.29-3.5 2.2V9H7v12h4v-6.3c0-1.05.6-2.2 2-2.2 1.36 0 2 .95 2 2.2V21h4v-6.5C19 11.26 17.45 9 14.5 9Z" />
-              </svg>
-              LinkedIn
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                  <path fill="currentColor"
+                    d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM14.5 9c-2.35 0-3.5 1.29-3.5 2.2V9H7v12h4v-6.3c0-1.05.6-2.2 2-2.2 1.36 0 2 .95 2 2.2V21h4v-6.5C19 11.26 17.45 9 14.5 9Z" />
+                </svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-name">LinkedIn</span>
+                <span class="channel-value">/in/nahuel-alderete</span>
+              </div>
             </a>
           </li>
           <li>
             <a class="channel" [href]="githubUrl" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                <path fill="currentColor"
-                  d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.23 3.37 9.66 8.05 11.23.59.12.8-.25.8-.56l-.02-2.2c-3.27.72-3.96-1.6-3.96-1.6-.54-1.4-1.32-1.78-1.32-1.78-1.08-.76.08-.75.08-.75 1.2.09 1.83 1.26 1.83 1.26 1.06 1.86 2.78 1.32 3.46 1.01.11-.79.41-1.32.75-1.62-2.61-.3-5.36-1.35-5.36-6 0-1.32.47-2.39 1.25-3.24-.13-.31-.54-1.56.12-3.24 0 0 1.01-.33 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.56 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.24 0 4.67-2.76 5.7-5.39 6 .42.36.8 1.08.8 2.18l-.01 3.23c0 .31.21.68.81.56A11.5 11.5 0 0 0 23.5 12.3 11.5 11.5 0 0 0 12 .5Z" />
-              </svg>
-              <span>GitHub</span>
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                  <path fill="currentColor"
+                    d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.23 3.37 9.66 8.05 11.23.59.12.8-.25.8-.56l-.02-2.2c-3.27.72-3.96-1.6-3.96-1.6-.54-1.4-1.32-1.78-1.32-1.78-1.08-.76.08-.75.08-.75 1.2.09 1.83 1.26 1.83 1.26 1.06 1.86 2.78 1.32 3.46 1.01.11-.79.41-1.32.75-1.62-2.61-.3-5.36-1.35-5.36-6 0-1.32.47-2.39 1.25-3.24-.13-.31-.54-1.56.12-3.24 0 0 1.01-.33 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.56 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.24 0 4.67-2.76 5.7-5.39 6 .42.36.8 1.08.8 2.18l-.01 3.23c0 .31.21.68.81.56A11.5 11.5 0 0 0 23.5 12.3 11.5 11.5 0 0 0 12 .5Z" />
+                </svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-name">GitHub</span>
+                <span class="channel-value">@NhlDev</span>
+              </div>
             </a>
           </li>
         </ul>
@@ -53,60 +68,63 @@
         </ul>
       </div>
 
-      <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-        <mat-form-field appearance="outline" class="field">
-          <mat-label i18n>Tu nombre</mat-label>
-          <input matInput formControlName="name" autocomplete="name" required aria-required="true" />
-          @if (hasError('name','required')) {
-          <mat-error i18n>El nombre es obligatorio</mat-error>
-          } @if (hasError('name','minlength')) {
-          <mat-error i18n>Mínimo 2 caracteres</mat-error>
-          }
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="field">
-          <mat-label i18n>Tu email</mat-label>
-          <input matInput type="email" formControlName="email" autocomplete="email" required aria-required="true" />
-          @if (hasError('email','required')) {
-          <mat-error i18n>El email es obligatorio</mat-error>
-          } @if (hasError('email','email')) {
-          <mat-error i18n>Formato de correo inválido</mat-error>
-          }
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="field field--full">
-          <mat-label i18n>Mensaje</mat-label>
-          <textarea matInput formControlName="message" rows="6" required aria-required="true"
-            cdkTextareaAutosize></textarea>
-          @if (hasError('message','required')) {
-          <mat-error i18n>El mensaje es obligatorio</mat-error>
-          } @if (hasError('message','minlength')) {
-          <mat-error i18n>Mínimo 10 caracteres</mat-error>
-          }
-        </mat-form-field>
-
-        <div class="actions">
-          <button mat-button type="button" (click)="form.reset()" [disabled]="sending()" i18n>
-            Limpiar
-          </button>
-          <button mat-flat-button color="primary" type="submit" [disabled]="sending()">
-            @if (sending()) {
-              <mat-spinner diameter="18" style="margin-right: 8px;"></mat-spinner>
-            } @else {
-              <mat-icon>send</mat-icon>
+      <div class="form-container">
+        <h3 class="side-title" i18n>Enviame un mensaje</h3>
+        <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <mat-form-field appearance="outline" class="field">
+            <mat-label i18n>Tu nombre</mat-label>
+            <input matInput formControlName="name" autocomplete="name" required aria-required="true" />
+            @if (hasError('name','required')) {
+            <mat-error i18n>El nombre es obligatorio</mat-error>
+            } @if (hasError('name','minlength')) {
+            <mat-error i18n>Mínimo 2 caracteres</mat-error>
             }
-            @if (sending()) {
-              <span i18n>Enviando...</span>
-            } @else {
-              <span i18n>Enviar</span>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label i18n>Tu email</mat-label>
+            <input matInput type="email" formControlName="email" autocomplete="email" required aria-required="true" />
+            @if (hasError('email','required')) {
+            <mat-error i18n>El email es obligatorio</mat-error>
+            } @if (hasError('email','email')) {
+            <mat-error i18n>Formato de correo inválido</mat-error>
             }
-          </button>
-        </div>
-      </form>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field field--full">
+            <mat-label i18n>Mensaje o detalle del proyecto</mat-label>
+            <textarea matInput formControlName="message" rows="5" required aria-required="true"
+              cdkTextareaAutosize></textarea>
+            @if (hasError('message','required')) {
+            <mat-error i18n>El mensaje es obligatorio</mat-error>
+            } @if (hasError('message','minlength')) {
+            <mat-error i18n>Mínimo 10 caracteres</mat-error>
+            }
+          </mat-form-field>
+
+          <div class="actions">
+            <button mat-button type="button" class="btn-clear" (click)="form.reset()" [disabled]="sending()" i18n>
+              Limpiar
+            </button>
+            <button mat-flat-button color="primary" class="btn-submit" type="submit" [disabled]="sending()">
+              @if (sending()) {
+                <mat-spinner diameter="18" style="margin-right: 8px;"></mat-spinner>
+              } @else {
+                <mat-icon>send</mat-icon>
+              }
+              @if (sending()) {
+                <span i18n>Enviando...</span>
+              } @else {
+                <span i18n>Enviar mensaje</span>
+              }
+            </button>
+          </div>
+        </form>
+
+        <p class="privacy-note" i18n>
+          🔒 Tu información es confidencial. Solo la utilizo para responder a tu consulta.
+        </p>
+      </div>
     </div>
-
-    <p class="privacy-note" i18n>
-      Nunca compartiré tu email. Solo lo uso para responder tu consulta.
-    </p>
   </section>
 </div>

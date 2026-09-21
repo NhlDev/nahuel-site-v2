@@ -1,59 +1,90 @@
-// Mixins reutilizables para superficies, chips, botones icono y utilidades
+// Mixins reutilizables para superficies glassmorphism, chips, botones y efectos visuales
 @use "sass:meta";
 
+// Mixin principal de tarjeta Glassmorphism
 @mixin card(
-  $bg-color: var(--mat-sys-surface-container),
-  $bg-mix: 80%,
-  $border-mix: 65%,
+  $bg-color: var(--mat-sys-surface-container, #0f172a),
+  $bg-opacity: 0.65,
+  $border-opacity: 0.16,
   $radius: 24px,
-  $blur: 10px,
+  $blur: 16px,
   $elevation: 4
 ) {
-  background: color-mix(in srgb, $bg-color $bg-mix, transparent);
-  border: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) $border-mix, transparent);
+  background: color-mix(in srgb, $bg-color calc($bg-opacity * 100%), transparent);
+  border: 1px solid rgba(255, 255, 255, $border-opacity);
   border-radius: $radius;
   backdrop-filter: blur($blur);
-  box-shadow: var(--mat-app-elevation-shadow-level-#{$elevation});
+  -webkit-backdrop-filter: blur($blur);
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.45),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+              inset 0 0 16px 0 rgba(255, 255, 255, 0.02);
 }
 
+// Superficie de panel secundaria en cristal
 @mixin surface-panel(
-  $bg-color: var(--mat-sys-surface-container),
-  $bg-mix: 88%,
-  $border-mix: 55%,
-  $radius: 12px
+  $bg-color: var(--mat-sys-surface-container-high, #1e293b),
+  $bg-opacity: 0.6,
+  $border-opacity: 0.12,
+  $radius: 16px,
+  $blur: 12px
 ) {
-  background: color-mix(in srgb, $bg-color $bg-mix, transparent);
-  border: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) $border-mix, transparent);
+  background: color-mix(in srgb, $bg-color calc($bg-opacity * 100%), transparent);
+  border: 1px solid rgba(255, 255, 255, $border-opacity);
   border-radius: $radius;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
+// Chips / Pills en cristal interactivo
 @mixin pill(
-  $bg: var(--mat-sys-secondary-container),
-  $fg: var(--mat-sys-on-secondary-container),
-  $border-mix: 25%,
-  $pad-y: 0.25rem,
-  $pad-x: 0.6rem,
+  $bg: rgba(255, 255, 255, 0.06),
+  $fg: var(--mat-sys-on-surface, #f8fafc),
+  $border-color: rgba(255, 255, 255, 0.12),
+  $pad-y: 0.35rem,
+  $pad-x: 0.8rem,
   $radius: 999px
 ) {
   background: $bg;
   color: $fg;
-  border: 1px solid color-mix(in srgb, var(--mat-sys-secondary) $border-mix, var(--mat-sys-outline-variant));
+  border: 1px solid $border-color;
   padding: $pad-y $pad-x;
   border-radius: $radius;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
-@mixin icon-button($size: 36px) {
+// Botones de icono
+@mixin icon-button($size: 40px) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: $size;
   height: $size;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-@mixin hover-lift($dy: -1px) {
-  transition: transform 0.15s ease;
-  &:hover { transform: translateY($dy); }
+// Elevación al hacer hover con resorte natural
+@mixin hover-lift($dy: -3px, $scale: 1) {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    @if $scale != 1 {
+      transform: translateY($dy) scale($scale);
+    } @else {
+      transform: translateY($dy);
+    }
+  }
+}
+
+// Resplandor ambiental de acento
+@mixin ambient-glow($color: var(--mat-sys-primary, #38bdf8), $opacity: 0.25, $spread: 20px) {
+  box-shadow: 0 0 $spread color-mix(in srgb, $color calc($opacity * 100%), transparent);
 }
 
 @mixin list-reset {
@@ -63,8 +94,8 @@
 }
 
 @mixin gradient-text(
-  $gradient: linear-gradient(135deg, var(--mat-sys-primary, #0078d4) 0%, var(--mat-sys-tertiary-container, #ffb300) 100%),
-  $fallback-color: var(--mat-sys-primary, #0078d4)
+  $gradient: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #818cf8 100%),
+  $fallback-color: #38bdf8
 ) {
   color: $fallback-color;
   background: $gradient;

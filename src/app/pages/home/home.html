@@ -3,16 +3,32 @@
     <div class="hero__bg" aria-hidden="true"></div>
 
     <div class="hero__content">
+      <div class="availability-pill" i18n>
+        <span class="live-dot" aria-hidden="true"></span>
+        Disponible para proyectos freelance y contratos
+      </div>
+
       <h1 id="hero-title" class="hero__title">
-        <span class="hero__greeting" i18n>Hola, soy Nahuel</span>
-        <span class="accent" i18n>Hago apps que la gente disfruta.</span>
-        <span class="role" i18n>Full-Stack con foco en performance y responsividad.</span>
+        <span class="hero__greeting" i18n>Hola, soy Nahuel Alderete</span>
+        <span class="accent" i18n>Senior Full‑Stack Engineer & Architect</span>
+        <span class="role" i18n>Desarrollo soluciones web, móviles y SaaS de alto rendimiento, escalables y seguras.</span>
       </h1>
 
-      <p class="lead" role="status" aria-live="polite">
-        <span class="prompt">></span>
-        <span class="typed">{{ typedText() }}</span><span class="cursor" aria-hidden="true">|</span>
-      </p>
+      <div class="lead-box">
+        <!-- Texto accesible y estático: los lectores de pantalla no reciben el tipeo carácter a carácter -->
+        <p class="visually-hidden">{{ lines.join(' ') }}</p>
+
+        <!-- Fantasma con la frase más larga: reserva alto/ancho para que el hero no cambie de tamaño -->
+        <p class="lead lead--ghost" aria-hidden="true">
+          <span class="prompt">></span>
+          <span class="typed">{{ longestLine }}</span><span class="cursor">_</span>
+        </p>
+
+        <p class="lead lead--live" aria-hidden="true">
+          <span class="prompt">></span>
+          <span class="typed">{{ typedText() }}</span><span class="cursor">_</span>
+        </p>
+      </div>
 
       <div class="stack-chips" i18n-aria-label aria-label="Tecnologías principales">
         @for (skill of coreSkills; track $index) {
@@ -21,33 +37,46 @@
       </div>
 
       <div class="hero-actions">
-        <button mat-flat-button color="primary" (click)="scrollTo('resume')" i18n>
-          Ver mi experiencia
+        <button mat-flat-button color="primary" class="cta-primary" (click)="scrollTo('contact-me')" i18n>
+          <span class="btn-glow"></span>
+          Hablemos de tu proyecto
         </button>
-        <button mat-stroked-button (click)="scrollTo('contact-me')" i18n>
-          Contacto
+        <button mat-stroked-button class="cta-secondary" (click)="scrollTo('resume')" i18n>
+          Ver experiencia
         </button>
       </div>
     </div>
 
     <figure class="hero__visual" aria-hidden="true">
-      <div class="orb"></div>
-      <img ngSrc="techs/angular.svg" width="140" height="140" alt="" class="floating-logo" />
+      <div class="orb-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="glass-ring"></div>
+        <img ngSrc="techs/angular.svg" width="130" height="130" alt="" class="floating-logo" priority />
+      </div>
     </figure>
   </section>
 
-  <section class="quick-stats" i18n-aria-label aria-label="Resumen rápido">
-    <div class="stat">
-      <span class="stat__num" data-target="10" i18n>10+</span>
+  <section class="quick-stats" i18n-aria-label aria-label="Métricas destacadas">
+    <div class="stat-card">
+      <span class="stat__num" i18n>10+</span>
       <span class="stat__label" i18n>Años de experiencia</span>
+      <span class="stat__desc" i18n>Desarrollo Full-Stack</span>
     </div>
-    <div class="stat">
-      <span class="stat__num" data-target="15" i18n>15+</span>
-      <span class="stat__label" i18n>Proyectos</span>
+    <div class="stat-card">
+      <span class="stat__num" i18n>15+</span>
+      <span class="stat__label" i18n>Proyectos entregados</span>
+      <span class="stat__desc" i18n>Web, Mobile & APIs</span>
     </div>
-    <div class="stat">
-      <span class="stat__num" data-target="5" i18n>5+</span>
-      <span class="stat__label" i18n>Sectores</span>
+    <div class="stat-card">
+      <span class="stat__num" i18n>5+</span>
+      <span class="stat__label" i18n>Sectores clave</span>
+      <span class="stat__desc" i18n>Banca, Salud, Startups</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat__num" i18n>100%</span>
+      <span class="stat__label" i18n>Compromiso y calidad</span>
+      <span class="stat__desc" i18n>Arquitectura limpia</span>
     </div>
   </section>
 </div>

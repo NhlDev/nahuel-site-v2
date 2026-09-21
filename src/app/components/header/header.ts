@@ -30,15 +30,18 @@ export class Header implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (!this.isBrowser || typeof IntersectionObserver === 'undefined') return;
 
+    // La sección activa es la que cruza la franja central del viewport.
+    // Un threshold por porcentaje falla en secciones más altas que la pantalla
+    // (nunca llegan al 30% visible), por eso se usa rootMargin.
     this.sectionObserver = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+          if (entry.isIntersecting) {
             this.activeSection.set(entry.target.id);
           }
         }
       },
-      { threshold: 0.3 }
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
     );
 
     // Observe any sections already rendered
@@ -87,10 +90,14 @@ export class Header implements OnInit, OnDestroy {
     document.body.style.overflow = '';
   }
 
-  scrollTo(anchor: string): void {
+  scrollTo(anchor: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
     const element = document.getElementById(anchor);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.activeSection.set(anchor);
     }
   }
 

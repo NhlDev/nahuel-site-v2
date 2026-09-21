@@ -1,66 +1,97 @@
-<header>
-  <mat-toolbar color="primary" class="custom-toolbar">
-    <div class="logo-section">
-      <span class="app-title">Nahuel Alderete</span>
+<header class="header-root">
+  <div class="custom-toolbar-container">
+    <mat-toolbar class="custom-toolbar">
+      <div class="logo-section" (click)="scrollTo('home', $event)">
+        <div class="logo-avatar" aria-hidden="true">
+          <span>NA</span>
+        </div>
+        <div class="logo-text">
+          <span class="app-title">Nahuel Alderete</span>
+          <span class="status-badge" i18n>
+            <span class="status-dot" aria-hidden="true"></span>
+            Disponible
+          </span>
+        </div>
+      </div>
+
+      <span class="spacer"></span>
+
+      <nav class="nav-links" aria-label="Navegación principal" i18n-aria-label>
+        <a mat-button href="#home" (click)="scrollTo('home', $event)" [class.active-link]="activeSection() === 'home'" i18n>
+          <mat-icon>home</mat-icon>
+          Home
+        </a>
+        <a mat-button href="#about-me" (click)="scrollTo('about-me', $event)" [class.active-link]="activeSection() === 'about-me'" i18n>
+          <mat-icon>person_raised_hand</mat-icon>
+          Sobre mí
+        </a>
+        <a mat-button href="#resume" (click)="scrollTo('resume', $event)" [class.active-link]="activeSection() === 'resume'" i18n>
+          <mat-icon>article_person</mat-icon>
+          Mi Curriculum
+        </a>
+        <a mat-button href="#contact-me" (click)="scrollTo('contact-me', $event)" [class.active-link]="activeSection() === 'contact-me'" i18n>
+          <mat-icon>mail</mat-icon>
+          Contacto
+        </a>
+
+        <button mat-button class="lang-btn" (click)="switchLocale()" [attr.aria-label]="currentLocale === 'es-AR' ? 'Switch to English' : 'Cambiar a Español'">
+          <mat-icon>translate</mat-icon>
+          <span class="lang-text">{{ currentLocale === 'es-AR' ? 'EN' : 'ES' }}</span>
+        </button>
+      </nav>
+
+      <button class="btn-menu-mobile" mat-icon-button (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="isMobileMenuOpen()" aria-label="Abrir menú de navegación" i18n-aria-label>
+        <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+
+  <nav class="mobile-menu" [class.show]="isMobileMenuOpen()" aria-label="Menú móvil" i18n-aria-label>
+    <div class="mobile-menu-header">
+      <div class="logo-section">
+        <div class="logo-avatar" aria-hidden="true">
+          <span>NA</span>
+        </div>
+        <div class="logo-text">
+          <span class="app-title">Nahuel Alderete</span>
+          <span class="status-badge" i18n>
+            <span class="status-dot" aria-hidden="true"></span>
+            Disponible
+          </span>
+        </div>
+      </div>
+      <button mat-icon-button (click)="closeMobileMenu()" aria-label="Cerrar menú" i18n-aria-label>
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
 
-    <span class="spacer"></span>
-
-    <nav class="nav-links">
-      <a mat-button (click)="scrollTo('home')" [class.active-link]="activeSection() === 'home'" i18n>
+    <div class="mobile-menu-content">
+      <a mat-button href="#home" (click)="scrollTo('home', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'home'" i18n>
         <mat-icon>home</mat-icon>
         Home
       </a>
-      <a mat-button (click)="scrollTo('about-me')" [class.active-link]="activeSection() === 'about-me'" i18n>
+      <a mat-button href="#about-me" (click)="scrollTo('about-me', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'about-me'" i18n>
         <mat-icon>person_raised_hand</mat-icon>
         Sobre mí
       </a>
-      <a mat-button (click)="scrollTo('resume')" [class.active-link]="activeSection() === 'resume'" i18n>
+      <a mat-button href="#resume" (click)="scrollTo('resume', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'resume'" i18n>
         <mat-icon>article_person</mat-icon>
         Mi Curriculum
       </a>
-      <a mat-button (click)="scrollTo('contact-me')" [class.active-link]="activeSection() === 'contact-me'" i18n>
+      <a mat-button href="#contact-me" (click)="scrollTo('contact-me', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'contact-me'" i18n>
         <mat-icon>mail</mat-icon>
         Contacto
       </a>
 
-      <a mat-button (click)="switchLocale()">
-        <mat-icon>translate</mat-icon>
-        {{ currentLocale === 'es-AR' ? 'EN' : 'ES' }}
-      </a>
-    </nav>
-
-    <button class="btn-menu-mobile" mat-icon-button (click)="toggleMobileMenu()"
-      [attr.aria-expanded]="isMobileMenuOpen()">
-      <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
-    </button>
-  </mat-toolbar>
-
-  <nav class="mobile-menu" [class.show]="isMobileMenuOpen()">
-    <div class="mobile-menu-content">
-      <a mat-button (click)="scrollTo('home'); closeMobileMenu()" [class.active-link]="activeSection() === 'home'" i18n>
-        <mat-icon>home</mat-icon>
-        Home
-      </a>
-      <a mat-button (click)="scrollTo('about-me'); closeMobileMenu()" [class.active-link]="activeSection() === 'about-me'" i18n>
-        <mat-icon>person_raised_hand</mat-icon>
-        Sobre mí
-      </a>
-      <a mat-button (click)="scrollTo('resume'); closeMobileMenu()" [class.active-link]="activeSection() === 'resume'" i18n>
-        <mat-icon>article_person</mat-icon>
-        Mi Curriculum
-      </a>
-      <a mat-button (click)="scrollTo('contact-me'); closeMobileMenu()" [class.active-link]="activeSection() === 'contact-me'" i18n>
-        <mat-icon>mail</mat-icon>
-        Contact
-      </a>
-
-      <a mat-button (click)="switchLocale()">
-        <mat-icon>translate</mat-icon>
-        {{ currentLocale === 'es-AR' ? 'English' : 'Español' }}
-      </a>
+      <div class="mobile-lang-wrapper">
+        <button mat-flat-button color="primary" class="mobile-lang-toggle" (click)="switchLocale()">
+          <mat-icon>translate</mat-icon>
+          {{ currentLocale === 'es-AR' ? 'English version' : 'Versión en Español' }}
+        </button>
+      </div>
     </div>
   </nav>
 
-  <div class="mobile-menu-overlay" (click)="closeMobileMenu()" [class.show]="isMobileMenuOpen()"></div>
+  <div class="mobile-menu-overlay" (click)="closeMobileMenu()" [class.show]="isMobileMenuOpen()" aria-hidden="true"></div>
 </header>

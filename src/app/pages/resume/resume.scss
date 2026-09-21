@@ -1,255 +1,384 @@
 @use "../../../_mixins" as m;
 
+/* ── Tokens locales ───────────────────────────────────────────────────────── */
+$rail-x: 28px;          // centro de la línea vertical (desktop)
+$dot-size: 56px;
+$card-offset: 96px;     // padding-left de cada item (desktop)
+$rail-x-m: 18px;        // mobile
+$dot-size-m: 36px;
+$card-offset-m: 56px;
+$ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
 .resume-page {
-  max-width: 1100px;
-  margin: 70px auto;
-  padding: 2rem 1.25rem 3rem;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5rem) 1.25rem 3.5rem;
   min-height: 100vh;
 }
 
 .resume-header {
   text-align: center;
-  margin-bottom: 2.25rem;
+  margin-bottom: 2rem;
 
   h2 {
-    font-size: 2.25rem;
-    font-weight: 600;
-    margin: 0 0 0.25rem;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
     letter-spacing: -0.02em;
+    @include m.gradient-text(
+      linear-gradient(135deg, #ffffff 0%, #38bdf8 100%),
+      #ffffff
+    );
   }
 
   .subtitle {
-    color: var(--mat-sys-on-surface-variant);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
     margin: 0;
   }
 }
 
+/* ── Vista general cronológica (gantt) ────────────────────────────────────── */
+.tl-overview {
+  position: relative;
+  margin: 0 0 2.5rem;
+  padding: 1rem 1.25rem 1.1rem;
+  border-radius: 18px;
+  background: rgba(11, 17, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 600px) {
+    padding: 0.85rem 0.9rem 0.9rem;
+    border-radius: 14px;
+  }
+}
+
+.tl-overview__years {
+  position: relative;
+  height: 1.4rem;
+  margin: 0 0 0.35rem;
+
+  .tl-overview__year {
+    position: absolute;
+    top: 0;
+    bottom: -0.35rem;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: rgba(255, 255, 255, 0.55);
+    font-variant-numeric: tabular-nums;
+
+    .tl-overview__year-label {
+      position: absolute;
+      top: 0;
+      left: 0.35rem;
+      white-space: nowrap;
+    }
+
+    // En pantallas chicas solo mostramos los años pares para no superponer
+    @media (max-width: 700px) {
+      &:nth-child(even) .tl-overview__year-label { display: none; }
+    }
+  }
+}
+
+.tl-overview__lanes {
+  --lane-h: 22px;
+  --lane-gap: 6px;
+  position: relative;
+  height: calc(var(--lanes, 1) * var(--lane-h) + (var(--lanes, 1) - 1) * var(--lane-gap));
+}
+
+.tl-seg {
+  position: absolute;
+  top: calc(var(--lane, 0) * (var(--lane-h) + var(--lane-gap)));
+  height: var(--lane-h);
+  min-width: 6px;
+  padding: 0 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--company-color) 55%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--company-color) 28%, rgba(255, 255, 255, 0.02));
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  // Área táctil mayor al alto visual (44px) sin alterar el layout
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -11px 0;
+  }
+
+  .tl-seg__label {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0.9;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: color-mix(in srgb, var(--company-color) 45%, transparent);
+    border-color: var(--company-color);
+  }
+
+  &.is-active {
+    background: color-mix(in srgb, var(--company-color) 60%, rgba(255, 255, 255, 0.06));
+    border-color: var(--company-color);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--company-color) 35%, transparent),
+                0 6px 16px -4px color-mix(in srgb, var(--company-color) 60%, transparent);
+    z-index: 1;
+  }
+
+  &.is-current {
+    // Borde derecho "abierto" (sigue en curso)
+    border-right-style: dashed;
+  }
+
+  @media (max-width: 600px) {
+    .tl-seg__label { display: none; }
+    padding: 0;
+  }
+}
+
+/* ── Timeline vertical ────────────────────────────────────────────────────── */
 .timeline-modern {
   position: relative;
-  padding-left: 0.5rem;
 }
 
 .tl-rail {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 44px;
+  left: calc(#{$rail-x} - 1px);
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--mat-sys-primary) 60%, transparent) 0%,
-    var(--mat-sys-outline-variant) 20%,
-    var(--mat-sys-outline-variant) 80%,
-    color-mix(in srgb, var(--mat-sys-secondary) 60%, transparent) 100%
-  );
   border-radius: 2px;
-  opacity: 0.9;
-}
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
 
-@media (prefers-reduced-motion: no-preference) {
-  :host(.section-visible) .tl-item {
-    animation: tlItemIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: calc(var(--i, 0) * 70ms);
+  @media (max-width: 768px) {
+    left: calc(#{$rail-x-m} - 1px);
   }
 }
 
-@keyframes tlItemIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
+// Progreso de la línea guiado por el scroll (CSS scroll-driven animations).
+// Sin soporte, el relleno queda oculto y se ve la línea base.
+.tl-rail__fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #38bdf8 0%, #818cf8 100%);
+  transform-origin: top;
+  transform: scaleY(0);
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .tl-rail__fill {
+      animation: railFill linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
   }
+}
+
+@keyframes railFill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
 }
 
 .tl-item {
   position: relative;
-  padding-left: 114px;
-  margin-bottom: 22px;
+  padding-left: $card-offset;
+  margin-bottom: 1.5rem;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: -64px;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      color-mix(
-        in srgb,
-        var(--company-color, var(--mat-sys-primary)) 70%,
-        transparent
-      ),
-      var(--company-color, var(--mat-sys-primary))
-    );
-    border-radius: 2px;
-    opacity: 0;
-    transform: scaleY(0.4);
-    transform-origin: top;
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-      opacity 0.25s ease, width 0.25s ease;
-    pointer-events: none;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+  @media (max-width: 768px) {
+    padding-left: $card-offset-m;
+    margin-bottom: 1.15rem;
   }
 
-  &:hover::after {
-    opacity: 1;
-    transform: scaleY(1);
-    width: 6px;
+  // Entrada por item cuando aparece en el viewport. El estado oculto solo
+  // aplica cuando el host ya enlazó el observer (.tl-ready): sin JS o antes
+  // de hidratar, el contenido es visible.
+  @media (prefers-reduced-motion: no-preference) {
+    transition: opacity 0.5s $ease-spring, transform 0.5s $ease-spring;
+
+    :host(.tl-ready) &:not(.in-view) {
+      opacity: 0;
+      transform: translateY(18px);
+    }
   }
 }
 
+/* Nodo sobre la línea */
 .tl-dot {
   position: absolute;
-  top: 12px;
-  left: 22px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1px solid var(--company-color, var(--mat-sys-primary));
-  background: var(--company-color, var(--mat-sys-primary));
-  box-shadow: 0 0 0 4px var(--mat-sys-surface), 0 6px 14px rgba(0, 0, 0, 0.18);
+  top: 8px;
+  left: calc(#{$rail-x} - #{$dot-size} / 2);
+  width: $dot-size;
   display: grid;
-  place-items: center;
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-radius 0.25s ease;
+  justify-items: center;
+  gap: 0.3rem;
+  z-index: 1;
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 6px var(--mat-sys-surface), 0 8px 20px rgba(0, 0, 0, 0.22);
-    border-radius: 0;
+  .tl-dot__logo {
+    width: $dot-size;
+    height: $dot-size;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--company-color, #0f172a);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    transition: transform 0.3s $ease-spring, box-shadow 0.3s ease;
   }
 
   .tl-dot__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: inherit;
+  }
+
+  .tl-dot__year {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.5);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 768px) {
+    top: 10px;
+    left: calc(#{$rail-x-m} - #{$dot-size-m} / 2);
+    width: $dot-size-m;
+
+    .tl-dot__logo {
+      width: $dot-size-m;
+      height: $dot-size-m;
+      border-radius: 11px;
+    }
+
+    .tl-dot__year { display: none; }
   }
 }
 
-// Pulse animation for current/active job (first item)
-@media (prefers-reduced-motion: no-preference) {
-  .tl-item:first-child .tl-dot {
-    animation: dotPulse 2.5s ease-in-out infinite;
+/* Estado activo: nodo y tarjeta iluminados con el color de la empresa */
+.tl-item.is-active {
+  .tl-dot__logo {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--company-color) 30%, transparent),
+                0 12px 28px rgba(0, 0, 0, 0.45);
+  }
+
+  .tl-dot__year {
+    color: #ffffff;
+  }
+
+  .tl-card {
+    border-color: color-mix(in srgb, var(--company-color) 45%, rgba(255, 255, 255, 0.15));
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5),
+                0 0 24px -6px color-mix(in srgb, var(--company-color) 35%, transparent);
   }
 }
 
-@keyframes dotPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 4px var(--mat-sys-surface),
-                0 6px 14px rgba(0, 0, 0, 0.18),
-                0 0 0 0px color-mix(in srgb, var(--company-color, var(--mat-sys-primary)) 40%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 0 4px var(--mat-sys-surface),
-                0 6px 14px rgba(0, 0, 0, 0.18),
-                0 0 0 8px color-mix(in srgb, var(--company-color, var(--mat-sys-primary)) 0%, transparent);
-  }
-}
-
+/* ── Tarjeta ──────────────────────────────────────────────────────────────── */
 .tl-card {
   position: relative;
-  @include m.card($bg-mix: 100%, $radius: 16px, $elevation: 10, $blur: 0px);
-  padding: 1rem 1.25rem 1rem 1.25rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  @include m.card(
+    $bg-color: #0b111e,
+    $bg-opacity: 0.7,
+    $border-opacity: 0.12,
+    $radius: 20px,
+    $blur: 16px
+  );
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.25s $ease-spring,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
 
+  @media (max-width: 768px) {
+    padding: 1rem 1.1rem;
+    border-radius: 16px;
+  }
+
+  // Borde de acento con el color de la empresa
   &::before {
     content: "";
     position: absolute;
-    inset: 1px auto 1px 1px;
+    inset: 2px auto 2px 2px;
     width: 4px;
-    border-radius: 14px 0 0 14px;
-    background: linear-gradient(
-      to bottom,
-      var(--company-color, var(--mat-sys-primary)) 0%,
-      color-mix(
-          in srgb,
-          var(--company-color, var(--mat-sys-primary)) 60%,
-          var(--mat-sys-secondary)
-        )
-        50%,
-      color-mix(
-          in srgb,
-          var(--company-color, var(--mat-sys-primary)) 30%,
-          transparent
-        )
-        100%
-    );
+    border-radius: 18px 0 0 18px;
+    background: linear-gradient(to bottom, var(--company-color, #38bdf8) 0%, transparent 100%);
   }
 
   &:hover {
-    @include m.hover-lift(-2px);
-    border-color: color-mix(
-      in srgb,
-      var(--company-color, var(--mat-sys-primary)) 32%,
-      var(--mat-sys-outline-variant)
-    );
-    box-shadow: inset 0 0 0 1px
-        color-mix(
-          in srgb,
-          var(--company-color, var(--mat-sys-primary)) 22%,
-          transparent
-        ),
-      0 8px 24px rgba(0, 0, 0, 0.14);
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--company-color, #38bdf8) 40%, rgba(255, 255, 255, 0.15));
   }
 
-  &:focus-within {
-    border-color: color-mix(
-      in srgb,
-      var(--company-color, var(--mat-sys-primary)) 45%,
-      var(--mat-sys-outline-variant)
-    );
-    box-shadow: inset 0 0 0 2px
-        color-mix(
-          in srgb,
-          var(--company-color, var(--mat-sys-primary)) 38%,
-          transparent
-        ),
-      0 8px 24px rgba(0, 0, 0, 0.14);
-  }
 }
 
 .tl-card__head {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  align-items: flex-start;
+  gap: 1rem;
   justify-content: space-between;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 
   .titles {
     display: grid;
-    gap: 0.125rem;
+    gap: 0.3rem;
+    min-width: 0;
 
     .position {
       margin: 0;
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--mat-sys-on-surface);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
       letter-spacing: -0.01em;
+      line-height: 1.3;
     }
 
     .company {
       margin: 0;
       font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--mat-sys-on-surface-variant);
+      font-weight: 600;
+      color: var(--company-color, #38bdf8);
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.45rem;
+    }
+
+    // Logo inline: visible en mobile, donde el nodo de la línea es más chico
+    .company__logo {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      object-fit: cover;
+      display: none;
+
+      @media (max-width: 768px) {
+        display: inline-block;
+      }
     }
 
     .stint-note {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 500;
       font-style: italic;
-      color: var(--mat-sys-on-surface-variant);
-      opacity: 0.75;
+      color: rgba(255, 255, 255, 0.6);
     }
   }
 
@@ -262,12 +391,16 @@
   }
 
   .date {
+    display: inline-flex;
+    gap: 0.3rem;
     white-space: nowrap;
-    font-size: 0.9rem;
-    color: var(--mat-sys-on-surface-variant);
-    background: var(--mat-sys-surface-variant);
-    border: 1px solid var(--mat-sys-outline-variant);
-    padding: 0.25rem 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.65rem;
     border-radius: 999px;
   }
 
@@ -275,15 +408,13 @@
     white-space: nowrap;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--company-color, var(--mat-sys-primary));
+    color: var(--company-color, #38bdf8);
     opacity: 0.9;
-    padding: 0 0.25rem;
   }
 }
 
 .tl-meta {
-  margin: 0.25rem 0 0.25rem;
+  margin: 0.4rem 0 0.6rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -291,175 +422,177 @@
   .badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.85rem;
-    background: var(--mat-sys-primary-container);
-    color: var(--mat-sys-on-primary-container);
-    padding: 0.25rem 0.5rem;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.25rem 0.6rem;
     border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     mat-icon {
-      font-size: 1rem;
-      width: 1rem;
-      height: 1rem;
+      font-size: 0.95rem;
+      width: 0.95rem;
+      height: 0.95rem;
+      color: var(--company-color, #38bdf8);
     }
   }
 
   .badge--current {
-    background: color-mix(in srgb, var(--company-color, var(--mat-sys-primary)) 22%, var(--mat-sys-surface-container));
-    color: var(--mat-sys-on-surface);
-    border: 1px solid color-mix(in srgb, var(--company-color, var(--mat-sys-primary)) 45%, transparent);
+    background: rgba(34, 197, 94, 0.12);
+    color: #86efac;
+    border-color: rgba(34, 197, 94, 0.35);
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.7rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
 
     &__dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--company-color, var(--mat-sys-primary));
-
-      @media (prefers-reduced-motion: no-preference) {
-        animation: badgeDotPulse 1.8s ease-in-out infinite;
-      }
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
     }
   }
 }
 
-@keyframes badgeDotPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(1.3);
-  }
-}
-
-/* Body siempre visible */
 .tl-body {
-  overflow: hidden;
-  margin-top: 0.5rem;
+  margin: 0.75rem 0 1rem;
 
   .responsibilities {
     @include m.list-reset;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    display: grid;
+    gap: 0.45rem;
 
     li {
       position: relative;
-      padding-left: 1rem;
-      color: var(--mat-sys-on-surface-variant);
-      line-height: 1.5;
+      padding-left: 1.1rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      text-wrap: pretty;
 
       &::before {
-        content: "•";
+        content: "▹";
         position: absolute;
         left: 0;
         top: 0;
-        color: var(--company-color, var(--mat-sys-primary));
+        color: var(--company-color, #38bdf8);
+        font-weight: 700;
       }
     }
   }
 }
 
-.tl-card:hover .tl-body,
-.tl-body {
-  max-height: none;
-  opacity: 1;
-  margin-top: 0.5rem;
+/* Expandible: grid-template-rows 0fr → 1fr (animable sin conocer el alto) */
+.tl-more {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s $ease-spring;
+
+  .tl-more__inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .tl-more__inner .responsibilities {
+    padding-top: 0.45rem;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  &.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  &.is-open .tl-more__inner .responsibilities {
+    opacity: 1;
+    transition-delay: 0.1s;
+  }
 }
 
-/* Chips de skills */
+.tl-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.6rem;
+  min-height: 36px;
+  padding: 0.35rem 0.75rem 0.35rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--company-color, #38bdf8);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  mat-icon {
+    font-size: 1.15rem;
+    width: 1.15rem;
+    height: 1.15rem;
+    transition: transform 0.3s $ease-spring;
+  }
+
+  &[aria-expanded="true"] mat-icon {
+    transform: rotate(180deg);
+  }
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--company-color) 40%, transparent);
+  }
+}
+
 .skills-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  margin-top: 0.75rem;
 
+  // Sin backdrop-filter: ~40 chips con blur son ~40 capas de composición en mobile
   .chip {
-    @include m.pill();
-    font-size: 0.78rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.74rem;
     font-weight: 500;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    @include m.hover-lift(-1px);
-
     &:hover {
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      background: color-mix(in srgb, var(--company-color) 14%, transparent);
+      border-color: color-mix(in srgb, var(--company-color) 40%, transparent);
     }
   }
 }
 
-/* Responsive */
+/* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .resume-page {
-    padding: 1rem 0.75rem 2rem;
+    padding: 2.5rem 1rem 2rem;
   }
 
-  .tl-rail {
-    display: none;
-  }
-
-  .tl-item {
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-
-    &::after {
-      display: none; 
-    }
-  }
-  .tl-dot {
-  position: static;
-  align-self: flex-end;
-  order: -1;
-  margin: 0 0 0.5rem auto;
-    width: 44px;
-    height: 44px;
-    border-radius: 8px;
-    box-shadow: none;
-    background: transparent;
-    border: none;
-
-    .tl-dot__img {
-      border-radius: 8px;
-    }
+  .resume-header {
+    margin-bottom: 1.5rem;
   }
 
   .tl-card__head {
-    align-items: start;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
 
-    .date {
-      font-size: 0.8rem;
-    }
-
     .date-group {
-      align-items: flex-start;
-    }
-
-    .duration {
-      font-size: 0.68rem;
+      align-items: center;
+      flex-direction: row;
+      gap: 0.5rem;
     }
   }
 }
 
-@media (max-width: 480px) {
-  .resume-header h1 {
-    font-size: 1.75rem;
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .tl-more,
+  .tl-toggle mat-icon {
+    transition: none;
   }
-
-  .tl-card {
-    border-radius: 14px;
-  }
-}
-
-.tl-card {
-  --card-stroke: color-mix(
-    in srgb,
-    var(--mat-sys-outline-variant) 55%,
-    transparent
-  );
 }

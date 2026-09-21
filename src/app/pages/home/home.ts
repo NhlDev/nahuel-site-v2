@@ -1,6 +1,6 @@
-import { Component, inject, LOCALE_ID, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, LOCALE_ID, OnDestroy, OnInit, signal, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -19,24 +19,34 @@ export class Home implements OnInit, OnDestroy {
 
   // idioma de la app
   lang = inject(LOCALE_ID);
+  private platformId = inject(PLATFORM_ID);
 
   coreSkills = [
-    'Angular', 'TypeScript', 'RxJS', 'Ionic', 'Web APIs', '.NET', 'Node.js'
+    'Angular', 'TypeScript', 'RxJS', '.NET / C#', 'Ionic', 'Node.js', 'AI Prototyping'
   ];
 
-  // Mejora de copy (más orientado a valor)
+  // Copy orientado al valor para clientes y empresas
   private readonly LINES: Record<string, string[]> = {
     'es-AR': [
-      'Creo experiencias web rápidas, accesibles y escalables con Angular.',
-      'Especialista en arquitectura front‑end, performance y DX.',
-      'Integraciones, diseño de componentes, tooling y calidad de código.',
+      'Especialista en Angular, .NET y arquitecturas web de misión crítica.',
+      'Desarrollo de SaaS y MVPs ágiles listos para escalar.',
+      'Soluciones móviles híbridas con Ionic y React Native.',
+      'Integraciones de IA aplicada para automatizaciones inteligentes.',
     ],
     'en-US': [
-      'I create fast, accessible, and scalable web experiences with Angular.',
-      'Specialist in front-end architecture, performance, and DX.',
-      'Integrations, component design, tooling, and code quality.',
+      'Specialist in Angular, .NET, and mission-critical web architectures.',
+      'Fast SaaS and MVP development built to scale.',
+      'Cross-platform mobile apps with Ionic and React Native.',
+      'Applied AI integrations for intelligent workflows.',
     ]
   };
+
+  // Frases del idioma actual (con fallback a es-AR)
+  readonly lines: string[] = this.LINES[this.lang] ?? this.LINES['es-AR'];
+
+  // La frase más larga reserva el espacio del contenedor para que el hero
+  // no cambie de tamaño mientras se tipea (evita CLS).
+  readonly longestLine: string = this.lines.reduce((a, b) => (b.length > a.length ? b : a), '');
 
   // Config de velocidades (ms)
   private readonly TYPE_MS = 24;
@@ -47,6 +57,18 @@ export class Home implements OnInit, OnDestroy {
   private stop = false;
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      // SSR: render estático de la primera frase
+      this.typedText.set(this.lines[0]);
+      return;
+    }
+
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      this.typedText.set(this.lines[0]);
+      return;
+    }
+
     this.startTypingLoop();
   }
 
@@ -58,7 +80,7 @@ export class Home implements OnInit, OnDestroy {
     const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
     while (!this.stop) {
-      for (const line of this.LINES[this.lang]) {
+      for (const line of this.lines) {
         if (this.stop) return;
 
         // Pausa inicial
@@ -84,11 +106,18 @@ export class Home implements OnInit, OnDestroy {
     }
   }
 
-  scrollTo(anchor: string): void {
+  scrollTo(anchor: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
     const element = document.getElementById(anchor);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  scrollToSection(sectionId: string, event?: Event): void {
+    this.scrollTo(sectionId, event);
   }
 
 }

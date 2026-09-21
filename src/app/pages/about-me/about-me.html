@@ -5,7 +5,7 @@
     <header class="about-head">
       <h2 id="about-title" class="about-title" i18n>
         Sobre mí
-        <span class="tagline">Full‑Stack / Angular / IA</span>
+        <span class="tagline">Senior Full‑Stack Engineer & Architect · Angular / .NET / IA</span>
       </h2>
     </header>
 
@@ -13,15 +13,7 @@
       <main class="about-main">
         <article class="about-content">
           <p class="about-text" i18n>
-            Desarrollador Full‑Stack con 10+ años creando productos web y mobile
-            end‑to‑end. En el front me especializo en Angular (arquitectura,
-            performance, accesibilidad) e Ionic para experiencias móviles. En el
-            back trabajo con Node.js y C# (.NET) diseñando APIs limpias y
-            escalables. Actualmente amplío mi stack con IA aplicada: Python +
-            TensorFlow para prototipos de machine y deep learning orientados a
-            features inteligentes (búsquedas semánticas, recomendaciones,
-            clasificación y automatización). Mi foco: convertir ideas en
-            soluciones mantenibles, seguras y medibles que generen impacto real.
+            Desarrollador Senior Full‑Stack con más de 10 años creando productos digitales web y mobile end‑to‑end de alto rendimiento. En el front me especializo en Angular (arquitectura escalable, optimización de performance y accesibilidad WCAG) e Ionic / React Native para experiencias móviles nativas. En el backend diseño e implemento APIs y microservicios robustos con Node.js y .NET (C#). Actualmente integro soluciones de Inteligencia Artificial aplicada (Python / TensorFlow / LLMs) para potenciar aplicaciones con búsquedas semánticas, automatizaciones y features inteligentes. Mi objetivo: transformar requerimientos de negocio en soluciones mantenibles, seguras y de alto impacto.
           </p>
         </article>
 
@@ -35,12 +27,32 @@
         </ul>
 
         <section class="tech-stack" i18n-aria-label aria-label="Tecnologías principales">
-          <h2 class="visually-hidden" i18n>Tecnologías</h2>
+          <h3 class="tech-title" i18n>Stack Tecnológico Principal</h3>
           <ul class="tech-icons" #techIconsContainer [class.visible]="techIconsVisible()">
             @for (tech of technologies; track tech.name; let i = $index) {
             <li class="tech-icon" #techIcon [style.--i]="i">
-              <img [src]="'techs/' + tech.file" [alt]="tech.label" width="64" height="64" loading="lazy" />
+              <img [src]="'techs/' + tech.file" [alt]="tech.label" width="48" height="48" loading="lazy" />
               <span class="tech-caption">{{ tech.name }}</span>
+            </li>
+            }
+          </ul>
+        </section>
+
+        <section class="products" i18n-aria-label="@@aboutProductsLabel" aria-label="Productos propios">
+          <h3 class="products-title" i18n="@@aboutProductsTitle">Productos propios</h3>
+          <ul class="product-list">
+            @for (product of products[lang]; track product.url) {
+            <li>
+              <a class="product-card" [href]="product.url" target="_blank" rel="noopener noreferrer"
+                [style.--product-color]="product.color">
+                <mat-icon class="product-card__icon" aria-hidden="true">{{ product.icon }}</mat-icon>
+                <span class="product-card__body">
+                  <span class="product-card__name">{{ product.name }}</span>
+                  <span class="product-card__tagline">{{ product.tagline }}</span>
+                </span>
+                <mat-icon class="product-card__ext" aria-hidden="true">open_in_new</mat-icon>
+                <span class="visually-hidden" i18n="@@opensNewTab">(se abre en una pestaña nueva)</span>
+              </a>
             </li>
             }
           </ul>
@@ -48,21 +60,24 @@
       </main>
 
       <aside class="about-aside" i18n-aria-label aria-label="Información rápida">
-        <ul class="quick-facts">
-          @for (fact of quickFacts[lang]; track $index) {
-          <li class="qf">
-            <mat-icon class="qf__icon" aria-hidden="true">{{ fact.icon }}</mat-icon>
-            <span class="qf__text">{{ fact.text }}</span>
-          </li>
-          }
-        </ul>
+        <div class="aside-panel">
+          <h3 class="aside-title" i18n>Detalles Clave</h3>
+          <ul class="quick-facts">
+            @for (fact of quickFacts[lang]; track $index) {
+            <li class="qf">
+              <mat-icon class="qf__icon" aria-hidden="true">{{ fact.icon }}</mat-icon>
+              <span class="qf__text">{{ fact.text }}</span>
+            </li>
+            }
+          </ul>
+        </div>
 
         <div class="about-cta">
-          <button mat-flat-button color="primary" (click)="scrollToSection('resume')" i18n>
-            Ver mi experiencia
+          <button mat-flat-button color="primary" class="cta-btn-primary" (click)="scrollToSection('contact-me')" i18n>
+            Hablemos de tu proyecto
           </button>
-          <button mat-stroked-button (click)="scrollToSection('contact-me')" i18n>
-            Contacto
+          <button mat-stroked-button class="cta-btn-secondary" (click)="scrollToSection('resume')" i18n>
+            Ver experiencia
           </button>
         </div>
       </aside>

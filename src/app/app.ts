@@ -29,20 +29,20 @@ interface LocaleSeo {
 
 const SEO_CONTENT: Record<'es-AR' | 'en-US', LocaleSeo> = {
   'es-AR': {
-    title: 'Nahuel Alderete | Desarrollador Full-Stack',
+    title: 'Nahuel Alderete | Senior Full-Stack Engineer & Software Architect',
     description:
-      'Desarrollador Full-Stack con 10+ años de experiencia en Angular, .NET y Arquitectura de Software. Creando soluciones web y móviles escalables, rápidas y accesibles.',
-    ogTitle: 'Nahuel Alderete — Desarrollador Full-Stack',
+      'Desarrollador Senior Full-Stack con 10+ años de experiencia en Angular, .NET, Ionic y Arquitectura de Software. Construyo aplicaciones web y móviles de alto rendimiento, escalables y orientadas a resultados para empresas y startups.',
+    ogTitle: 'Nahuel Alderete — Senior Full-Stack Engineer & Software Architect',
     ogLocale: 'es_AR',
-    jobTitle: 'Full-Stack / Frontend (Angular)',
+    jobTitle: 'Senior Full-Stack Engineer & Software Architect (Angular / .NET / AI)',
   },
   'en-US': {
-    title: 'Nahuel Alderete | Full-Stack Developer',
+    title: 'Nahuel Alderete | Senior Full-Stack Engineer & Software Architect',
     description:
-      'Full-Stack Developer with 10+ years of experience in Angular, .NET, and Software Architecture. Building fast, accessible, and scalable web and mobile solutions.',
-    ogTitle: 'Nahuel Alderete — Full-Stack Developer',
+      'Senior Full-Stack Engineer with 10+ years of experience in Angular, .NET, Ionic, and Software Architecture. Building high-performance, accessible, and scalable web and mobile solutions for companies and startups.',
+    ogTitle: 'Nahuel Alderete — Senior Full-Stack Engineer & Software Architect',
     ogLocale: 'en_US',
-    jobTitle: 'Full-Stack / Frontend Developer (Angular)',
+    jobTitle: 'Senior Full-Stack Engineer & Software Architect (Angular / .NET / AI)',
   },
 };
 
@@ -91,14 +91,14 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
     this.metaService.updateTag({
       property: 'og:site_name',
-      content: 'Nahuel Dev',
+      content: 'Nahuel Alderete Portfolio',
     });
     this.metaService.updateTag({ property: 'og:title', content: seo.ogTitle });
     this.metaService.updateTag({
       property: 'og:description',
       content: seo.description,
     });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:type', content: 'profile' });
     this.metaService.updateTag({ property: 'og:url', content: canonicalUrl });
     this.metaService.updateTag({ property: 'og:image', content: ogImageUrl });
     this.metaService.updateTag({
@@ -128,16 +128,52 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
     this.upsertJsonLd({
       '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Nahuel Alderete',
-      url: canonicalUrl,
-      sameAs: [
-        'https://github.com/NhlDev',
-        'https://www.linkedin.com/in/nahuel-alderete',
+      '@graph': [
+        {
+          '@type': 'Person',
+          '@id': `${SITE_URL}/#person`,
+          name: 'Nahuel Alderete',
+          url: canonicalUrl,
+          sameAs: [
+            'https://github.com/NhlDev',
+            'https://www.linkedin.com/in/nahuel-alderete',
+          ],
+          jobTitle: seo.jobTitle,
+          image: `${SITE_URL}/logo.svg`,
+          description: seo.description,
+          knowsAbout: [
+            'Angular',
+            'TypeScript',
+            'JavaScript',
+            '.NET',
+            'C#',
+            'Ionic Framework',
+            'React Native',
+            'Node.js',
+            'Software Architecture',
+            'Artificial Intelligence',
+            'Machine Learning Prototypes',
+            'Web Performance Optimization',
+            'Accessibility (WCAG)',
+          ],
+          hasOccupation: {
+            '@type': 'Occupation',
+            name: 'Senior Full-Stack Engineer',
+            occupationalCategory: '15-1252.00',
+            skills: 'Angular, TypeScript, .NET, C#, Node.js, Ionic, Cloud Architecture',
+          },
+        },
+        {
+          '@type': 'WebSite',
+          '@id': `${SITE_URL}/#website`,
+          url: SITE_URL,
+          name: 'Nahuel Alderete — Senior Full-Stack Engineer',
+          publisher: {
+            '@id': `${SITE_URL}/#person`,
+          },
+          inLanguage: [locale, otherLocale],
+        },
       ],
-      jobTitle: seo.jobTitle,
-      image: `${SITE_URL}/logo.svg`,
-      description: seo.description,
     });
   }
 

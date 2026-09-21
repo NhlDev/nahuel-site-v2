@@ -29,7 +29,7 @@ describe('Home', () => {
 
     expect(title).toBeTruthy();
     expect(spans.length).toBe(3);
-    expect(spans[0].textContent?.trim()).toBe('Hola, soy Nahuel');
+    expect(spans[0].textContent?.trim()).toBe('Hola, soy Nahuel Alderete');
     expect(spans[1].classList.contains('accent')).toBeTrue();
     expect(spans[2].classList.contains('role')).toBeTrue();
   });
@@ -40,10 +40,10 @@ describe('Home', () => {
     expect(chips.length).toBe(component.coreSkills.length);
   });
 
-  it('should render quick stats section with 3 items', () => {
+  it('should render quick stats section with 4 bento items', () => {
     const el: HTMLElement = fixture.nativeElement;
-    const stats = el.querySelectorAll('.quick-stats .stat');
-    expect(stats.length).toBe(3);
+    const stats = el.querySelectorAll('.quick-stats .stat-card');
+    expect(stats.length).toBe(4);
   });
 
   it('should render hero visual with floating Angular logo', () => {
@@ -64,7 +64,7 @@ describe('Home', () => {
     fix.detectChanges();
 
     const el: HTMLElement = fix.nativeElement;
-    const typed = el.querySelector('.typed')!;
+    const typed = el.querySelector('.lead--live .typed')!;
     expect(cmp.typedText().length).toBeGreaterThan(0);
     expect(typed.textContent?.length || 0).toBeGreaterThan(0);
   }));

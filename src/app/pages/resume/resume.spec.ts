@@ -73,6 +73,44 @@ describe('Resume', () => {
     expect(img?.getAttribute('src')).toBe(`companies/${expected.icon}`);
   });
 
+  it('should render one overview segment per experience and mark the first as active', () => {
+    const el: HTMLElement = fixture.nativeElement;
+    const segments = el.querySelectorAll('.tl-overview .tl-seg');
+    expect(segments.length).toBe(workExperiences['es-AR'].length);
+    expect(el.querySelector('.tl-seg.is-active')).not.toBeNull();
+  });
+
+  it('should assign different lanes to overlapping experiences', () => {
+    const freelance = component.workExperiences.find(e => e.company === 'Freelance')!;
+    const overlapping = component.workExperiences.filter(e =>
+      e !== freelance &&
+      e.startDate.getTime() < Date.now() &&
+      (e.endDate ?? new Date()).getTime() > freelance.startDate.getTime()
+    );
+    expect(overlapping.length).toBeGreaterThan(0);
+    for (const exp of overlapping) {
+      expect(exp.lane).not.toBe(freelance.lane);
+    }
+  });
+
+  it('should toggle the expanded responsibilities of a card', () => {
+    const el: HTMLElement = fixture.nativeElement;
+    const exp = component.workExperiences.find(e => component.hiddenCount(e) > 0)!;
+    expect(component.isExpanded(exp.id)).toBeFalse();
+
+    component.toggleExpanded(exp.id);
+    fixture.detectChanges();
+    expect(component.isExpanded(exp.id)).toBeTrue();
+
+    const more = el.querySelector(`#more-${CSS.escape(exp.id)}`)!;
+    expect(more.classList.contains('is-open')).toBeTrue();
+    expect(more.querySelector('ul')?.hasAttribute('inert')).toBeFalse();
+
+    component.toggleExpanded(exp.id);
+    fixture.detectChanges();
+    expect(component.isExpanded(exp.id)).toBeFalse();
+  });
+
   it('should render responsibilities and skills counts matching data for first item', () => {
     const expected = workExperiences['es-AR'][0];
 

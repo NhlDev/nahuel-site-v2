@@ -47,6 +47,42 @@ export class AboutMe implements AfterViewInit, OnDestroy {
     ]
   };
 
+  /** Productos SaaS propios (fundador / desarrollador) */
+  products: Record<string, { name: string; tagline: string; url: string; icon: string; color: string }[]> = {
+    'es-AR': [
+      {
+        name: 'Control Up',
+        tagline: 'Gestión comercial para PyMEs: ventas, stock, clientes y reportes en un solo lugar.',
+        url: 'https://controlup.com.ar/',
+        icon: 'point_of_sale',
+        color: '#38bdf8',
+      },
+      {
+        name: 'Chatbot Up',
+        tagline: 'Chatbots con IA entrenados con tu propio contenido, listos para tu web y tus canales.',
+        url: 'https://chatbot.controlup.com.ar/',
+        icon: 'smart_toy',
+        color: '#818cf8',
+      },
+    ],
+    'en-US': [
+      {
+        name: 'Control Up',
+        tagline: 'Business management for SMBs: sales, inventory, customers and reports in one place.',
+        url: 'https://controlup.com.ar/',
+        icon: 'point_of_sale',
+        color: '#38bdf8',
+      },
+      {
+        name: 'Chatbot Up',
+        tagline: 'AI chatbots trained on your own content, ready for your website and channels.',
+        url: 'https://chatbot.controlup.com.ar/',
+        icon: 'smart_toy',
+        color: '#818cf8',
+      },
+    ]
+  };
+
   @ViewChild('techIconsContainer', { read: ElementRef }) techIconsContainer?: ElementRef<HTMLUListElement>;
 
   techIconsVisible = signal(false);
@@ -96,8 +132,15 @@ export class AboutMe implements AfterViewInit, OnDestroy {
     this.observer?.disconnect();
   }
 
-  scrollToSection(section: string) {
+  scrollToSection(section: string, event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
     const element = document.getElementById(section);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  scrollTo(section: string, event?: Event) {
+    this.scrollToSection(section, event);
   }
 }
