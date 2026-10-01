@@ -1,6 +1,6 @@
 # Nahuel Alderete
 
-> AI Engineer y desarrollador Full-Stack con más de 10 años de experiencia, basado en Buenos Aires, Argentina. Construye asistentes con IA (RAG, tool calling, integración con LLMs) y automatizaciones para negocios, sobre una base de desarrollo web y mobile con .NET, Angular y Node.js.
+> AI Engineer y desarrollador Full-Stack con más de 10 años de experiencia, basado en Buenos Aires, Argentina. Construye asistentes con IA (RAG, tool calling, integración con LLMs como Gemini y Claude), automatizaciones con n8n y desarrolla con Spec-Driven Development (OpenSpec), sobre una base de desarrollo web y mobile con .NET, Angular y Node.js.
 
 El sitio está disponible en español e inglés. El contenido es el mismo en ambos idiomas.
 

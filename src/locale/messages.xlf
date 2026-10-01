@@ -112,39 +112,102 @@
           <context context-type="linenumber">12,15</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="aiTitle" datatype="html">
+        <source>IA y automatización en la práctica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiGeminiTitle" datatype="html">
+        <source>Integración de LLMs con Gemini</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiGeminiText" datatype="html">
+        <source>Integro LLMs como Gemini en productos reales: asistentes con RAG y tool calling, y flujos que clasifican y analizan información con IA.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiClaudeTitle" datatype="html">
+        <source>Desarrollo con Claude</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiClaudeText" datatype="html">
+        <source>Trabajo con Claude y Claude Code como asistente de desarrollo, con reglas y contexto por repositorio (CLAUDE.md) y planes de trabajo por tarea.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">24,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiN8nTitle" datatype="html">
+        <source>Automatización con n8n</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiN8nText" datatype="html">
+        <source>Automatizo procesos de negocio con n8n, conectando servicios, datos y modelos de IA para eliminar tareas manuales repetitivas.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiSddTitle" datatype="html">
+        <source>Spec-Driven Development (OpenSpec)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aiSddText" datatype="html">
+        <source>Redacto y refino especificaciones antes de implementar, para mantener alineados requerimientos, código y revisiones.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="aboutStackTitle" datatype="html">
         <source>Stack principal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="aboutProductsTitle" datatype="html">
         <source>Productos propios</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">28,29</context>
+          <context context-type="linenumber">50,51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="opensNewTab" datatype="html">
         <source>(se abre en una pestaña nueva)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">39,40</context>
+          <context context-type="linenumber">61,62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5823953683510939066" datatype="html">
         <source>Información rápida</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">47,48</context>
+          <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6576929432304610646" datatype="html">
         <source> Hablemos de tu proyecto </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">58,59</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>

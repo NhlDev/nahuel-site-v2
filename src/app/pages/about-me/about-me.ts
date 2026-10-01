@@ -13,6 +13,9 @@ export class AboutMe {
   lang = inject(LOCALE_ID);
 
   technologies = [
+    { name: 'Gemini', file: 'gemini.svg' },
+    { name: 'Claude', file: 'claude.svg' },
+    { name: 'n8n', file: 'n8n.svg' },
     { name: 'Angular', file: 'angular.svg' },
     { name: 'TypeScript', file: 'typescript.svg' },
     { name: 'JavaScript', file: 'javascript.svg' },

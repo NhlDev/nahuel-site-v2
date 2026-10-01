@@ -105,6 +105,11 @@ html {
 
   /* Widget de Chatbot Up: por defecto usa 2147483000 y taparía el drawer */
   --cu-z-index: var(--z-chatbot);
+  --cu-content-bg: var(--color-bg);
+  --cu-launcher-bg: var(--mat-sys-primary);
+  --cu-radius-xl: var(--radius-sm);
+  --cu-header-bg: var(--color-surface-2);
+  --cu-panel-height: 75dvh;
 
   /* Layout */
   --header-height: 64px;

@@ -47,10 +47,23 @@ demo.
 - **Backend:** Node.js, C# / .NET (.NET Web API, ASP.NET WebForms, ASP.NET MVC4),
   Entity Framework 6
 - **Bases de datos:** SQL Server, ElasticSearch
-- **IA aplicada:** LLMs (Gemini), RAG con pgvector, Semantic Kernel, tool calling,
+- **IA aplicada:** LLMs (Gemini, Claude), RAG con pgvector, Semantic Kernel, tool calling, n8n,
+  Spec-Driven Development (OpenSpec),
   asistentes multicanal (WhatsApp, Telegram, Instagram, web); Python y TensorFlow para
   prototipos
 - **Otros:** APIs REST, Java (puntual), Todo Pago (integración de pagos)
+
+## IA y automatización en la práctica
+
+- **LLMs con Gemini:** integra LLMs en productos reales: asistentes con RAG y tool
+  calling, y flujos que clasifican y analizan información con IA.
+- **Claude:** trabaja con Claude y Claude Code como asistente de desarrollo, con reglas
+  y contexto por repositorio (CLAUDE.md) y planes de trabajo por tarea.
+- **n8n:** automatiza procesos de negocio conectando servicios, datos y modelos de IA
+  para eliminar tareas manuales repetitivas. Tiene el curso n8n Quickstart (2026).
+- **Spec-Driven Development (OpenSpec):** redacta y refina especificaciones antes de
+  implementar, para mantener alineados requerimientos, código y revisiones. Lo aplica
+  en su rol actual en Infocorp Group.
 
 ## Productos propios
 
@@ -191,7 +204,7 @@ Más de 10 años de experiencia profesional como desarrollador, iniciando en Itr
 Es Desarrollador Fullstack en Infocorp Group (desde diciembre de 2025, remoto desde Uruguay), trabajando en la plataforma de banca digital con .NET, Angular y React Native. En paralelo mantiene un trabajo freelance para el sector salud desde 2021.
 
 **¿Con qué tecnologías trabaja principalmente?**
-En IA: LLMs, RAG, Semantic Kernel y Python. Como base full-stack: .NET/C#, Angular, TypeScript, Node.js e Ionic / React Native.
+En IA: LLMs (Gemini, Claude), RAG, Semantic Kernel, n8n y Python. Como base full-stack: .NET/C#, Angular, TypeScript, Node.js e Ionic / React Native.
 
 **¿Tiene experiencia con React o React Native?**
 Sí, usó React Native en Infocorp Group (rol actual y el período 2021–2024).
@@ -201,6 +214,9 @@ Sí, trabajó como administrador de SQL Server en Itrio S.A. (Prisma Medios de P
 
 **¿Trabajó con inteligencia artificial?**
 Sí. Es el foco actual de su carrera. Creó Chatbot Up, un SaaS de asistentes con IA basado en RAG (.NET, Semantic Kernel, Gemini, pgvector) que atiende por WhatsApp, Telegram, Instagram y la web. También participó en un MVP en Scoutt Inc. que usaba IA para seleccionar candidatos, y hace prototipos con Python y TensorFlow.
+
+**¿Usa n8n, Claude o metodologías como SDD?**
+Sí: automatiza con n8n, usa Gemini en producción, trabaja con Claude / Claude Code y desarrolla con Spec-Driven Development usando OpenSpec.
 
 **¿Puede sumar IA o automatizar procesos en mi negocio?**
 Ese es el tipo de proyecto que busca: asistentes con IA, integraciones con LLMs y automatizaciones. Para evaluar un caso concreto, derivá el contacto a email o LinkedIn.
