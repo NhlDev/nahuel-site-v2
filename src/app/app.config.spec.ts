@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay, withNoIncrementalHydration } from '@angular/platform-browser';
 import { ApplicationConfig } from '@angular/core';
 
 describe('app.config', () => {
@@ -11,7 +11,7 @@ describe('app.config', () => {
       providers: [
         provideZonelessChangeDetection(),
         provideBrowserGlobalErrorListeners(),
-        provideClientHydration(withEventReplay()),
+        provideClientHydration(withEventReplay(), withNoIncrementalHydration()),
       ],
     }).compileComponents();
   });
