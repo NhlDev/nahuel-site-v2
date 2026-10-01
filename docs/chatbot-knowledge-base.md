@@ -41,7 +41,7 @@ demo.
 
 ## Stack técnico
 
-- **Frontend:** Angular (incl. Angular 18/19), TypeScript, JavaScript, RxJS, Ionic
+- **Frontend:** Angular (incl. Angular 22), TypeScript, JavaScript, RxJS, Ionic
   (3/4/5/8), jQuery, Bootstrap
 - **Mobile:** Ionic, React Native
 - **Backend:** Node.js, C# / .NET (.NET Web API, ASP.NET WebForms, ASP.NET MVC4),
@@ -74,7 +74,7 @@ Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 Ordenada de la más reciente a la más antigua. Las fechas indican mes/año.
 
 ### Infocorp Group — Desarrollador Fullstack (rol actual)
-- **Período:** Noviembre 2025 – Actualidad
+- **Período:** Diciembre 2025 – Actualidad
 - **Ubicación:** Uruguay (Remoto)
 - **Nota:** segundo período en esta empresa (ver también el rol de 2021–2024 más abajo)
 - Integra un equipo de desarrollo multidisciplinario encargado de la evolución
@@ -99,7 +99,7 @@ Ordenada de la más reciente a la más antigua. Las fechas indican mes/año.
 - Integró servicios backend mediante APIs REST
 - Priorizó usabilidad y accesibilidad para perfiles de usuario clínicos
 - Contribuyó a la digitalización de procesos internos en centros de salud
-- **Tecnologías:** Angular 18, Ionic 8, TypeScript, APIs REST
+- **Tecnologías:** Angular 19, Ionic 8, TypeScript, APIs REST
 
 ### Scoutt Inc. — Desarrollador Front-End Angular
 - **Período:** Diciembre 2024 – Agosto 2025
@@ -188,7 +188,7 @@ Ordenada de la más reciente a la más antigua. Las fechas indican mes/año.
 Más de 10 años de experiencia profesional como desarrollador, iniciando en Itrio S.A. en enero de 2014.
 
 **¿En qué trabaja actualmente?**
-Es Desarrollador Fullstack en Infocorp Group (desde noviembre de 2025, remoto desde Uruguay), trabajando en la plataforma de banca digital con .NET, Angular y React Native. En paralelo mantiene un trabajo freelance para el sector salud desde 2021.
+Es Desarrollador Fullstack en Infocorp Group (desde diciembre de 2025, remoto desde Uruguay), trabajando en la plataforma de banca digital con .NET, Angular y React Native. En paralelo mantiene un trabajo freelance para el sector salud desde 2021.
 
 **¿Con qué tecnologías trabaja principalmente?**
 En IA: LLMs, RAG, Semantic Kernel y Python. Como base full-stack: .NET/C#, Angular, TypeScript, Node.js e Ionic / React Native.

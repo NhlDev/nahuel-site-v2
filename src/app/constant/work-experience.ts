@@ -15,7 +15,7 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
         {
             company: "Infocorp Group",
             position: "Desarrollador Fullstack",
-            startDate: new Date(2025, 10, 1), // Noviembre 2025
+            startDate: new Date(2025, 11, 1), // Diciembre 2025
             endDate: null,
             responsibilities: [
                 "Integro un equipo de desarrollo multidisciplinario encargado de la evolución estratégica de la plataforma de banca digital",
@@ -42,7 +42,7 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
                 "Prioricé usabilidad y accesibilidad para perfiles de usuario clínicos",
                 "Contribuí a la digitalización de procesos internos en centros de salud"
             ],
-            technologiesUsed: ["Angular 18", "Ionic 8", "TypeScript", "APIs REST"],
+            technologiesUsed: ["Angular 19", "Ionic 8", "TypeScript", "APIs REST"],
             location: "Remote",
             icon: "freelance.jpg",
             companyColor: '#fe930f'
@@ -162,7 +162,7 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
         {
             company: "Infocorp Group",
             position: "Full-Stack Developer",
-            startDate: new Date(2025, 10, 1), // November 2025
+            startDate: new Date(2025, 11, 1), // December 2025
             endDate: null,
             responsibilities: [
                 "Member of a multidisciplinary development team responsible for the strategic evolution of the digital banking platform",
@@ -189,7 +189,7 @@ export const workExperiences: { [lang: string]: WorkExperience[] } = {
                 "Prioritized usability and accessibility for clinical user profiles",
                 "Contributed to digitizing internal processes in healthcare centers"
             ],
-            technologiesUsed: ["Angular 18", "Ionic 8", "TypeScript", "REST APIs"],
+            technologiesUsed: ["Angular 19", "Ionic 8", "TypeScript", "REST APIs"],
             location: "Remote",
             icon: "freelance.jpg",
             companyColor: '#fe930f'

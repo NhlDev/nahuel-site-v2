@@ -14,7 +14,18 @@ import rateLimit from 'express-rate-limit';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+// Hosts desde los que Angular acepta renderizar en el servidor (protección SSRF).
+// Si el Host no figura acá, Angular cae a client-side rendering y devuelve un shell
+// vacío: sin h1, canonical ni JSON-LD, que es lo que ven los crawlers y los bots de IA.
+const allowedHosts = (
+  process.env['ALLOWED_HOSTS'] ??
+  'nahuel.app,www.nahuel.app,*.web.app,*.firebaseapp.com,*.run.app,localhost,127.0.0.1'
+)
+  .split(',')
+  .map((h) => h.trim())
+  .filter(Boolean);
+
+const angularApp = new AngularNodeAppEngine({ allowedHosts });
 
 // JSON body parsing
 app.use(express.json({ limit: '1mb' }));
@@ -190,7 +201,7 @@ const DEFAULT_LOCALE = 'es-AR';
 
 // Archivos SEO/well-known que deben responder en la raíz real del dominio
 // (los assets de `public/` se duplican por locale, no existen en la raíz del build)
-for (const file of ['robots.txt', 'sitemap.xml', 'og-image.png']) {
+for (const file of ['robots.txt', 'sitemap.xml', 'llms.txt', 'og-image.png']) {
   app.get(`/${file}`, (req, res, next) => {
     res.sendFile(file, { root: join(import.meta.dirname, `../browser/${DEFAULT_LOCALE}`) }, (err) => {
       if (err) next(err);

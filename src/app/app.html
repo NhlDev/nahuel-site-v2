@@ -10,7 +10,7 @@
   <section id="about-me">
     @if (isTest) {
     <app-about-me></app-about-me>
-    } @else { @defer (on viewport; on idle) {
+    } @else { @defer (on viewport; hydrate on viewport) {
     <app-about-me></app-about-me>
     } @placeholder {
     <div style="min-height: 50vh"></div>
@@ -21,7 +21,7 @@
   <section id="resume">
     @if (isTest) {
     <app-resume></app-resume>
-    } @else { @defer (on viewport; on idle) {
+    } @else { @defer (on viewport; hydrate on viewport) {
     <app-resume></app-resume>
     } @placeholder {
     <div style="min-height: 50vh"></div>
@@ -32,7 +32,7 @@
   <section id="contact-me">
     @if (isTest) {
     <app-contact-me></app-contact-me>
-    } @else { @defer (on viewport; on idle) {
+    } @else { @defer (on viewport; hydrate on viewport) {
     <app-contact-me></app-contact-me>
     } @placeholder {
     <div style="min-height: 50vh"></div>

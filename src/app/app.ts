@@ -31,7 +31,7 @@ const SEO_CONTENT: Record<'es-AR' | 'en-US', LocaleSeo> = {
   'es-AR': {
     title: 'Nahuel Alderete | AI Engineer & Full-Stack Developer',
     description:
-      'AI Engineer y desarrollador Full-Stack con 10+ años de experiencia. Construyo asistentes con IA, integraciones con LLMs (RAG, tool calling) y automatizaciones para negocios con .NET, Angular y Node.js.',
+      'AI Engineer y desarrollador Full-Stack (10+ años). Asistentes con IA, integraciones con LLMs (RAG) y automatizaciones para negocios con .NET y Angular.',
     ogTitle: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
     ogLocale: 'es_AR',
     jobTitle: 'AI Engineer & Full-Stack Developer',
@@ -39,7 +39,7 @@ const SEO_CONTENT: Record<'es-AR' | 'en-US', LocaleSeo> = {
   'en-US': {
     title: 'Nahuel Alderete | AI Engineer & Full-Stack Developer',
     description:
-      'AI Engineer and Full-Stack Developer with 10+ years of experience. I build AI assistants, LLM integrations (RAG, tool calling) and business automations with .NET, Angular and Node.js.',
+      'AI Engineer and Full-Stack Developer (10+ years). AI assistants, LLM integrations (RAG) and business automations with .NET and Angular.',
     ogTitle: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
     ogLocale: 'en_US',
     jobTitle: 'AI Engineer & Full-Stack Developer',
@@ -139,6 +139,12 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
             'https://www.linkedin.com/in/nahuel-alderete',
           ],
           jobTitle: seo.jobTitle,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Buenos Aires',
+            addressCountry: 'AR',
+          },
+          knowsLanguage: ['es', 'en'],
           image: `${SITE_URL}/logo.svg`,
           description: seo.description,
           knowsAbout: [

@@ -1,0 +1,27 @@
+# Nahuel Alderete
+
+> AI Engineer y desarrollador Full-Stack con más de 10 años de experiencia, basado en Buenos Aires, Argentina. Construye asistentes con IA (RAG, tool calling, integración con LLMs) y automatizaciones para negocios, sobre una base de desarrollo web y mobile con .NET, Angular y Node.js.
+
+El sitio está disponible en español e inglés. El contenido es el mismo en ambos idiomas.
+
+## Sitio
+
+- [Inicio y presentación (español)](https://nahuel.app/es-AR/): rol actual, stack y métricas
+- [Home and introduction (English)](https://nahuel.app/en-US/): current role, stack and highlights
+- [Sobre mí](https://nahuel.app/es-AR/#about-me): enfoque en IA aplicada, stack y productos propios
+- [Experiencia](https://nahuel.app/es-AR/#resume): trayectoria profesional 2014–actualidad
+- [Contacto](https://nahuel.app/es-AR/#contact-me): formulario y canales directos
+
+## Productos propios
+
+- [Chatbot Up](https://chatbot.controlup.com.ar/): asistentes con IA (RAG) entrenados con el contenido de cada negocio, para WhatsApp, Telegram, Instagram y la web
+- [Control Up](https://controlup.com.ar/): gestión comercial para pymes (ventas, stock, clientes y reportes)
+
+## Perfiles
+
+- [LinkedIn](https://www.linkedin.com/in/nahuel-alderete)
+- [GitHub](https://github.com/NhlDev)
+
+## Optional
+
+- [Sitemap](https://nahuel.app/sitemap.xml)
