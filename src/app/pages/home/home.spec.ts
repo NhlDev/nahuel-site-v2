@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 
 import { Home } from './home';
@@ -22,16 +22,22 @@ describe('Home', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render hero title with greeting, accent and role', () => {
+  it('should render hero title with greeting and accent', () => {
     const el: HTMLElement = fixture.nativeElement;
     const title = el.querySelector('#hero-title.hero__title')!;
     const spans = title.querySelectorAll('span');
 
     expect(title).toBeTruthy();
-    expect(spans.length).toBe(3);
+    expect(spans.length).toBe(2);
     expect(spans[0].textContent?.trim()).toBe('Hola, soy Nahuel Alderete');
     expect(spans[1].classList.contains('accent')).toBeTrue();
-    expect(spans[2].classList.contains('role')).toBeTrue();
+  });
+
+  it('should render the role description outside the heading', () => {
+    const el: HTMLElement = fixture.nativeElement;
+    const role = el.querySelector('.hero > p.role');
+    expect(role).toBeTruthy();
+    expect(el.querySelector('#hero-title .role')).toBeNull();
   });
 
   it('should render a chip for each core skill', () => {
@@ -40,45 +46,13 @@ describe('Home', () => {
     expect(chips.length).toBe(component.coreSkills.length);
   });
 
-  it('should render quick stats section with 4 bento items', () => {
+  it('should render quick stats as a description list with 3 items', () => {
     const el: HTMLElement = fixture.nativeElement;
-    const stats = el.querySelectorAll('.quick-stats .stat-card');
-    expect(stats.length).toBe(4);
+    const stats = el.querySelectorAll('dl.quick-stats .stat');
+    expect(stats.length).toBe(3);
+    stats.forEach(stat => {
+      expect(stat.querySelector('dt')).toBeTruthy();
+      expect(stat.querySelector('dd.stat__num')).toBeTruthy();
+    });
   });
-
-  it('should render hero visual with floating Angular logo', () => {
-    const el: HTMLElement = fixture.nativeElement;
-    const img = el.querySelector('.hero__visual img.floating-logo') as HTMLImageElement;
-    expect(img).toBeTruthy();
-    expect(img.getAttribute('src')).toBe('techs/angular.svg');
-  });
-
-  it('should start typing text after initial delay and update the DOM', fakeAsync(() => {
-    // Crear fixture dentro de fakeAsync para capturar timers
-    const fix = TestBed.createComponent(Home);
-    const cmp = fix.componentInstance;
-    fix.detectChanges();
-
-    // Avanza más que la pausa inicial para empezar a tipear
-    tick(1000);
-    fix.detectChanges();
-
-    const el: HTMLElement = fix.nativeElement;
-    const typed = el.querySelector('.lead--live .typed')!;
-    expect(cmp.typedText().length).toBeGreaterThan(0);
-    expect(typed.textContent?.length || 0).toBeGreaterThan(0);
-  }));
-
-  it('should stop typing after ngOnDestroy is called', fakeAsync(() => {
-    const fix = TestBed.createComponent(Home);
-    const cmp = fix.componentInstance;
-    fix.detectChanges();
-
-    // Destruir antes de que empiece a escribir
-    cmp.ngOnDestroy();
-    // Avanzar bastante tiempo, no debería cambiar
-    tick(5000);
-
-    expect(cmp.typedText()).toBe('');
-  }));
 });

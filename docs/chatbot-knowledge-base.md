@@ -1,7 +1,7 @@
 # Base de conocimiento — Nahuel Alderete
 
 > Este documento es la fuente de verdad para un chatbot/asistente de IA que responde
-> preguntas de visitantes del sitio [nahuel.dev](https://nahuel.dev). Contiene únicamente
+> preguntas de visitantes del sitio [nahuel.app](https://nahuel.app). Contiene únicamente
 > información real extraída del código del sitio (nada inventado). Si te preguntan algo
 > que no está acá, respondé que no tenés ese dato y sugerí contactar directamente a Nahuel
 > por email o LinkedIn — no inventes fechas, proyectos, tarifas ni datos personales.
@@ -9,12 +9,12 @@
 ## Datos de contacto
 
 - **Nombre completo:** Nahuel Alderete
-- **Rol:** Desarrollador Full-Stack (foco en Angular / Frontend)
+- **Rol:** AI Engineer & Full-Stack Developer (IA aplicada, LLMs y automatización)
 - **Ubicación:** Buenos Aires, Argentina (UTC−3)
 - **Email:** nahuel.ald@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/nahuel-alderete
 - **GitHub:** https://github.com/NhlDev
-- **Sitio web:** https://nahuel.dev (disponible en español `/es-AR/` e inglés `/en-US/`)
+- **Sitio web:** https://nahuel.app (disponible en español `/es-AR/` e inglés `/en-US/`)
 - **Idiomas:** Español (nativo), Inglés (B2)
 - **Tiempo de respuesta habitual:** 24–48 h
 - **Disponibilidad:** Part-time / Full-time
@@ -22,18 +22,20 @@
 ## Resumen profesional
 
 Desarrollador Full-Stack con más de 10 años de experiencia creando productos web y
-mobile end-to-end. En el frontend se especializa en Angular (arquitectura, performance,
-accesibilidad) e Ionic para experiencias móviles. En el backend trabaja con Node.js y
-C# (.NET), diseñando APIs limpias y escalables. Actualmente amplía su stack con IA
-aplicada: Python + TensorFlow para prototipos de machine learning y deep learning
-orientados a features inteligentes (búsquedas semánticas, recomendaciones,
-clasificación y automatización). Su foco es convertir ideas en soluciones mantenibles,
-seguras y medibles que generen impacto real.
+mobile end-to-end, hoy enfocado en IA aplicada y automatización. Diseña y construye
+asistentes conversacionales con RAG, tool calling e integración con LLMs: su producto
+Chatbot Up (.NET, Semantic Kernel, Gemini, pgvector) permite que una pyme atienda a
+sus clientes por WhatsApp, Telegram, Instagram y su web, con derivación a una persona
+cuando hace falta. Esa capa de IA se apoya en una década de desarrollo: frontends en
+Angular e Ionic / React Native, APIs en .NET y Node.js, y sistemas críticos en banca y
+salud. Busca que la IA resuelva un problema concreto del negocio, no que quede en una
+demo.
 
 ## Datos rápidos (highlights)
 
 - **10+ años** de experiencia profesional
 - **15+ proyectos** desarrollados
+- **2 productos SaaS propios:** Chatbot Up y Control Up
 - **5+ sectores/industrias** distintos (banca digital, salud, marketing digital,
   transporte/tráfico, aeropuertos, medios de pago, RRHH/selección de talento)
 
@@ -45,8 +47,27 @@ seguras y medibles que generen impacto real.
 - **Backend:** Node.js, C# / .NET (.NET Web API, ASP.NET WebForms, ASP.NET MVC4),
   Entity Framework 6
 - **Bases de datos:** SQL Server, ElasticSearch
-- **IA (en exploración):** Python, TensorFlow
+- **IA aplicada:** LLMs (Gemini), RAG con pgvector, Semantic Kernel, tool calling,
+  asistentes multicanal (WhatsApp, Telegram, Instagram, web); Python y TensorFlow para
+  prototipos
 - **Otros:** APIs REST, Java (puntual), Todo Pago (integración de pagos)
+
+## Productos propios
+
+Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
+
+### Chatbot Up — https://chatbot.controlup.com.ar/
+- Asistentes con IA (RAG) entrenados con el contenido de cada negocio
+- Canales: WhatsApp, Telegram, Instagram y widget embebible en la web
+- Derivación a una persona cuando el asistente no puede resolver
+- Stack: .NET 10, ASP.NET Core, Semantic Kernel, Gemini, pgvector (backend);
+  Angular 21 (panel de administración); TypeScript (widget)
+- Estado: beta cerrada; se vende de forma asistida (implementación + abono), sin
+  precios publicados. Para consultas comerciales, derivar a contacto.
+- El asistente del propio sitio nahuel.app funciona con Chatbot Up.
+
+### Control Up — https://controlup.com.ar/
+- Gestión comercial para pymes: ventas, stock, clientes y reportes en un solo lugar
 
 ## Experiencia laboral
 
@@ -170,7 +191,7 @@ Más de 10 años de experiencia profesional como desarrollador, iniciando en Itr
 Es Desarrollador Fullstack en Infocorp Group (desde noviembre de 2025, remoto desde Uruguay), trabajando en la plataforma de banca digital con .NET, Angular y React Native. En paralelo mantiene un trabajo freelance para el sector salud desde 2021.
 
 **¿Con qué tecnologías trabaja principalmente?**
-Angular, TypeScript, RxJS, Ionic, Node.js y .NET/C#. Está ampliando su stack hacia IA aplicada con Python y TensorFlow.
+En IA: LLMs, RAG, Semantic Kernel y Python. Como base full-stack: .NET/C#, Angular, TypeScript, Node.js e Ionic / React Native.
 
 **¿Tiene experiencia con React o React Native?**
 Sí, usó React Native en Infocorp Group (rol actual y el período 2021–2024).
@@ -179,7 +200,10 @@ Sí, usó React Native en Infocorp Group (rol actual y el período 2021–2024).
 Sí, trabajó como administrador de SQL Server en Itrio S.A. (Prisma Medios de Pago) y usó ElasticSearch en Huenei IT Services.
 
 **¿Trabajó con inteligencia artificial?**
-Está explorando IA aplicada con Python y TensorFlow para prototipos de machine/deep learning (búsquedas semánticas, recomendaciones, clasificación, automatización). También usó IA para selección de candidatos en un MVP en Scoutt Inc.
+Sí. Es el foco actual de su carrera. Creó Chatbot Up, un SaaS de asistentes con IA basado en RAG (.NET, Semantic Kernel, Gemini, pgvector) que atiende por WhatsApp, Telegram, Instagram y la web. También participó en un MVP en Scoutt Inc. que usaba IA para seleccionar candidatos, y hace prototipos con Python y TensorFlow.
+
+**¿Puede sumar IA o automatizar procesos en mi negocio?**
+Ese es el tipo de proyecto que busca: asistentes con IA, integraciones con LLMs y automatizaciones. Para evaluar un caso concreto, derivá el contacto a email o LinkedIn.
 
 **¿Dónde está ubicado y trabaja remoto?**
 Vive en Buenos Aires, Argentina (UTC−3). Su rol actual en Infocorp Group es remoto (para Uruguay), y su trabajo freelance también es remoto.
@@ -188,7 +212,7 @@ Vive en Buenos Aires, Argentina (UTC−3). Su rol actual en Infocorp Group es re
 Español nativo e inglés nivel B2.
 
 **¿Cómo lo puedo contactar?**
-Por email a nahuel.ald@gmail.com, o por LinkedIn (linkedin.com/in/nahuel-alderete). Responde habitualmente en 24–48 horas. También hay un formulario de contacto en https://nahuel.dev.
+Por email a nahuel.ald@gmail.com, o por LinkedIn (linkedin.com/in/nahuel-alderete). Responde habitualmente en 24–48 horas. También hay un formulario de contacto en https://nahuel.app.
 
 **¿Está disponible para nuevos proyectos?**
 Su disponibilidad indicada en el sitio es part-time o full-time (no hay más detalle específico sobre disponibilidad actual — para confirmar, contactarlo directamente).
@@ -197,7 +221,7 @@ Su disponibilidad indicada en el sitio es part-time o full-time (no hay más det
 Sí, su GitHub es https://github.com/NhlDev.
 
 **¿Cuál es su especialidad?**
-Full-Stack con foco en Frontend (Angular): arquitectura, performance, accesibilidad y responsividad, tanto en apps web como mobile (Ionic).
+IA aplicada (asistentes con LLMs, RAG y automatización) sobre una base sólida de desarrollo Full-Stack: Angular en el frontend y .NET / Node.js en el backend, en web y mobile.
 
 ## Notas para el bot
 

@@ -1,59 +1,44 @@
-<div class="contact-wrapper full-height">
-  <section class="contact-card" aria-labelledby="contact-title">
-    <div class="contact-card__bg" aria-hidden="true"></div>
-
-    <header class="contact-head">
-      <h2 id="contact-title" class="contact-title" i18n>
-        Contacto
-        <span class="tagline">¿Tenés una idea o proyecto? Construyámoslo juntos.</span>
-      </h2>
+<div class="contact-wrapper">
+  <section class="contact" aria-labelledby="contact-title">
+    <header class="section-head">
+      <h2 id="contact-title" class="contact-title" i18n="@@contactTitle">Contacto</h2>
+      <p class="section-lead" i18n="@@contactLead">¿Querés sumar IA a tu producto o automatizar un proceso? Contame qué necesitás y te respondo a la brevedad.</p>
     </header>
-
-    <p class="contact-intro" i18n>
-      Escribime con los detalles de tu requerimiento, consulta de consultoría o proyecto. Te responderé a la brevedad.
-    </p>
 
     <div class="contact-grid">
       <div class="contact-side">
-        <h3 class="side-title" i18n>Canales Directos</h3>
         <ul class="channels" i18n-aria-label aria-label="Canales de contacto">
           <li>
             <a class="channel" [href]="'mailto:' + ownerEmail">
-              <div class="channel-icon">
-                <mat-icon>mail</mat-icon>
-              </div>
-              <div class="channel-info">
+              <mat-icon class="channel-icon" aria-hidden="true">mail</mat-icon>
+              <span class="channel-info">
                 <span class="channel-name">Email</span>
                 <span class="channel-value">{{ ownerEmail }}</span>
-              </div>
+              </span>
             </a>
           </li>
           <li>
             <a class="channel" [href]="linkedInUrl" target="_blank" rel="noopener">
-              <div class="channel-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-                  <path fill="currentColor"
-                    d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM14.5 9c-2.35 0-3.5 1.29-3.5 2.2V9H7v12h4v-6.3c0-1.05.6-2.2 2-2.2 1.36 0 2 .95 2 2.2V21h4v-6.5C19 11.26 17.45 9 14.5 9Z" />
-                </svg>
-              </div>
-              <div class="channel-info">
+              <svg class="channel-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                <path fill="currentColor"
+                  d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM14.5 9c-2.35 0-3.5 1.29-3.5 2.2V9H7v12h4v-6.3c0-1.05.6-2.2 2-2.2 1.36 0 2 .95 2 2.2V21h4v-6.5C19 11.26 17.45 9 14.5 9Z" />
+              </svg>
+              <span class="channel-info">
                 <span class="channel-name">LinkedIn</span>
                 <span class="channel-value">/in/nahuel-alderete</span>
-              </div>
+              </span>
             </a>
           </li>
           <li>
             <a class="channel" [href]="githubUrl" target="_blank" rel="noopener">
-              <div class="channel-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-                  <path fill="currentColor"
-                    d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.23 3.37 9.66 8.05 11.23.59.12.8-.25.8-.56l-.02-2.2c-3.27.72-3.96-1.6-3.96-1.6-.54-1.4-1.32-1.78-1.32-1.78-1.08-.76.08-.75.08-.75 1.2.09 1.83 1.26 1.83 1.26 1.06 1.86 2.78 1.32 3.46 1.01.11-.79.41-1.32.75-1.62-2.61-.3-5.36-1.35-5.36-6 0-1.32.47-2.39 1.25-3.24-.13-.31-.54-1.56.12-3.24 0 0 1.01-.33 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.56 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.24 0 4.67-2.76 5.7-5.39 6 .42.36.8 1.08.8 2.18l-.01 3.23c0 .31.21.68.81.56A11.5 11.5 0 0 0 23.5 12.3 11.5 11.5 0 0 0 12 .5Z" />
-                </svg>
-              </div>
-              <div class="channel-info">
+              <svg class="channel-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                <path fill="currentColor"
+                  d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.23 3.37 9.66 8.05 11.23.59.12.8-.25.8-.56l-.02-2.2c-3.27.72-3.96-1.6-3.96-1.6-.54-1.4-1.32-1.78-1.32-1.78-1.08-.76.08-.75.08-.75 1.2.09 1.83 1.26 1.83 1.26 1.06 1.86 2.78 1.32 3.46 1.01.11-.79.41-1.32.75-1.62-2.61-.3-5.36-1.35-5.36-6 0-1.32.47-2.39 1.25-3.24-.13-.31-.54-1.56.12-3.24 0 0 1.01-.33 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.56 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.24 0 4.67-2.76 5.7-5.39 6 .42.36.8 1.08.8 2.18l-.01 3.23c0 .31.21.68.81.56A11.5 11.5 0 0 0 23.5 12.3 11.5 11.5 0 0 0 12 .5Z" />
+              </svg>
+              <span class="channel-info">
                 <span class="channel-name">GitHub</span>
                 <span class="channel-value">@NhlDev</span>
-              </div>
+              </span>
             </a>
           </li>
         </ul>
@@ -61,15 +46,15 @@
         <ul class="meta-facts" i18n-aria-label aria-label="Datos rápidos">
           @for (m of metaFacts[locale]; track $index) {
           <li class="mf">
-            <mat-icon class="mf__icon">{{ m.icon }}</mat-icon>
-            <span class="mf__text">{{ m.text }}</span>
+            <mat-icon class="mf__icon" aria-hidden="true">{{ m.icon }}</mat-icon>
+            <span>{{ m.text }}</span>
           </li>
           }
         </ul>
       </div>
 
       <div class="form-container">
-        <h3 class="side-title" i18n>Enviame un mensaje</h3>
+        <h3 class="subhead" i18n>Enviame un mensaje</h3>
         <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
           <mat-form-field appearance="outline" class="field">
             <mat-label i18n>Tu nombre</mat-label>
@@ -103,16 +88,13 @@
           </mat-form-field>
 
           <div class="actions">
+            <p class="privacy-note" i18n="@@contactPrivacy">Solo uso tus datos para responder tu consulta.</p>
             <button mat-button type="button" class="btn-clear" (click)="form.reset()" [disabled]="sending()" i18n>
               Limpiar
             </button>
-            <button mat-flat-button color="primary" class="btn-submit" type="submit" [disabled]="sending()">
+            <button mat-flat-button class="btn-submit" type="submit" [disabled]="sending()">
               @if (sending()) {
-                <mat-spinner diameter="18" style="margin-right: 8px;"></mat-spinner>
-              } @else {
-                <mat-icon>send</mat-icon>
-              }
-              @if (sending()) {
+                <mat-spinner diameter="18" class="btn-spinner"></mat-spinner>
                 <span i18n>Enviando...</span>
               } @else {
                 <span i18n>Enviar mensaje</span>
@@ -120,10 +102,6 @@
             </button>
           </div>
         </form>
-
-        <p class="privacy-note" i18n>
-          🔒 Tu información es confidencial. Solo la utilizo para responder a tu consulta.
-        </p>
       </div>
     </div>
   </section>

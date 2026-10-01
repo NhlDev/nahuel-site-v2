@@ -17,7 +17,7 @@ import { AboutMe } from './pages/about-me/about-me';
 import { Resume } from './pages/resume/resume';
 import { ContactMe } from './pages/contact-me/contact-me';
 
-const SITE_URL = 'https://nahuel.dev';
+const SITE_URL = 'https://nahuel.app';
 
 interface LocaleSeo {
   title: string;
@@ -29,20 +29,20 @@ interface LocaleSeo {
 
 const SEO_CONTENT: Record<'es-AR' | 'en-US', LocaleSeo> = {
   'es-AR': {
-    title: 'Nahuel Alderete | Senior Full-Stack Engineer & Software Architect',
+    title: 'Nahuel Alderete | AI Engineer & Full-Stack Developer',
     description:
-      'Desarrollador Senior Full-Stack con 10+ años de experiencia en Angular, .NET, Ionic y Arquitectura de Software. Construyo aplicaciones web y móviles de alto rendimiento, escalables y orientadas a resultados para empresas y startups.',
-    ogTitle: 'Nahuel Alderete — Senior Full-Stack Engineer & Software Architect',
+      'AI Engineer y desarrollador Full-Stack con 10+ años de experiencia. Construyo asistentes con IA, integraciones con LLMs (RAG, tool calling) y automatizaciones para negocios con .NET, Angular y Node.js.',
+    ogTitle: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
     ogLocale: 'es_AR',
-    jobTitle: 'Senior Full-Stack Engineer & Software Architect (Angular / .NET / AI)',
+    jobTitle: 'AI Engineer & Full-Stack Developer',
   },
   'en-US': {
-    title: 'Nahuel Alderete | Senior Full-Stack Engineer & Software Architect',
+    title: 'Nahuel Alderete | AI Engineer & Full-Stack Developer',
     description:
-      'Senior Full-Stack Engineer with 10+ years of experience in Angular, .NET, Ionic, and Software Architecture. Building high-performance, accessible, and scalable web and mobile solutions for companies and startups.',
-    ogTitle: 'Nahuel Alderete — Senior Full-Stack Engineer & Software Architect',
+      'AI Engineer and Full-Stack Developer with 10+ years of experience. I build AI assistants, LLM integrations (RAG, tool calling) and business automations with .NET, Angular and Node.js.',
+    ogTitle: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
     ogLocale: 'en_US',
-    jobTitle: 'Senior Full-Stack Engineer & Software Architect (Angular / .NET / AI)',
+    jobTitle: 'AI Engineer & Full-Stack Developer',
   },
 };
 
@@ -142,32 +142,34 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
           image: `${SITE_URL}/logo.svg`,
           description: seo.description,
           knowsAbout: [
+            'Artificial Intelligence',
+            'Large Language Models',
+            'Retrieval-Augmented Generation',
+            'Semantic Kernel',
+            'Conversational AI',
+            'Business Process Automation',
             'Angular',
             'TypeScript',
-            'JavaScript',
             '.NET',
             'C#',
+            'Node.js',
+            'Python',
             'Ionic Framework',
             'React Native',
-            'Node.js',
             'Software Architecture',
-            'Artificial Intelligence',
-            'Machine Learning Prototypes',
-            'Web Performance Optimization',
-            'Accessibility (WCAG)',
           ],
           hasOccupation: {
             '@type': 'Occupation',
-            name: 'Senior Full-Stack Engineer',
+            name: 'AI Engineer',
             occupationalCategory: '15-1252.00',
-            skills: 'Angular, TypeScript, .NET, C#, Node.js, Ionic, Cloud Architecture',
+            skills: 'LLMs, RAG, Semantic Kernel, AI automation, .NET, C#, Angular, TypeScript, Node.js, Python',
           },
         },
         {
           '@type': 'WebSite',
           '@id': `${SITE_URL}/#website`,
           url: SITE_URL,
-          name: 'Nahuel Alderete — Senior Full-Stack Engineer',
+          name: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
           publisher: {
             '@id': `${SITE_URL}/#person`,
           },

@@ -1,12 +1,11 @@
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Component, PLATFORM_ID, inject, signal, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal, ChangeDetectionStrategy, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-header',
-  imports: [MatButtonModule, MatIconModule, MatToolbarModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -83,6 +82,11 @@ export class Header implements OnInit, OnDestroy {
     } else {
       document.body.style.overflow = '';
     }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.isMobileMenuOpen()) this.closeMobileMenu();
   }
 
   closeMobileMenu(): void {

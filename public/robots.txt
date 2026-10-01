@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nahuel.dev/sitemap.xml
+Sitemap: https://nahuel.app/sitemap.xml

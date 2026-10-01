@@ -7,49 +7,31 @@ $card-offset: 96px;     // padding-left de cada item (desktop)
 $rail-x-m: 18px;        // mobile
 $dot-size-m: 36px;
 $card-offset-m: 56px;
-$ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-spring: var(--ease-out);
 
 .resume-page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: clamp(3rem, 7vw, 5rem) 1.25rem 3.5rem;
-  min-height: 100vh;
+  @include m.section;
 }
 
 .resume-header {
-  text-align: center;
-  margin-bottom: 2rem;
-
-  h2 {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 700;
-    margin: 0 0 0.5rem;
-    letter-spacing: -0.02em;
-    @include m.gradient-text(
-      linear-gradient(135deg, #ffffff 0%, #38bdf8 100%),
-      #ffffff
-    );
-  }
+  @include m.section-head;
 
   .subtitle {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.05rem;
-    margin: 0;
+    margin: 0.75rem 0 0;
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
   }
 }
 
 /* ── Vista general cronológica (gantt) ────────────────────────────────────── */
 .tl-overview {
   position: relative;
-  margin: 0 0 2.5rem;
+  margin: 0 0 3rem;
   padding: 1rem 1.25rem 1.1rem;
-  border-radius: 18px;
-  background: rgba(11, 17, 30, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  @include m.panel;
 
   @media (max-width: 600px) {
     padding: 0.85rem 0.9rem 0.9rem;
-    border-radius: 14px;
   }
 }
 
@@ -63,11 +45,10 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
     top: 0;
     bottom: -0.35rem;
     width: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    color: rgba(255, 255, 255, 0.55);
+    background: var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
     font-variant-numeric: tabular-nums;
 
     .tl-overview__year-label {
@@ -98,13 +79,12 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   min-width: 6px;
   padding: 0 0.5rem;
   border: 1px solid color-mix(in srgb, var(--company-color) 55%, transparent);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--company-color) 28%, rgba(255, 255, 255, 0.02));
-  color: #ffffff;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--company-color) 22%, var(--color-surface));
+  color: var(--color-text);
   font: inherit;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 0.75rem;
+  font-weight: 500;
   text-align: left;
   overflow: hidden;
   cursor: pointer;
@@ -132,10 +112,8 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &.is-active {
-    background: color-mix(in srgb, var(--company-color) 60%, rgba(255, 255, 255, 0.06));
-    border-color: var(--company-color);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--company-color) 35%, transparent),
-                0 6px 16px -4px color-mix(in srgb, var(--company-color) 60%, transparent);
+    background: color-mix(in srgb, var(--company-color) 45%, var(--color-surface));
+    border-color: var(--color-text);
     z-index: 1;
   }
 
@@ -162,7 +140,7 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   left: calc(#{$rail-x} - 1px);
   width: 2px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-border);
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -175,7 +153,7 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 .tl-rail__fill {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, #38bdf8 0%, #818cf8 100%);
+  background: var(--color-text-subtle);
   transform-origin: top;
   transform: scaleY(0);
 }
@@ -232,15 +210,14 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   .tl-dot__logo {
     width: $dot-size;
     height: $dot-size;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: var(--company-color, #0f172a);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+    box-shadow: 0 0 0 4px var(--color-bg);
     display: grid;
     place-items: center;
     overflow: hidden;
-    transition: transform 0.3s $ease-spring, box-shadow 0.3s ease;
+    transition: border-color var(--duration) $ease-spring;
   }
 
   .tl-dot__img {
@@ -250,10 +227,9 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tl-dot__year {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
     font-variant-numeric: tabular-nums;
   }
 
@@ -265,7 +241,7 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
     .tl-dot__logo {
       width: $dot-size-m;
       height: $dot-size-m;
-      border-radius: 11px;
+      border-radius: var(--radius-sm);
     }
 
     .tl-dot__year { display: none; }
@@ -275,57 +251,33 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 /* Estado activo: nodo y tarjeta iluminados con el color de la empresa */
 .tl-item.is-active {
   .tl-dot__logo {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--company-color) 30%, transparent),
-                0 12px 28px rgba(0, 0, 0, 0.45);
+    border-color: var(--color-text-muted);
   }
 
   .tl-dot__year {
-    color: #ffffff;
+    color: var(--color-text);
   }
 
   .tl-card {
-    border-color: color-mix(in srgb, var(--company-color) 45%, rgba(255, 255, 255, 0.15));
-    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5),
-                0 0 24px -6px color-mix(in srgb, var(--company-color) 35%, transparent);
+    border-color: var(--color-border-strong);
   }
 }
 
 /* ── Tarjeta ──────────────────────────────────────────────────────────────── */
 .tl-card {
   position: relative;
-  @include m.card(
-    $bg-color: #0b111e,
-    $bg-opacity: 0.7,
-    $border-opacity: 0.12,
-    $radius: 20px,
-    $blur: 16px
-  );
-  padding: 1.25rem 1.5rem;
-  transition: transform 0.25s $ease-spring,
-              box-shadow 0.25s ease,
-              border-color 0.25s ease;
+  @include m.panel;
+  padding: 1.5rem 1.75rem;
+  transition: border-color var(--duration) $ease-spring;
 
   @media (max-width: 768px) {
-    padding: 1rem 1.1rem;
-    border-radius: 16px;
+    padding: 1.125rem 1.125rem 1.25rem;
+    border-radius: var(--radius-md);
   }
 
-  // Borde de acento con el color de la empresa
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 2px auto 2px 2px;
-    width: 4px;
-    border-radius: 18px 0 0 18px;
-    background: linear-gradient(to bottom, var(--company-color, #38bdf8) 0%, transparent 100%);
+  &:focus-visible {
+    outline-offset: 4px;
   }
-
-  &:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--company-color, #38bdf8) 40%, rgba(255, 255, 255, 0.15));
-  }
-
 }
 
 .tl-card__head {
@@ -343,18 +295,18 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
     .position {
       margin: 0;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #ffffff;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-text);
       letter-spacing: -0.01em;
       line-height: 1.3;
     }
 
     .company {
       margin: 0;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--company-color, #38bdf8);
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--color-text-muted);
       display: flex;
       align-items: center;
       flex-wrap: wrap;
@@ -365,7 +317,7 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
     .company__logo {
       width: 20px;
       height: 20px;
-      border-radius: 6px;
+      border-radius: 4px;
       object-fit: cover;
       display: none;
 
@@ -375,10 +327,8 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .stint-note {
-      font-size: 0.72rem;
-      font-weight: 500;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8125rem;
+      color: var(--color-text-subtle);
     }
   }
 
@@ -394,66 +344,50 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
     display: inline-flex;
     gap: 0.3rem;
     white-space: nowrap;
-    font-size: 0.82rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
     font-variant-numeric: tabular-nums;
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.25rem 0.65rem;
-    border-radius: 999px;
+    color: var(--color-text-muted);
   }
 
   .duration {
     white-space: nowrap;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--company-color, #38bdf8);
-    opacity: 0.9;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
   }
 }
 
 .tl-meta {
-  margin: 0.4rem 0 0.6rem;
+  margin: 0.5rem 0 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.5rem 1.25rem;
 
   .badge {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.8);
-    padding: 0.25rem 0.6rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
 
     mat-icon {
-      font-size: 0.95rem;
-      width: 0.95rem;
-      height: 0.95rem;
-      color: var(--company-color, #38bdf8);
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+      color: var(--color-text-subtle);
     }
   }
 
   .badge--current {
-    background: rgba(34, 197, 94, 0.12);
-    color: #86efac;
-    border-color: rgba(34, 197, 94, 0.35);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.04em;
+    gap: 0.4rem;
+    color: var(--color-text);
 
     &__dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 6px #22c55e;
+      background: var(--color-success);
     }
   }
 }
@@ -468,19 +402,20 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
     li {
       position: relative;
-      padding-left: 1.1rem;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 0.92rem;
-      line-height: 1.55;
+      padding-left: 1.125rem;
+      color: var(--color-text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
       text-wrap: pretty;
 
       &::before {
-        content: "▹";
+        content: "";
         position: absolute;
-        left: 0;
-        top: 0;
-        color: var(--company-color, #38bdf8);
-        font-weight: 700;
+        left: 0.125rem;
+        top: 0.8em;
+        width: 6px;
+        height: 1px;
+        background: var(--color-text-subtle);
       }
     }
   }
@@ -518,15 +453,16 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   align-items: center;
   gap: 0.25rem;
   margin-top: 0.6rem;
-  min-height: 36px;
-  padding: 0.35rem 0.75rem 0.35rem 0.5rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--company-color, #38bdf8);
+  min-height: 44px;
+  margin-left: -0.5rem;
+  padding: 0 0.75rem 0 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 0;
+  background: transparent;
+  color: var(--color-accent);
   font: inherit;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
   mat-icon {
     font-size: 1.15rem;
@@ -540,7 +476,8 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &:hover {
-    border-color: color-mix(in srgb, var(--company-color) 40%, transparent);
+    color: var(--color-accent-hover);
+    background: var(--color-surface-2);
   }
 }
 
@@ -552,30 +489,12 @@ $ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
   // Sin backdrop-filter: ~40 chips con blur son ~40 capas de composición en mobile
   .chip {
-    padding: 0.25rem 0.65rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.74rem;
-    font-weight: 500;
-    &:hover {
-      background: color-mix(in srgb, var(--company-color) 14%, transparent);
-      border-color: color-mix(in srgb, var(--company-color) 40%, transparent);
-    }
+    @include m.tag;
   }
 }
 
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .resume-page {
-    padding: 2.5rem 1rem 2rem;
-  }
-
-  .resume-header {
-    margin-bottom: 1.5rem;
-  }
-
   .tl-card__head {
     flex-direction: column;
     align-items: flex-start;

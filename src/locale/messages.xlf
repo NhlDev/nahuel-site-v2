@@ -9,417 +9,370 @@
           <context context-type="linenumber">1,3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9135357425816308401" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;status-dot&quot; aria-hidden=&quot;true&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Disponible </source>
+      <trans-unit id="footerProductsLabel" datatype="html">
+        <source>Productos propios</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">11,13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">59,61</context>
+          <context context-type="sourcefile">src/app/components/footer/footer.html</context>
+          <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2867163438113566372" datatype="html">
         <source>Navegación principal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6544292891804316575" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>home<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Home </source>
+      <trans-unit id="navAbout" datatype="html">
+        <source>Sobre mí</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">21,23</context>
+          <context context-type="linenumber">7,8</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">71,74</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4855255963618997607" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>person_raised_hand<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Sobre mí </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">25,27</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">75,78</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="655181978036330349" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>article_person<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Mi Curriculum </source>
+      <trans-unit id="navResume" datatype="html">
+        <source>Experiencia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">29,31</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">79,82</context>
+          <context context-type="linenumber">44,45</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8524765736003526090" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>mail<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Contacto </source>
+      <trans-unit id="navContact" datatype="html">
+        <source>Contacto</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">33,35</context>
+          <context context-type="linenumber">11,13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">83,87</context>
+          <context context-type="linenumber">46,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="508544013936189997" datatype="html">
         <source>Abrir menú de navegación</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="968274150378923131" datatype="html">
         <source>Menú móvil</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2585341053787881648" datatype="html">
         <source>Cerrar menú</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/header/header.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9044415350160630852" datatype="html">
-        <source> Sobre mí <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;tagline&quot;&gt;"/>Senior Full‑Stack Engineer &amp; Architect · Angular / .NET / IA<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="navHome" datatype="html">
+        <source>Inicio</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">7,10</context>
+          <context context-type="sourcefile">src/app/components/header/header.html</context>
+          <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="57282797178711054" datatype="html">
-        <source> Desarrollador Senior Full‑Stack con más de 10 años creando productos digitales web y mobile end‑to‑end de alto rendimiento. En el front me especializo en Angular (arquitectura escalable, optimización de performance y accesibilidad WCAG) e Ionic / React Native para experiencias móviles nativas. En el backend diseño e implemento APIs y microservicios robustos con Node.js y .NET (C#). Actualmente integro soluciones de Inteligencia Artificial aplicada (Python / TensorFlow / LLMs) para potenciar aplicaciones con búsquedas semánticas, automatizaciones y features inteligentes. Mi objetivo: transformar requerimientos de negocio en soluciones mantenibles, seguras y de alto impacto. </source>
+      <trans-unit id="aboutTitle" datatype="html">
+        <source>Sobre mí</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">4,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2202571323936679158" datatype="html">
-        <source>Resumen de experiencia</source>
+      <trans-unit id="aboutP1" datatype="html">
+        <source>Desarrollador Full‑Stack con más de 10 años creando productos web y mobile, hoy enfocado en IA aplicada y automatización.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">20,21</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1707265041735205615" datatype="html">
-        <source>Tecnologías principales</source>
+      <trans-unit id="aboutP2" datatype="html">
+        <source>Diseño y construyo asistentes conversacionales con RAG, tool calling e integración con LLMs. En Chatbot Up, mi propio producto, uso .NET, Semantic Kernel, Gemini y pgvector para que una pyme atienda a sus clientes por WhatsApp, Telegram, Instagram y su web, con derivación a una persona cuando hace falta.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">29,30</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1780262444747955427" datatype="html">
-        <source>Stack Tecnológico Principal</source>
+      <trans-unit id="aboutP3" datatype="html">
+        <source>Esa capa de IA se apoya en una década de desarrollo: frontends en Angular e Ionic / React Native, APIs en .NET y Node.js, y sistemas críticos en banca y salud. Busco que la IA resuelva un problema concreto del negocio, no que quede en una demo.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">12,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aboutStackTitle" datatype="html">
+        <source>Stack principal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aboutProductsTitle" datatype="html">
+        <source>Productos propios</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="opensNewTab" datatype="html">
+        <source>(se abre en una pestaña nueva)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
+          <context context-type="linenumber">39,40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5823953683510939066" datatype="html">
         <source>Información rápida</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">42,43</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3460160810037163134" datatype="html">
-        <source>Detalles Clave</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">44,45</context>
+          <context context-type="linenumber">47,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6576929432304610646" datatype="html">
         <source> Hablemos de tu proyecto </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">57</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2002102792049146123" datatype="html">
-        <source> Ver experiencia </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">36,37</context>
+          <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5055771792893357615" datatype="html">
-        <source> Contacto <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;tagline&quot;&gt;"/>¿Tenés una idea o proyecto? Construyámoslo juntos.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="contactTitle" datatype="html">
+        <source>Contacto</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">7,10</context>
+          <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2201276878971372594" datatype="html">
-        <source> Escribime con los detalles de tu requerimiento, consulta de consultoría o proyecto. Te responderé a la brevedad. </source>
+      <trans-unit id="contactLead" datatype="html">
+        <source>¿Querés sumar IA a tu producto o automatizar un proceso? Contame qué necesitás y te respondo a la brevedad.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">13,14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="784693189994510090" datatype="html">
-        <source>Canales Directos</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">5,8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3004043796243185374" datatype="html">
         <source>Canales de contacto</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">19,20</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7807686720987055921" datatype="html">
         <source>Datos rápidos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">61,62</context>
+          <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8509243143055081356" datatype="html">
         <source>Enviame un mensaje</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">72,73</context>
+          <context context-type="linenumber">57,58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1946313421164554768" datatype="html">
         <source>Tu nombre</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2014443633083909637" datatype="html">
         <source>El nombre es obligatorio</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3409093352917035943" datatype="html">
         <source>Mínimo 2 caracteres</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="648685163795563212" datatype="html">
         <source>Tu email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6184346418417423112" datatype="html">
         <source>El email es obligatorio</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2296616669536661618" datatype="html">
         <source>Formato de correo inválido</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6552840217983749371" datatype="html">
         <source>Mensaje o detalle del proyecto</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6439036450005021411" datatype="html">
         <source>El mensaje es obligatorio</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4771087784610522782" datatype="html">
         <source>Mínimo 10 caracteres</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contactPrivacy" datatype="html">
+        <source>Solo uso tus datos para responder tu consulta.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
+          <context context-type="linenumber">91,92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2074614989310782446" datatype="html">
         <source> Limpiar </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5731405754389427571" datatype="html">
         <source>Enviando...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">116,117</context>
+          <context context-type="linenumber">98,99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3121276732294063548" datatype="html">
         <source>Enviar mensaje</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">118,119</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5513325141182045976" datatype="html">
-        <source> 🔒 Tu información es confidencial. Solo la utilizo para responder a tu consulta. </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/contact-me/contact-me.html</context>
-          <context context-type="linenumber">125,126</context>
+          <context context-type="linenumber">100,101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6586161501361330553" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;live-dot&quot; aria-hidden=&quot;true&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Disponible para proyectos freelance y contratos </source>
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;status-dot&quot; aria-hidden=&quot;true&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Disponible para proyectos freelance y contratos </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">7,9</context>
+          <context context-type="linenumber">4,8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5430223756420075700" datatype="html">
         <source>Hola, soy Nahuel Alderete</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1344840847190407792" datatype="html">
-        <source>Senior Full‑Stack Engineer &amp; Architect</source>
+      <trans-unit id="heroTitle" datatype="html">
+        <source>AI Engineer &amp; Full‑Stack Developer</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">13,14</context>
+          <context context-type="linenumber">10,13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2931917104145612564" datatype="html">
-        <source>Desarrollo soluciones web, móviles y SaaS de alto rendimiento, escalables y seguras.</source>
+      <trans-unit id="heroRole" datatype="html">
+        <source>Construyo asistentes con IA, integraciones con LLMs y automatizaciones para negocios, sobre una base de más de 10 años desarrollando productos web y mobile.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">13,15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3022825597796808273" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;btn-glow&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Hablemos de tu proyecto </source>
+      <trans-unit id="1707265041735205615" datatype="html">
+        <source>Tecnologías principales</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">32,34</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2002102792049146123" datatype="html">
+        <source> Ver experiencia </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4426935352242225274" datatype="html">
         <source>Métricas destacadas</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">51,52</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6427202078156702006" datatype="html">
-        <source>10+</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">53,54</context>
+          <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9104945347874860848" datatype="html">
         <source>Años de experiencia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">54,55</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6427202078156702006" datatype="html">
+        <source>10+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7595389587872350018" datatype="html">
         <source>Desarrollo Full-Stack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">55,56</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2427525893352070554" datatype="html">
-        <source>15+</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">58,59</context>
+          <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1740206906884657295" datatype="html">
         <source>Proyectos entregados</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">59,60</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2427525893352070554" datatype="html">
+        <source>15+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.html</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2748446304761525317" datatype="html">
         <source>Web, Mobile &amp; APIs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">60,61</context>
+          <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9116904662247646503" datatype="html">
-        <source>5+</source>
+      <trans-unit id="statProductsLabel" datatype="html">
+        <source>Productos SaaS propios</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">63,64</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8387887743134978165" datatype="html">
-        <source>Sectores clave</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">64,65</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="997022795061194522" datatype="html">
-        <source>Banca, Salud, Startups</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">65,66</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2827438042475317684" datatype="html">
-        <source>100%</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">68,69</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8055833196516944043" datatype="html">
-        <source>Compromiso y calidad</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">69,70</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8202787493611299163" datatype="html">
-        <source>Arquitectura limpia</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/home/home.html</context>
-          <context context-type="linenumber">70,71</context>
+          <context context-type="linenumber">43,44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7482270925561627437" datatype="html">
@@ -436,74 +389,46 @@
           <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="resumeOverviewLabel" datatype="html">
+        <source>Vista general cronológica de la experiencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4706687981368763398" datatype="html">
         <source>Actualidad</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2628961601867476622" datatype="html">
         <source>Actual</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
-          <context context-type="linenumber">46,47</context>
+          <context context-type="linenumber">96,97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="resumeShowLess" datatype="html">
         <source>Ver menos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">127,128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="resumeShowMore" datatype="html">
         <source>Ver <x id="INTERPOLATION" equiv-text="{{ hiddenCount(experience) }}"/> más</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">129,130</context>
         </context-group>
       </trans-unit>
       <trans-unit id="resumeTechUsed" datatype="html">
         <source>Tecnologías utilizadas</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
-          <context context-type="linenumber">127</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="resumeOverviewLabel" datatype="html">
-        <source>Vista general cronológica de la experiencia</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="aboutProductsLabel" datatype="html">
-        <source>Productos propios</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="aboutProductsTitle" datatype="html">
-        <source>Productos propios</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="opensNewTab" datatype="html">
-        <source>(se abre en una pestaña nueva)</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="footerProductsLabel" datatype="html">
-        <source>Productos propios</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/footer/footer.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">135,136</context>
         </context-group>
       </trans-unit>
     </body>

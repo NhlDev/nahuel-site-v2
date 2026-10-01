@@ -1,105 +1,87 @@
-// Mixins reutilizables para superficies glassmorphism, chips, botones y efectos visuales
-@use "sass:meta";
+// Mixins reutilizables. Todo se apoya en los tokens de styles.scss.
 
-// Mixin principal de tarjeta Glassmorphism
-@mixin card(
-  $bg-color: var(--mat-sys-surface-container, #0f172a),
-  $bg-opacity: 0.65,
-  $border-opacity: 0.16,
-  $radius: 24px,
-  $blur: 16px,
-  $elevation: 4
-) {
-  background: color-mix(in srgb, $bg-color calc($bg-opacity * 100%), transparent);
-  border: 1px solid rgba(255, 255, 255, $border-opacity);
+// Superficie plana: fondo sólido + borde de 1px. Sin blur ni sombras.
+@mixin panel($radius: var(--radius-lg)) {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: $radius;
-  backdrop-filter: blur($blur);
-  -webkit-backdrop-filter: blur($blur);
-  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.45),
-              inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
-              inset 0 0 16px 0 rgba(255, 255, 255, 0.02);
 }
 
-// Superficie de panel secundaria en cristal
-@mixin surface-panel(
-  $bg-color: var(--mat-sys-surface-container-high, #1e293b),
-  $bg-opacity: 0.6,
-  $border-opacity: 0.12,
-  $radius: 16px,
-  $blur: 12px
-) {
-  background: color-mix(in srgb, $bg-color calc($bg-opacity * 100%), transparent);
-  border: 1px solid rgba(255, 255, 255, $border-opacity);
-  border-radius: $radius;
-  backdrop-filter: blur($blur);
-  -webkit-backdrop-filter: blur($blur);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25),
-              inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+// Sección de página: ancho máximo + ritmo vertical consistente
+@mixin section {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: clamp(4rem, 10vw, 6.5rem) var(--gutter);
 }
 
-// Chips / Pills en cristal interactivo
-@mixin pill(
-  $bg: rgba(255, 255, 255, 0.06),
-  $fg: var(--mat-sys-on-surface, #f8fafc),
-  $border-color: rgba(255, 255, 255, 0.12),
-  $pad-y: 0.35rem,
-  $pad-x: 0.8rem,
-  $radius: 999px
-) {
-  background: $bg;
-  color: $fg;
-  border: 1px solid $border-color;
-  padding: $pad-y $pad-x;
-  border-radius: $radius;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12),
-              inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+// Encabezado de sección: título + bajada opcional
+@mixin section-head {
+  margin: 0 0 clamp(2rem, 5vw, 3rem);
+  max-width: 62ch;
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .section-lead {
+    margin: 0.75rem 0 0;
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+  }
+}
+
+// Subtítulo dentro de una sección
+@mixin subhead {
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+// Etiqueta / chip neutro (no interactivo)
+@mixin tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-text-muted);
 }
 
 // Botones de icono
-@mixin icon-button($size: 40px) {
+@mixin icon-button($size: 44px) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: $size;
   height: $size;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
 }
 
-// Elevación al hacer hover con resorte natural
-@mixin hover-lift($dy: -3px, $scale: 1) {
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  &:hover {
-    @if $scale != 1 {
-      transform: translateY($dy) scale($scale);
-    } @else {
-      transform: translateY($dy);
+// Fila de acciones (CTA primario + secundario)
+@mixin actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  @media (max-width: 480px) {
+    > * {
+      flex: 1 1 100%;
     }
   }
-}
-
-// Resplandor ambiental de acento
-@mixin ambient-glow($color: var(--mat-sys-primary, #38bdf8), $opacity: 0.25, $spread: 20px) {
-  box-shadow: 0 0 $spread color-mix(in srgb, $color calc($opacity * 100%), transparent);
 }
 
 @mixin list-reset {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-@mixin gradient-text(
-  $gradient: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #818cf8 100%),
-  $fallback-color: #38bdf8
-) {
-  color: $fallback-color;
-  background: $gradient;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }

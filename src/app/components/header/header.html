@@ -1,97 +1,56 @@
 <header class="header-root">
-  <div class="custom-toolbar-container">
-    <mat-toolbar class="custom-toolbar">
-      <div class="logo-section" (click)="scrollTo('home', $event)">
-        <div class="logo-avatar" aria-hidden="true">
-          <span>NA</span>
-        </div>
-        <div class="logo-text">
-          <span class="app-title">Nahuel Alderete</span>
-          <span class="status-badge" i18n>
-            <span class="status-dot" aria-hidden="true"></span>
-            Disponible
-          </span>
-        </div>
-      </div>
+  <div class="header-bar">
+    <a class="brand" href="#home" (click)="scrollTo('home', $event)">Nahuel Alderete</a>
 
-      <span class="spacer"></span>
+    <nav class="nav-links" aria-label="Navegación principal" i18n-aria-label>
+      <a href="#about-me" (click)="scrollTo('about-me', $event)" [class.active-link]="activeSection() === 'about-me'"
+        [attr.aria-current]="activeSection() === 'about-me' ? 'location' : null" i18n="@@navAbout">Sobre mí</a>
+      <a href="#resume" (click)="scrollTo('resume', $event)" [class.active-link]="activeSection() === 'resume'"
+        [attr.aria-current]="activeSection() === 'resume' ? 'location' : null" i18n="@@navResume">Experiencia</a>
+      <a href="#contact-me" (click)="scrollTo('contact-me', $event)" [class.active-link]="activeSection() === 'contact-me'"
+        [attr.aria-current]="activeSection() === 'contact-me' ? 'location' : null" i18n="@@navContact">Contacto</a>
 
-      <nav class="nav-links" aria-label="Navegación principal" i18n-aria-label>
-        <a mat-button href="#home" (click)="scrollTo('home', $event)" [class.active-link]="activeSection() === 'home'" i18n>
-          <mat-icon>home</mat-icon>
-          Home
-        </a>
-        <a mat-button href="#about-me" (click)="scrollTo('about-me', $event)" [class.active-link]="activeSection() === 'about-me'" i18n>
-          <mat-icon>person_raised_hand</mat-icon>
-          Sobre mí
-        </a>
-        <a mat-button href="#resume" (click)="scrollTo('resume', $event)" [class.active-link]="activeSection() === 'resume'" i18n>
-          <mat-icon>article_person</mat-icon>
-          Mi Curriculum
-        </a>
-        <a mat-button href="#contact-me" (click)="scrollTo('contact-me', $event)" [class.active-link]="activeSection() === 'contact-me'" i18n>
-          <mat-icon>mail</mat-icon>
-          Contacto
-        </a>
-
-        <button mat-button class="lang-btn" (click)="switchLocale()" [attr.aria-label]="currentLocale === 'es-AR' ? 'Switch to English' : 'Cambiar a Español'">
-          <mat-icon>translate</mat-icon>
-          <span class="lang-text">{{ currentLocale === 'es-AR' ? 'EN' : 'ES' }}</span>
-        </button>
-      </nav>
-
-      <button class="btn-menu-mobile" mat-icon-button (click)="toggleMobileMenu()"
-        [attr.aria-expanded]="isMobileMenuOpen()" aria-label="Abrir menú de navegación" i18n-aria-label>
-        <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+      <button type="button" class="lang-btn" (click)="switchLocale()"
+        [attr.aria-label]="currentLocale === 'es-AR' ? 'Switch to English' : 'Cambiar a Español'">
+        {{ currentLocale === 'es-AR' ? 'EN' : 'ES' }}
       </button>
-    </mat-toolbar>
+    </nav>
+
+    <button class="btn-menu-mobile" mat-icon-button (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen()" aria-controls="mobile-menu"
+      aria-label="Abrir menú de navegación" i18n-aria-label>
+      <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+</header>
+
+<!-- Fuera de .header-root: su z-index crea un contexto de apilamiento que dejaría
+     al drawer por debajo del widget del chatbot -->
+<nav id="mobile-menu" class="mobile-menu" [class.show]="isMobileMenuOpen()" [attr.inert]="isMobileMenuOpen() ? null : ''"
+  aria-label="Menú móvil" i18n-aria-label>
+  <div class="mobile-menu-header">
+    <span class="brand">Nahuel Alderete</span>
+    <button mat-icon-button (click)="closeMobileMenu()" aria-label="Cerrar menú" i18n-aria-label>
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
 
-  <nav class="mobile-menu" [class.show]="isMobileMenuOpen()" aria-label="Menú móvil" i18n-aria-label>
-    <div class="mobile-menu-header">
-      <div class="logo-section">
-        <div class="logo-avatar" aria-hidden="true">
-          <span>NA</span>
-        </div>
-        <div class="logo-text">
-          <span class="app-title">Nahuel Alderete</span>
-          <span class="status-badge" i18n>
-            <span class="status-dot" aria-hidden="true"></span>
-            Disponible
-          </span>
-        </div>
-      </div>
-      <button mat-icon-button (click)="closeMobileMenu()" aria-label="Cerrar menú" i18n-aria-label>
-        <mat-icon>close</mat-icon>
+  <div class="mobile-menu-content">
+    <a href="#home" (click)="scrollTo('home', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'home'"
+      i18n="@@navHome">Inicio</a>
+    <a href="#about-me" (click)="scrollTo('about-me', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'about-me'"
+      i18n="@@navAbout">Sobre mí</a>
+    <a href="#resume" (click)="scrollTo('resume', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'resume'"
+      i18n="@@navResume">Experiencia</a>
+    <a href="#contact-me" (click)="scrollTo('contact-me', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'contact-me'"
+      i18n="@@navContact">Contacto</a>
+
+    <div class="mobile-lang-wrapper">
+      <button mat-stroked-button class="mobile-lang-toggle" (click)="switchLocale()">
+        {{ currentLocale === 'es-AR' ? 'English version' : 'Versión en español' }}
       </button>
     </div>
+  </div>
+</nav>
 
-    <div class="mobile-menu-content">
-      <a mat-button href="#home" (click)="scrollTo('home', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'home'" i18n>
-        <mat-icon>home</mat-icon>
-        Home
-      </a>
-      <a mat-button href="#about-me" (click)="scrollTo('about-me', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'about-me'" i18n>
-        <mat-icon>person_raised_hand</mat-icon>
-        Sobre mí
-      </a>
-      <a mat-button href="#resume" (click)="scrollTo('resume', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'resume'" i18n>
-        <mat-icon>article_person</mat-icon>
-        Mi Curriculum
-      </a>
-      <a mat-button href="#contact-me" (click)="scrollTo('contact-me', $event); closeMobileMenu()" [class.active-link]="activeSection() === 'contact-me'" i18n>
-        <mat-icon>mail</mat-icon>
-        Contacto
-      </a>
-
-      <div class="mobile-lang-wrapper">
-        <button mat-flat-button color="primary" class="mobile-lang-toggle" (click)="switchLocale()">
-          <mat-icon>translate</mat-icon>
-          {{ currentLocale === 'es-AR' ? 'English version' : 'Versión en Español' }}
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <div class="mobile-menu-overlay" (click)="closeMobileMenu()" [class.show]="isMobileMenuOpen()" aria-hidden="true"></div>
-</header>
+<div class="mobile-menu-overlay" (click)="closeMobileMenu()" [class.show]="isMobileMenuOpen()" aria-hidden="true"></div>

@@ -6,10 +6,15 @@ $dark-theme: mat.define-theme(
   (
     color: (
       theme-type: dark,
-      primary: mat.$azure-palette,
-      tertiary: mat.$orange-palette,
+      primary: mat.$blue-palette,
+      // Los componentes leen --mat-sys-*, que se alinean a los tokens propios en :root
+      use-system-variables: true,
     ),
-    typography: (),
+    typography: (
+      brand-family: "IBM Plex Sans",
+      plain-family: "IBM Plex Sans",
+      use-system-variables: true,
+    ),
     density: (
       scale: 0,
     ),
@@ -25,32 +30,96 @@ html {
   @include mat.system-level-colors($dark-theme);
   @include mat.typography-hierarchy($dark-theme);
   color-scheme: dark;
+
+  // Botones: misma forma, alto y peso en toda la app
+  @include mat.button-overrides(
+    (
+      filled-container-shape: 10px,
+      filled-container-height: 48px,
+      filled-horizontal-padding: 22px,
+      filled-label-text-size: 0.9375rem,
+      filled-label-text-weight: 500,
+      filled-label-text-tracking: 0,
+      outlined-container-shape: 10px,
+      outlined-container-height: 48px,
+      outlined-horizontal-padding: 22px,
+      outlined-label-text-size: 0.9375rem,
+      outlined-label-text-weight: 500,
+      outlined-label-text-tracking: 0,
+      outlined-label-text-color: var(--color-text),
+      outlined-outline-color: var(--color-border-strong),
+      text-container-shape: 10px,
+      text-container-height: 44px,
+      text-label-text-weight: 500,
+      text-label-text-tracking: 0,
+    )
+  );
+
+  @include mat.form-field-overrides(
+    (
+      outlined-outline-color: var(--color-border-strong),
+      outlined-hover-outline-color: var(--color-text-subtle),
+    )
+  );
 }
 
-/* Global variables and mappings */
+/* ── Design tokens ─────────────────────────────────────────────────────────
+   Paleta neutra + un único acento. Los componentes usan solo estos tokens,
+   nunca hex sueltos (salvo los colores de marca de cada empresa). */
 :root {
-  /* App bg/text based on Dark Theme tokens */
-  --mat-app-background-color: #090d16;
-  --mat-sys-surface: #090d16;
-  --mat-sys-on-surface: #f8fafc;
-  --mat-app-text-color: var(--mat-sys-on-surface);
+  /* Superficies */
+  --color-bg: #0e0f11;
+  --color-surface: #15171a;
+  --color-surface-2: #1c1f23;
+  --color-border: #26292e;
+  --color-border-strong: #3a3e45;
 
+  /* Texto (contraste sobre --color-bg: 16:1 / 8:1 / 5.6:1) */
+  --color-text: #ececef;
+  --color-text-muted: #a1a1aa;
+  --color-text-subtle: #8a8a93;
+
+  /* Acento y estados */
+  --color-accent: #7aa2f7;
+  --color-accent-hover: #9bb9fa;
+  --color-on-accent: #0e0f11;
+  --color-success: #4ade80;
+
+  /* Tipografía */
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Escala de radios y motion */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --duration: 180ms;
+
+  /* Capas (z-index): header < chatbot < overlay del drawer < drawer */
+  --z-header: 1000;
+  --z-chatbot: 1100;
+  --z-overlay: 1200;
+  --z-drawer: 1210;
+  --z-skip-link: 9999;
+
+  /* Widget de Chatbot Up: por defecto usa 2147483000 y taparía el drawer */
+  --cu-z-index: var(--z-chatbot);
+
+  /* Layout */
   --header-height: 64px;
+  --container: 1080px;
+  --gutter: clamp(1.25rem, 4vw, 2rem);
 
-  /* Glassmorphism system tokens */
-  --glass-surface-bg: rgba(15, 23, 42, 0.65);
-  --glass-surface-border: rgba(255, 255, 255, 0.14);
-  --glass-surface-blur: 16px;
-  --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  --accent-cyan: #38bdf8;
-  --accent-indigo: #6366f1;
-  --accent-emerald: #22c55e;
-  --accent-amber: #f59e0b;
-
-  /* Scrollbar theming variables */
-  --scrollbar-track: #090d16;
-  --scrollbar-thumb: rgba(255, 255, 255, 0.18);
-  --scrollbar-thumb-hover: rgba(56, 189, 248, 0.5);
+  /* Material: alinear sus tokens a la paleta propia */
+  --mat-app-background-color: var(--color-bg);
+  --mat-sys-surface: var(--color-bg);
+  --mat-sys-on-surface: var(--color-text);
+  --mat-sys-on-surface-variant: var(--color-text-muted);
+  --mat-sys-outline: var(--color-border-strong);
+  --mat-sys-primary: var(--color-accent);
+  --mat-sys-on-primary: var(--color-on-accent);
+  --mat-app-text-color: var(--color-text);
 }
 
 /* Box model predecible: width/height incluyen padding y borde.
@@ -61,52 +130,40 @@ html {
   box-sizing: border-box;
 }
 
-/* Base layout with ambient aurora background */
 html,
 body {
   min-height: 100dvh;
   width: 100%;
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #090d16;
-  color: var(--mat-sys-on-surface);
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ambient glow blobs in background */
-body {
-  position: relative;
-  background-image: 
-    radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.10) 0%, transparent 40%),
-    radial-gradient(circle at 85% 25%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 50% 60%, rgba(34, 197, 94, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 20% 85%, rgba(99, 102, 241, 0.08) 0%, transparent 45%);
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  .full-height {
-    min-height: calc(100vh - var(--header-height));
-  }
-}
-
 body {
   overflow-x: hidden;
-}
+  line-height: 1.6;
 
-app-root,
-main {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  .full-height {
+    min-height: calc(100dvh - var(--header-height));
+  }
 }
 
 /* Elevation helpers */
 @include mat.elevation-classes();
 
 /* Smooth scroll + header offset */
-html { 
-  scroll-behavior: smooth; 
-  scroll-padding-top: 80px;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 section[id],
@@ -115,7 +172,11 @@ app-about-me,
 app-resume,
 app-contact-me {
   display: block;
-  scroll-margin-top: 80px;
+}
+
+/* Separador entre secciones: una línea, no una tarjeta nueva */
+main > section[id] + section[id] {
+  border-top: 1px solid var(--color-border);
 }
 
 /* ── Skip link for keyboard accessibility ──────────────────────────────────── */
@@ -123,37 +184,34 @@ app-contact-me {
   position: absolute;
   top: -100%;
   left: 1rem;
-  z-index: 9999;
-  padding: 0.75rem 1.5rem;
-  background: var(--accent-cyan);
-  color: #090d16;
-  border-radius: 0 0 12px 12px;
-  font-weight: 700;
-  font-size: 0.9rem;
+  z-index: var(--z-skip-link);
+  padding: 0.75rem 1.25rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: 600;
   text-decoration: none;
-  transition: top 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.35);
 
   &:focus-visible {
     top: 0;
-    outline: 3px solid #ffffff;
+    outline: 2px solid var(--color-text);
     outline-offset: 2px;
   }
 }
 
-/* ── Section entrance animations ───────────────────────────────────────────── */
+/* ── Section entrance: fade corto y sutil ──────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
   app-about-me.section-visible,
   app-resume.section-visible,
   app-contact-me.section-visible {
-    animation: sectionFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: sectionFadeUp 0.4s var(--ease-out) both;
   }
 }
 
 @keyframes sectionFadeUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -161,34 +219,15 @@ app-contact-me {
   }
 }
 
-/* ── Modern, thin vertical scrollbar (global) ─────────────────────────────── */
-* {
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+html {
   scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
-
-*::-webkit-scrollbar {
-  width: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb);
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-thumb-hover);
+  scrollbar-color: var(--color-border-strong) var(--color-bg);
 }
 
 /* ── Focus rings accesibles ────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
@@ -209,3 +248,9 @@ app-contact-me {
   @include m.list-reset;
 }
 
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
