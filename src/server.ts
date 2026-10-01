@@ -40,10 +40,12 @@ app.use(
       directives: {
         "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/", "https://app.chatbot.controlup.com.ar"],
         "script-src-attr": ["'unsafe-inline'"],
+        // reCAPTCHA v3 inyecta un iframe oculto; sin esta directiva cae a default-src 'self'
+        "frame-src": ["'self'", "https://www.google.com/recaptcha/", "https://recaptcha.google.com/recaptcha/"],
         "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://app.chatbot.controlup.com.ar"],
         "font-src": ["'self'", "https://fonts.gstatic.com"],
         "img-src": ["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com", "https://app.chatbot.controlup.com.ar"],
-        "connect-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://app.chatbot.controlup.com.ar", "wss://app.chatbot.controlup.com.ar", "https://api.chatbot.controlup.com.ar"]
+        "connect-src": ["'self'", "https://www.google.com/recaptcha/", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://app.chatbot.controlup.com.ar", "wss://app.chatbot.controlup.com.ar", "https://api.chatbot.controlup.com.ar"]
       }
     },
     crossOriginEmbedderPolicy: false
