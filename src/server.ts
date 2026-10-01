@@ -201,7 +201,7 @@ const DEFAULT_LOCALE = 'es-AR';
 
 // Archivos SEO/well-known que deben responder en la raíz real del dominio
 // (los assets de `public/` se duplican por locale, no existen en la raíz del build)
-for (const file of ['robots.txt', 'sitemap.xml', 'llms.txt', 'og-image.png']) {
+for (const file of ['robots.txt', 'sitemap.xml', 'llms.txt', 'og-image.png', 'favicon.ico', 'favicon.svg', 'apple-touch-icon.png', 'icon-512.png']) {
   app.get(`/${file}`, (req, res, next) => {
     res.sendFile(file, { root: join(import.meta.dirname, `../browser/${DEFAULT_LOCALE}`) }, (err) => {
       if (err) next(err);

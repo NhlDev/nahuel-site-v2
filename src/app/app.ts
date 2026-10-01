@@ -145,7 +145,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
             addressCountry: 'AR',
           },
           knowsLanguage: ['es', 'en'],
-          image: `${SITE_URL}/logo.svg`,
+          image: `${SITE_URL}/icon-512.png`,
           description: seo.description,
           knowsAbout: [
             'Artificial Intelligence',
