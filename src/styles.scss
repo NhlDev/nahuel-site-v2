@@ -96,8 +96,9 @@ html {
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
   --duration: 180ms;
 
-  /* Capas (z-index): header < chatbot < overlay del drawer < drawer */
+  /* Capas (z-index): header < badge reCAPTCHA < chatbot < overlay del drawer < drawer */
   --z-header: 1000;
+  --z-recaptcha: 1050;
   --z-chatbot: 1100;
   --z-overlay: 1200;
   --z-drawer: 1210;
@@ -234,6 +235,15 @@ html {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
+}
+
+/* ── Badge de reCAPTCHA ─────────────────────────────────────────────────────
+   Google lo inyecta con estilos inline (fixed, bottom: 14px) y chocaba con el globo
+   del chatbot, que ocupa la misma esquina. Se sube por encima del globo (60px + su
+   separación) para que ambos se vean; el panel abierto del chat queda por delante. */
+.grecaptcha-badge {
+  bottom: 96px !important;
+  z-index: var(--z-recaptcha) !important;
 }
 
 /* ── Utility classes ───────────────────────────────────────────────────────── */
