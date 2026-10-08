@@ -277,7 +277,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     // Load Chatbot Control Up script
     const script = this.document.createElement('script');
     script.id = 'controlup-chatbot';
-    script.src = 'https://app.chatbot.controlup.com.ar/integration-widget/chatbot.up.js';
+    script.src = 'https://app.chatbotup.com.ar/integration-widget/chatbot.up.js';
     script.setAttribute('data-api-key', 'pk_live_26b30110fc3045da');
     script.setAttribute('data-mode', 'live');
     script.setAttribute('data-title', 'Asistente de Nahuel.app');
