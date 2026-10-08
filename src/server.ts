@@ -11,6 +11,14 @@ import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 
+import { createMcpRouter } from './mcp/router';
+
+// Widget de Chatbot Up: el bundle sale de `app.`, el handshake y el streaming van a `api.`
+// y las vistas interactivas (MCP Apps) corren en un iframe de otro origen, `ui.`.
+const CHATBOT_WIDGET_HOST = 'https://app.chatbotup.com.ar';
+const CHATBOT_API_HOST = 'https://api.chatbotup.com.ar';
+const CHATBOT_UI_HOST = 'https://ui.chatbotup.com.ar';
+
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
@@ -30,7 +38,8 @@ const angularApp = new AngularNodeAppEngine({ allowedHosts });
 // JSON body parsing
 app.use(express.json({ limit: '1mb' }));
 
-app.enable('trust proxy');
+// Un solo proxy delante (Cloud Run): con `true` cualquiera falsifica X-Forwarded-For y evita los rate limits
+app.set('trust proxy', 1);
 
 // Seguridad básica (CSP adaptado a fuentes/recaptcha)
 app.use(
@@ -38,14 +47,14 @@ app.use(
     contentSecurityPolicy: {
       useDefaults: true,
       directives: {
-        "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/", "https://app.chatbot.controlup.com.ar"],
+        "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/", CHATBOT_WIDGET_HOST],
         "script-src-attr": ["'unsafe-inline'"],
         // reCAPTCHA v3 inyecta un iframe oculto; sin esta directiva cae a default-src 'self'
-        "frame-src": ["'self'", "https://www.google.com/recaptcha/", "https://recaptcha.google.com/recaptcha/"],
-        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://app.chatbot.controlup.com.ar"],
+        "frame-src": ["'self'", "https://www.google.com/recaptcha/", "https://recaptcha.google.com/recaptcha/", CHATBOT_UI_HOST],
+        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", CHATBOT_WIDGET_HOST],
         "font-src": ["'self'", "https://fonts.gstatic.com"],
-        "img-src": ["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com", "https://app.chatbot.controlup.com.ar"],
-        "connect-src": ["'self'", "https://www.google.com/recaptcha/", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://app.chatbot.controlup.com.ar", "wss://app.chatbot.controlup.com.ar", "https://api.chatbot.controlup.com.ar"]
+        "img-src": ["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com", CHATBOT_WIDGET_HOST],
+        "connect-src": ["'self'", "https://www.google.com/recaptcha/", "https://fonts.googleapis.com", "https://fonts.gstatic.com", CHATBOT_API_HOST]
       }
     },
     crossOriginEmbedderPolicy: false
@@ -130,6 +139,9 @@ app.post('/api/contact', async (req, res) => {
     return res.status(500).json({ message: 'Internal error' });
   }
 });
+
+// Servidor MCP con el contenido público del sitio (lo consume Chatbot Up), autenticado con MCP_API_TOKEN
+app.use('/api/mcp', createMcpRouter());
 
 // Endpoint para el Chatbot de IA, autenticado mediante token (CHATBOT_API_TOKEN)
 app.post('/api/ai/send-email', async (req, res) => {

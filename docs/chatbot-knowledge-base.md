@@ -69,7 +69,7 @@ demo.
 
 Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 
-### Chatbot Up — https://chatbot.controlup.com.ar/
+### Chatbot Up — https://chatbotup.com.ar/
 - Asistentes con IA (RAG) entrenados con el contenido de cada negocio
 - Canales: WhatsApp, Telegram, Instagram y widget embebible en la web
 - Derivación a una persona cuando el asistente no puede resolver
@@ -81,6 +81,7 @@ Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 
 ### Control Up — https://controlup.com.ar/
 - Gestión comercial para pymes: ventas, stock, clientes y reportes en un solo lugar
+- Stack: .NET (backend) y Angular (frontend)
 
 ## Experiencia laboral
 

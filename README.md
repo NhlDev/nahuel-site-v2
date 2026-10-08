@@ -13,7 +13,9 @@ accesibilidad y un despliegue contenerizado en Google Cloud.
   timeline) y Contacto.
 - **Bilingüe** (es-AR / en-US), con un build y un conjunto de URLs por idioma.
 - **Formulario de contacto** con reCAPTCHA v3, límite de peticiones y envío por SMTP.
-- **Asistente conversacional** embebido, basado en [Chatbot Up](https://chatbot.controlup.com.ar/),
+- **Servidor MCP** (`/api/mcp`, solo lectura) que expone el perfil, la experiencia, el stack y los
+  proyectos al asistente; comparte los datos con el sitio (`src/app/constant/profile.ts`).
+- **Asistente conversacional** embebido, basado en [Chatbot Up](https://chatbotup.com.ar/),
   un producto propio.
 - **Sistema de diseño propio**: tokens de color, tipografía, radios y capas (`z-index`)
   definidos como variables CSS; sin librerías de UI más allá de Angular Material.
@@ -92,6 +94,7 @@ Requiere **Node.js 24** (Angular 22 exige `^22.22.3` o `^24.15.0`) y npm.
 ```bash
 npm ci
 npm start                 # ng serve en http://localhost:4200 (solo es-AR)
+npm run build:ui          # compila las vistas del servidor MCP (mcp-ui/ → ui-dist/); hace falta antes de build/ssr
 npm run build             # build de producción: es-AR y en-US en dist/
 npm run watch             # build de desarrollo en modo watch (solo es-AR)
 npm run ssr               # levanta el servidor SSR (http://localhost:4000) sobre dist/
@@ -118,6 +121,7 @@ warning por cada traducción faltante.
 | `RECAPTCHA_SECRET` | Clave secreta de reCAPTCHA v3 para validar el formulario |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Servidor SMTP del que salen los mensajes |
 | `CHATBOT_API_TOKEN` | Token que protege `POST /api/ai/send-email`, usado por el asistente |
+| `MCP_API_TOKEN` | Bearer token del servidor MCP (`POST /api/mcp`); sin él el endpoint responde 503 |
 
 La clave pública de reCAPTCHA vive en `src/app/constant/index.ts`. Ningún secreto está en el repositorio.
 
@@ -135,7 +139,7 @@ El despliegue es **contenerizado y sin servidores propios**:
    (`**`) al servicio de Cloud Run. Aporta dominio propio y certificado HTTPS gestionado.
 
 El `Dockerfile` es multi-stage: una etapa instala dependencias y ejecuta
-`npm run build:localize:prod`, y la etapa final instala solo las dependencias de producción,
+`npm run build:ui && npm run build:localize:prod` (las vistas MCP viajan en `ui-dist/`), y la etapa final instala solo las dependencias de producción,
 copia `dist/` y arranca `node dist/nahu-dev-site-v2/server/server.mjs`.
 
 Comandos de referencia (los nombres de proyecto y servicio dependen de la cuenta de Google Cloud):

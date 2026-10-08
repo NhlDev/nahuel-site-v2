@@ -10,7 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:headless": "ng test --watch=false",
-    "ssr": "node dist/nahu-dev-site-v2/server/server.mjs"
+    "ssr": "node dist/nahu-dev-site-v2/server/server.mjs",
+    "build:ui": "tsc -p tsconfig.ui.json && node scripts/build-ui.mjs"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "@angular/platform-server": "^22.2.1",
     "@angular/router": "^22.2.1",
     "@angular/ssr": "^22.2.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "compression": "^1.8.1",
     "express": "^5.1.0",
     "express-rate-limit": "^8.0.1",
@@ -31,6 +33,7 @@
     "nodemailer": "^7.0.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "zod": "^4.6.5",
     "zone.js": "^0.15.1"
   },
   "devDependencies": {
@@ -38,11 +41,13 @@
     "@angular/cli": "^22.2.0",
     "@angular/compiler-cli": "^22.2.1",
     "@angular/localize": "^22.2.1",
+    "@modelcontextprotocol/ext-apps": "^1.7.5",
     "@types/compression": "^1.8.1",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^24.0.0",
     "@types/nodemailer": "^7.0.0",
+    "esbuild": "^0.28.2",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",
