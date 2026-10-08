@@ -6,7 +6,11 @@ export type UiLang = 'es' | 'en';
 
 export const app = (name: string) => new App({ name, version: '1.0.0' });
 
+/** Idioma del contenido (`lang` del dato de la tool): manda sobre el del host para que texto y datos coincidan. */
+let contentLang: UiLang | null = null;
+
 export function lang(a: App): UiLang {
+  if (contentLang) return contentLang;
   return String(a.getHostContext()?.locale ?? 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
 }
 
@@ -44,6 +48,8 @@ export function mount<T>(a: App, accept: (data: unknown) => data is T, onData: (
 
   a.ontoolresult = (params) => {
     if (accept(params.structuredContent)) {
+      const dataLang = (params.structuredContent as { lang?: unknown }).lang;
+      if (typeof dataLang === 'string') contentLang = dataLang.toLowerCase().startsWith('en') ? 'en' : 'es';
       onData(params.structuredContent);
       render();
     }

@@ -75,6 +75,7 @@ export function createMcpServer(): McpServer {
     },
     async ({ lang }) =>
       reply({
+        lang,
         name: contact.name,
         role: role[lang as Lang],
         location: contact.location,
@@ -100,6 +101,7 @@ export function createMcpServer(): McpServer {
     async ({ tech, lang }) => {
       const list = products[lang as Lang].filter((p) => matchesTech(p.technologies, tech));
       return reply({
+        lang,
         count: list.length,
         projects: list.map(({ name, tagline, url, technologies }) => ({ name, tagline, url, technologies })),
       });
@@ -124,7 +126,7 @@ export function createMcpServer(): McpServer {
       const list = source
         .filter((e) => matchesTech(e.technologiesUsed, tech))
         .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
-      return reply({ count: list.length, experience: list.map(serializeExperience) });
+      return reply({ lang, count: list.length, experience: list.map(serializeExperience) });
     },
   );
 
@@ -137,7 +139,7 @@ export function createMcpServer(): McpServer {
       inputSchema: { lang: langSchema },
       annotations: readOnly,
     },
-    async ({ lang }) => reply({ groups: skills[lang as Lang] }),
+    async ({ lang }) => reply({ lang, groups: skills[lang as Lang] }),
   );
 
   server.registerTool(
@@ -147,15 +149,16 @@ export function createMcpServer(): McpServer {
       title: 'Formas de contacto',
       description:
         'Canales públicos para contactar a Nahuel (email, LinkedIn, GitHub, formulario) y su tiempo de respuesta habitual. No envía mensajes.',
-      inputSchema: {},
+      inputSchema: { lang: langSchema },
       annotations: readOnly,
     },
-    async () =>
+    async ({ lang }) =>
       reply({
+        lang,
         email: contact.email,
         linkedin: contact.linkedin,
         github: contact.github,
-        form: `${contact.site}/es-AR/#contact-me`,
+        form: `${contact.site}/${lang}/#contact-me`,
         responseTime: contact.responseTime,
       }),
   );

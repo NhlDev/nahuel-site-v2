@@ -1,6 +1,6 @@
 import { app as createApp, el, lang, mount, openLink, root } from './common';
 
-interface Data { email: string; linkedin: string; github: string; form: string; responseTime: string }
+interface Data { lang?: string; email: string; linkedin: string; github: string; form: string; responseTime: string }
 
 const TEXT = {
   es: { title: 'Contacto', email: 'Enviar email', linkedin: 'LinkedIn', github: 'GitHub', form: 'Formulario del sitio', reply: 'Responde en', loading: '…' },
