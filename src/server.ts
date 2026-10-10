@@ -54,6 +54,8 @@ app.use(
           'https://www.google.com/recaptcha/',
           'https://www.gstatic.com/recaptcha/',
           CHATBOT_WIDGET_HOST,
+          // El widget carga su AudioWorklet de captura de voz desde un blob: URL
+          'blob:',
         ],
         'script-src-attr': ["'unsafe-inline'"],
         // reCAPTCHA v3 inyecta un iframe oculto; sin esta directiva cae a default-src 'self'
@@ -69,6 +71,8 @@ app.use(
           'https://fonts.googleapis.com',
           CHATBOT_WIDGET_HOST,
         ],
+        // Reproducción del audio de voz del chatbot (TTS) vía blob: URLs
+        'media-src': ["'self'", 'blob:'],
         'font-src': ["'self'", 'https://fonts.gstatic.com'],
         'img-src': [
           "'self'",
