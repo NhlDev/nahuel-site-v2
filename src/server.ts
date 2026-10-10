@@ -18,6 +18,7 @@ import { createMcpRouter } from './mcp/router';
 const CHATBOT_WIDGET_HOST = 'https://app.chatbotup.com.ar';
 const CHATBOT_API_HOST = 'https://api.chatbotup.com.ar';
 const CHATBOT_UI_HOST = 'https://ui.chatbotup.com.ar';
+const CHATBOT_TTS_HOST = 'wss://api.chatbotup.com.ar';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -47,18 +48,47 @@ app.use(
     contentSecurityPolicy: {
       useDefaults: true,
       directives: {
-        "script-src": ["'self'", "'unsafe-inline'", "https://www.google.com/recaptcha/", "https://www.gstatic.com/recaptcha/", CHATBOT_WIDGET_HOST],
-        "script-src-attr": ["'unsafe-inline'"],
+        'script-src': [
+          "'self'",
+          "'unsafe-inline'",
+          'https://www.google.com/recaptcha/',
+          'https://www.gstatic.com/recaptcha/',
+          CHATBOT_WIDGET_HOST,
+        ],
+        'script-src-attr': ["'unsafe-inline'"],
         // reCAPTCHA v3 inyecta un iframe oculto; sin esta directiva cae a default-src 'self'
-        "frame-src": ["'self'", "https://www.google.com/recaptcha/", "https://recaptcha.google.com/recaptcha/", CHATBOT_UI_HOST],
-        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", CHATBOT_WIDGET_HOST],
-        "font-src": ["'self'", "https://fonts.gstatic.com"],
-        "img-src": ["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com", CHATBOT_WIDGET_HOST],
-        "connect-src": ["'self'", "https://www.google.com/recaptcha/", "https://fonts.googleapis.com", "https://fonts.gstatic.com", CHATBOT_API_HOST]
-      }
+        'frame-src': [
+          "'self'",
+          'https://www.google.com/recaptcha/',
+          'https://recaptcha.google.com/recaptcha/',
+          CHATBOT_UI_HOST,
+        ],
+        'style-src': [
+          "'self'",
+          "'unsafe-inline'",
+          'https://fonts.googleapis.com',
+          CHATBOT_WIDGET_HOST,
+        ],
+        'font-src': ["'self'", 'https://fonts.gstatic.com'],
+        'img-src': [
+          "'self'",
+          'data:',
+          'https://fonts.gstatic.com',
+          'https://fonts.googleapis.com',
+          CHATBOT_WIDGET_HOST,
+        ],
+        'connect-src': [
+          "'self'",
+          'https://www.google.com/recaptcha/',
+          'https://fonts.googleapis.com',
+          'https://fonts.gstatic.com',
+          CHATBOT_API_HOST,
+          CHATBOT_TTS_HOST,
+        ],
+      },
     },
-    crossOriginEmbedderPolicy: false
-  })
+    crossOriginEmbedderPolicy: false,
+  }),
 );
 
 // Compresión
@@ -69,7 +99,7 @@ const contactLimiter = rateLimit({
   windowMs: 60_000,
   max: 5,
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
 });
 
 app.use('/api/contact', contactLimiter);
@@ -84,17 +114,21 @@ app.post('/api/contact', async (req, res) => {
 
     // Verificar reCAPTCHA
     const secret = process.env['RECAPTCHA_SECRET'];
-    if (!secret) return res.status(500).json({ message: 'Server misconfigured' });
+    if (!secret)
+      return res.status(500).json({ message: 'Server misconfigured' });
 
-    const resp = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret,
-        response: recaptchaToken || '',
-        remoteip: req.ip || '',
-      }),
-    });
+    const resp = await fetch(
+      'https://www.google.com/recaptcha/api/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret,
+          response: recaptchaToken || '',
+          remoteip: req.ip || '',
+        }),
+      },
+    );
     const data = await resp.json();
     if (!data.success || (typeof data.score === 'number' && data.score < 0.5)) {
       return res.status(403).json({ message: 'reCAPTCHA verification failed' });
@@ -146,10 +180,13 @@ app.use('/api/mcp', createMcpRouter());
 // Endpoint para el Chatbot de IA, autenticado mediante token (CHATBOT_API_TOKEN)
 app.post('/api/ai/send-email', async (req, res) => {
   try {
-    const authHeader = req.headers.authorization || (req.headers['x-api-key'] as string) || '';
-    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
+    const authHeader =
+      req.headers.authorization || (req.headers['x-api-key'] as string) || '';
+    const token = authHeader.startsWith('Bearer ')
+      ? authHeader.slice(7)
+      : authHeader;
     const expectedToken = process.env['CHATBOT_API_TOKEN'];
-    
+
     if (!expectedToken || token !== expectedToken) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
@@ -164,7 +201,7 @@ app.post('/api/ai/send-email', async (req, res) => {
     const port = Number(process.env['SMTP_PORT'] || 587);
     const user = process.env['SMTP_USER'];
     const pass = process.env['SMTP_PASS'];
-    
+
     if (!host || !user || !pass || !to) {
       return res.status(500).json({ message: 'SMTP not configured' });
     }
@@ -215,11 +252,24 @@ const DEFAULT_LOCALE = 'es-AR';
 
 // Archivos SEO/well-known que deben responder en la raíz real del dominio
 // (los assets de `public/` se duplican por locale, no existen en la raíz del build)
-for (const file of ['robots.txt', 'sitemap.xml', 'llms.txt', 'og-image.png', 'favicon.ico', 'favicon.svg', 'apple-touch-icon.png', 'icon-512.png']) {
+for (const file of [
+  'robots.txt',
+  'sitemap.xml',
+  'llms.txt',
+  'og-image.png',
+  'favicon.ico',
+  'favicon.svg',
+  'apple-touch-icon.png',
+  'icon-512.png',
+]) {
   app.get(`/${file}`, (req, res, next) => {
-    res.sendFile(file, { root: join(import.meta.dirname, `../browser/${DEFAULT_LOCALE}`) }, (err) => {
-      if (err) next(err);
-    });
+    res.sendFile(
+      file,
+      { root: join(import.meta.dirname, `../browser/${DEFAULT_LOCALE}`) },
+      (err) => {
+        if (err) next(err);
+      },
+    );
   });
 }
 
@@ -234,7 +284,7 @@ app.use((req, res, next) => {
   const isDevServer = process.env['NODE_ENV'] === 'development';
   const seg1 = (req.path.split('/')[1] || '').trim();
   if (seg1 === 'api') return next();
-  
+
   if (!SUPPORTED_LOCALES.has(seg1)) {
     if (isDevServer) {
       // En modo desarrollo (ng serve), Angular CLI sirve directamente en la raíz
@@ -244,7 +294,9 @@ app.use((req, res, next) => {
     const acceptLanguage = req.headers['accept-language'] as string | undefined;
     const locale = (() => {
       if (!acceptLanguage) return DEFAULT_LOCALE;
-      const parts = acceptLanguage.split(',').map(s => s.trim().toLowerCase());
+      const parts = acceptLanguage
+        .split(',')
+        .map((s) => s.trim().toLowerCase());
       for (const p of parts) {
         const [tag] = p.split(';');
         if (tag.startsWith('es')) return 'es-AR';
