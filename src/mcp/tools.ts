@@ -1,8 +1,14 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 
-import { contact, Lang, products, quickFacts, role, skills } from '../app/constant/profile';
-import { WorkExperience, workExperiences } from '../app/constant/work-experience';
+import { Lang } from '../app/constant/profile';
+import {
+  getContactOptions,
+  getExperience,
+  getProfile,
+  getSkills,
+  listProjects,
+} from '../app/constant/public-data';
 import { UI_MIME_TYPE, VIEWS, VIEW_URIS, readView, viewMeta } from './views';
 
 const langSchema = z
@@ -11,31 +17,6 @@ const langSchema = z
   .describe('Idioma del contenido y de la vista: "es-AR" si el usuario escribe en español, "en-US" si escribe en inglés');
 
 const readOnly = { readOnlyHint: true, idempotentHint: true, openWorldHint: false } as const;
-
-/** Mes en formato AAAA-MM; el sitio solo maneja mes y año. */
-function toMonth(date: Date | null): string | null {
-  if (!date) return null;
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-}
-
-function matchesTech(technologies: string[], tech?: string): boolean {
-  if (!tech) return true;
-  const needle = tech.trim().toLowerCase();
-  return technologies.some((t) => t.toLowerCase().includes(needle));
-}
-
-function serializeExperience(e: WorkExperience) {
-  return {
-    company: e.company,
-    position: e.position,
-    start: toMonth(e.startDate),
-    end: toMonth(e.endDate),
-    current: e.endDate === null,
-    location: e.location,
-    technologies: e.technologiesUsed,
-    responsibilities: e.responsibilities,
-  };
-}
 
 /** Respuesta con el dato como texto (lo que ve el modelo) y estructurado (lo que consume una vista). */
 function reply<T extends Record<string, unknown>>(data: T) {
@@ -83,16 +64,7 @@ export function createMcpServer(): McpServer {
       inputSchema: { lang: langSchema },
       annotations: readOnly,
     },
-    async ({ lang }) =>
-      reply({
-        lang,
-        name: contact.name,
-        role: role[lang as Lang],
-        location: contact.location,
-        timezone: contact.timezone,
-        facts: quickFacts[lang as Lang].map((f) => f.text),
-        site: contact.site,
-      }),
+    async ({ lang }) => reply(getProfile(lang as Lang)),
   );
 
   server.registerTool(
@@ -101,21 +73,14 @@ export function createMcpServer(): McpServer {
       _meta: viewMeta('projects'),
       title: 'Productos y proyectos',
       description:
-        'Productos propios de Nahuel (Chatbot Up y Control Up): qué hace cada uno, tecnologías y enlace. Usala cuando pregunten por sus proyectos, productos o qué construyó. Muestra tarjetas filtrables en el chat, así que no repitas la lista en texto. Con `tech` filtra por tecnología (ej. "RAG", ".NET").',
+        'Productos propios de Nahuel (Chatbot Up, Control Up y ArcaSuite): qué hace cada uno, tecnologías y enlace. Usala cuando pregunten por sus proyectos, productos o qué construyó. Muestra tarjetas filtrables en el chat, así que no repitas la lista en texto. Con `tech` filtra por tecnología (ej. "RAG", ".NET").',
       inputSchema: {
         tech: z.string().max(60).optional().describe('Tecnología a filtrar, p. ej. "RAG" o ".NET"'),
         lang: langSchema,
       },
       annotations: readOnly,
     },
-    async ({ tech, lang }) => {
-      const list = products[lang as Lang].filter((p) => matchesTech(p.technologies, tech));
-      return reply({
-        lang,
-        count: list.length,
-        projects: list.map(({ name, tagline, url, technologies }) => ({ name, tagline, url, technologies })),
-      });
-    },
+    async ({ tech, lang }) => reply(listProjects(lang as Lang, tech)),
   );
 
   server.registerTool(
@@ -131,13 +96,7 @@ export function createMcpServer(): McpServer {
       },
       annotations: readOnly,
     },
-    async ({ tech, lang }) => {
-      const source = workExperiences[lang] ?? workExperiences['es-AR'];
-      const list = source
-        .filter((e) => matchesTech(e.technologiesUsed, tech))
-        .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
-      return reply({ lang, count: list.length, experience: list.map(serializeExperience) });
-    },
+    async ({ tech, lang }) => reply(getExperience(lang as Lang, tech)),
   );
 
   server.registerTool(
@@ -149,7 +108,7 @@ export function createMcpServer(): McpServer {
       inputSchema: { lang: langSchema },
       annotations: readOnly,
     },
-    async ({ lang }) => reply({ lang, groups: skills[lang as Lang] }),
+    async ({ lang }) => reply(getSkills(lang as Lang)),
   );
 
   server.registerTool(
@@ -162,15 +121,7 @@ export function createMcpServer(): McpServer {
       inputSchema: { lang: langSchema },
       annotations: readOnly,
     },
-    async ({ lang }) =>
-      reply({
-        lang,
-        email: contact.email,
-        linkedin: contact.linkedin,
-        github: contact.github,
-        form: `${contact.site}/${lang}/#contact-me`,
-        responseTime: contact.responseTime,
-      }),
+    async ({ lang }) => reply(getContactOptions(lang as Lang)),
   );
 
   return server;

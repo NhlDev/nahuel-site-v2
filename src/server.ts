@@ -11,7 +11,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 
-import { createMcpRouter } from './mcp/router';
+import { createMcpRouter, createPublicMcpRouter } from './mcp/router';
 
 // Widget de Chatbot Up: el bundle sale de `app.`, el handshake y el streaming van a `api.`
 // y las vistas interactivas (MCP Apps) corren en un iframe de otro origen, `ui.`.
@@ -35,6 +35,14 @@ const allowedHosts = (
   .filter(Boolean);
 
 const angularApp = new AngularNodeAppEngine({ allowedHosts });
+
+// Un solo host canónico: www.nahuel.app redirige a nahuel.app (cuando el DNS de www apunte acá)
+app.use((req, res, next) => {
+  if (req.hostname === 'www.nahuel.app') {
+    return res.redirect(301, `https://nahuel.app${req.originalUrl}`);
+  }
+  next();
+});
 
 // JSON body parsing
 app.use(express.json({ limit: '1mb' }));
@@ -178,6 +186,9 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// MCP público de solo lectura, sin token (cualquier cliente MCP). Va ANTES del que exige token.
+app.use('/api/mcp/public', createPublicMcpRouter());
+
 // Servidor MCP con el contenido público del sitio (lo consume Chatbot Up), autenticado con MCP_API_TOKEN
 app.use('/api/mcp', createMcpRouter());
 
@@ -251,8 +262,11 @@ function escapeHtml(s: string) {
 }
 
 // --- i18n config ---
-const SUPPORTED_LOCALES = new Set(['es-AR', 'en-US']);
-const DEFAULT_LOCALE = 'es-AR';
+// Prefijos de URL (`subPath` de cada locale en angular.json): /es/ y /en/
+const SUPPORTED_LOCALES = new Set(['es', 'en']);
+const DEFAULT_LOCALE = 'es';
+// Prefijos anteriores (hasta 2026-11): redirigen 301 para no perder lo indexado
+const LEGACY_LOCALES: Record<string, string> = { 'es-AR': 'es', 'en-US': 'en' };
 
 // Archivos SEO/well-known que deben responder en la raíz real del dominio
 // (los assets de `public/` se duplican por locale, no existen en la raíz del build)
@@ -283,6 +297,14 @@ app.use((req, res, next) => {
   next();
 });
 
+// /es-AR/… → /es/… y /en-US/… → /en/…
+app.use((req, res, next) => {
+  const seg1 = req.path.split('/')[1] || '';
+  const to = LEGACY_LOCALES[seg1];
+  if (!to) return next();
+  return res.redirect(301, `/${to}${req.originalUrl.slice(seg1.length + 1)}`);
+});
+
 // Redirigir raíz o rutas sin prefijo a la locale negociada (excluir API)
 app.use((req, res, next) => {
   const isDevServer = process.env['NODE_ENV'] === 'development';
@@ -303,8 +325,8 @@ app.use((req, res, next) => {
         .map((s) => s.trim().toLowerCase());
       for (const p of parts) {
         const [tag] = p.split(';');
-        if (tag.startsWith('es')) return 'es-AR';
-        if (tag.startsWith('en')) return 'en-US';
+        if (tag.startsWith('es')) return 'es';
+        if (tag.startsWith('en')) return 'en';
       }
       return DEFAULT_LOCALE;
     })();

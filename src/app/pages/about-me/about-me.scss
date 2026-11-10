@@ -106,7 +106,8 @@
 .product-list {
   @include m.list-reset;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  // Una columna: con 3 productos, dos columnas dejaban uno solo en la segunda fila
+  grid-template-columns: 1fr;
   gap: 0.75rem;
 }
 
@@ -158,6 +159,7 @@
   }
 
   &__ext {
+    align-self: center;
     width: 18px;
     height: 18px;
     font-size: 18px;

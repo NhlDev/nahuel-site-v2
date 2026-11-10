@@ -14,7 +14,8 @@
 - **Email:** nahuel.ald@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/nahuel-alderete
 - **GitHub:** https://github.com/NhlDev
-- **Sitio web:** https://nahuel.app (disponible en español `/es-AR/` e inglés `/en-US/`)
+- **Sitio web:** https://nahuel.app (disponible en español `/es/` e inglés `/en/`)
+- **MCP público:** https://nahuel.app/api/mcp/public (servidor MCP de solo lectura con su perfil, experiencia, stack y proyectos; cualquier cliente MCP puede conectarse)
 - **Idiomas:** Español (nativo), Inglés (B2)
 - **Tiempo de respuesta habitual:** 24–48 h
 - **Disponibilidad:** Part-time / Full-time
@@ -24,7 +25,7 @@
 Desarrollador Full-Stack con más de 10 años de experiencia creando productos web y
 mobile end-to-end, hoy enfocado en IA aplicada y automatización. Diseña y construye
 asistentes conversacionales con RAG, tool calling e integración con LLMs: su producto
-Chatbot Up (.NET, Semantic Kernel, Gemini, pgvector) permite que una pyme atienda a
+Chatbot Up (.NET, Gemini, pgvector) permite que una pyme atienda a
 sus clientes por WhatsApp, Telegram, Instagram y su web, con derivación a una persona
 cuando hace falta. Esa capa de IA se apoya en una década de desarrollo: frontends en
 Angular e Ionic / React Native, APIs en .NET y Node.js, y sistemas críticos en banca y
@@ -35,7 +36,7 @@ demo.
 
 - **10+ años** de experiencia profesional
 - **15+ proyectos** desarrollados
-- **2 productos SaaS propios:** Chatbot Up y Control Up
+- **3 productos SaaS propios:** Chatbot Up, Control Up y ArcaSuite
 - **5+ sectores/industrias** distintos (banca digital, salud, marketing digital,
   transporte/tráfico, aeropuertos, medios de pago, RRHH/selección de talento)
 
@@ -47,7 +48,7 @@ demo.
 - **Backend:** Node.js, C# / .NET (.NET Web API, ASP.NET WebForms, ASP.NET MVC4),
   Entity Framework 6
 - **Bases de datos:** SQL Server, ElasticSearch
-- **IA aplicada:** LLMs (Gemini, Claude), RAG con pgvector, Semantic Kernel, tool calling, n8n,
+- **IA aplicada:** LLMs (Gemini, Claude), RAG con pgvector, tool calling, servidores y clientes MCP (Model Context Protocol), n8n,
   Spec-Driven Development (OpenSpec),
   asistentes multicanal (WhatsApp, Telegram, Instagram, web); Python y TensorFlow para
   prototipos
@@ -73,7 +74,7 @@ Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 - Asistentes con IA (RAG) entrenados con el contenido de cada negocio
 - Canales: WhatsApp, Telegram, Instagram y widget embebible en la web
 - Derivación a una persona cuando el asistente no puede resolver
-- Stack: .NET 10, ASP.NET Core, Semantic Kernel, Gemini, pgvector (backend);
+- Stack: .NET 10, ASP.NET Core, Microsoft.Extensions.AI, Gemini, pgvector (backend);
   Angular 21 (panel de administración); TypeScript (widget)
 - Estado: beta cerrada; se vende de forma asistida (implementación + abono), sin
   precios publicados. Para consultas comerciales, derivar a contacto.
@@ -82,6 +83,18 @@ Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 ### Control Up — https://controlup.com.ar/
 - Gestión comercial para pymes: ventas, stock, clientes y reportes en un solo lugar
 - Stack: .NET (backend) y Angular (frontend)
+
+### ArcaSuite — https://arca-suite.controlup.com.ar/
+- Facturación electrónica de ARCA (ex AFIP) como servicio, para contribuyentes de Argentina
+- Consola web guiada para configurar y emitir, API REST y servidor MCP para que un
+  agente de IA emita y consulte comprobantes
+- Emite facturas A, B y C con CAE, notas de crédito y facturas E de exportación;
+  explica cada error de ARCA en castellano y no emite dos veces el mismo comprobante
+- Funciones con IA (Gemini, probadas con una clave real): lee facturas de compra desde una
+  foto o un PDF y arma el comprobante recibido para revisar, y sugiere qué columna es cada
+  dato al importar un CSV propio. La IA sugiere; los importes los calcula el servidor y
+  guardar lo confirma siempre una persona
+- Stack: .NET (ASP.NET Core, EF Core, Microsoft.Extensions.AI), Gemini, PostgreSQL, Angular 22, MCP
 
 ## Experiencia laboral
 
@@ -205,7 +218,7 @@ Más de 10 años de experiencia profesional como desarrollador, iniciando en Itr
 Es Desarrollador Fullstack en Infocorp Group (desde diciembre de 2025, remoto desde Uruguay), trabajando en la plataforma de banca digital con .NET, Angular y React Native. En paralelo mantiene un trabajo freelance para el sector salud desde 2021.
 
 **¿Con qué tecnologías trabaja principalmente?**
-En IA: LLMs (Gemini, Claude), RAG, Semantic Kernel, n8n y Python. Como base full-stack: .NET/C#, Angular, TypeScript, Node.js e Ionic / React Native.
+En IA: LLMs (Gemini, Claude), RAG, MCP, n8n y Python. Como base full-stack: .NET/C#, Angular, TypeScript, Node.js e Ionic / React Native.
 
 **¿Tiene experiencia con React o React Native?**
 Sí, usó React Native en Infocorp Group (rol actual y el período 2021–2024).
@@ -214,7 +227,7 @@ Sí, usó React Native en Infocorp Group (rol actual y el período 2021–2024).
 Sí, trabajó como administrador de SQL Server en Itrio S.A. (Prisma Medios de Pago) y usó ElasticSearch en Huenei IT Services.
 
 **¿Trabajó con inteligencia artificial?**
-Sí. Es el foco actual de su carrera. Creó Chatbot Up, un SaaS de asistentes con IA basado en RAG (.NET, Semantic Kernel, Gemini, pgvector) que atiende por WhatsApp, Telegram, Instagram y la web. También participó en un MVP en Scoutt Inc. que usaba IA para seleccionar candidatos, y hace prototipos con Python y TensorFlow.
+Sí. Es el foco actual de su carrera. Creó Chatbot Up, un SaaS de asistentes con IA basado en RAG (.NET, Gemini, pgvector) que atiende por WhatsApp, Telegram, Instagram y la web, y ArcaSuite, que expone la facturación electrónica de ARCA como servidor MCP para agentes de IA. También participó en un MVP en Scoutt Inc. que usaba IA para seleccionar candidatos, y hace prototipos con Python y TensorFlow.
 
 **¿Usa n8n, Claude o metodologías como SDD?**
 Sí: automatiza con n8n, usa Gemini en producción, trabaja con Claude / Claude Code y desarrolla con Spec-Driven Development usando OpenSpec.

@@ -1,7 +1,6 @@
 import {
   Component,
   inject,
-  OnInit,
   AfterViewInit,
   OnDestroy,
   PLATFORM_ID,
@@ -10,59 +9,23 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Title, Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, skip } from 'rxjs';
 import { Footer, Header } from './components';
-import { Home } from './pages/home/home';
-import { AboutMe } from './pages/about-me/about-me';
-import { Resume } from './pages/resume/resume';
-import { ContactMe } from './pages/contact-me/contact-me';
-
-const SITE_URL = 'https://nahuel.app';
-
-interface LocaleSeo {
-  title: string;
-  description: string;
-  ogTitle: string;
-  ogLocale: string;
-  jobTitle: string;
-}
-
-const SEO_CONTENT: Record<'es-AR' | 'en-US', LocaleSeo> = {
-  'es-AR': {
-    title: 'Nahuel Alderete | AI Engineer & Full-Stack Developer',
-    description:
-      'AI Engineer y desarrollador Full-Stack (10+ años). Asistentes con IA, integraciones con LLMs (RAG) y automatizaciones para negocios con .NET y Angular.',
-    ogTitle: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
-    ogLocale: 'es_AR',
-    jobTitle: 'AI Engineer & Full-Stack Developer',
-  },
-  'en-US': {
-    title: 'Nahuel Alderete | AI Engineer & Full-Stack Developer',
-    description:
-      'AI Engineer and Full-Stack Developer (10+ years). AI assistants, LLM integrations (RAG) and business automations with .NET and Angular.',
-    ogTitle: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
-    ogLocale: 'en_US',
-    jobTitle: 'AI Engineer & Full-Stack Developer',
-  },
-};
+import { Assistant } from './services/assistant';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Footer, Home, AboutMe, Resume, ContactMe],
+  imports: [Header, Footer, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App implements OnInit, AfterViewInit, OnDestroy {
-  public readonly isTest =
-    typeof window !== 'undefined' && !!(window as any).__karma__;
-
-  protected title = 'nahu-dev-site-v2';
-
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+export class App implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
+  private assistant = inject(Assistant);
 
   // MutationObserver watches the DOM for @defer sections to appear,
   // then attaches IntersectionObserver to trigger entrance animations.
@@ -72,148 +35,24 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
   localeId = inject(LOCALE_ID);
 
-  ngOnInit(): void {
-    const locale: 'es-AR' | 'en-US' =
-      this.localeId === 'en-US' ? 'en-US' : 'es-AR';
-    const otherLocale: 'es-AR' | 'en-US' =
-      locale === 'es-AR' ? 'en-US' : 'es-AR';
-    const seo = SEO_CONTENT[locale];
-    const canonicalUrl = `${SITE_URL}/${locale}/`;
-    const ogImageUrl = `${SITE_URL}/og-image.png`;
-
-    this.titleService.setTitle(seo.title);
-    this.metaService.updateTag({
-      name: 'description',
-      content: seo.description,
-    });
-    this.metaService.updateTag({ name: 'author', content: 'Nahuel Alderete' });
-    this.metaService.updateTag({ name: 'robots', content: 'index, follow' });
-
-    this.metaService.updateTag({
-      property: 'og:site_name',
-      content: 'Nahuel Alderete Portfolio',
-    });
-    this.metaService.updateTag({ property: 'og:title', content: seo.ogTitle });
-    this.metaService.updateTag({
-      property: 'og:description',
-      content: seo.description,
-    });
-    this.metaService.updateTag({ property: 'og:type', content: 'profile' });
-    this.metaService.updateTag({ property: 'og:url', content: canonicalUrl });
-    this.metaService.updateTag({ property: 'og:image', content: ogImageUrl });
-    this.metaService.updateTag({
-      property: 'og:locale',
-      content: seo.ogLocale,
-    });
-    this.metaService.updateTag({
-      property: 'og:locale:alternate',
-      content: SEO_CONTENT[otherLocale].ogLocale,
-    });
-
-    this.metaService.updateTag({
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    });
-    this.metaService.updateTag({ name: 'twitter:title', content: seo.ogTitle });
-    this.metaService.updateTag({
-      name: 'twitter:description',
-      content: seo.description,
-    });
-    this.metaService.updateTag({ name: 'twitter:image', content: ogImageUrl });
-
-    this.upsertLink('canonical', canonicalUrl);
-    this.upsertLink('alternate', `${SITE_URL}/es-AR/`, 'es-AR');
-    this.upsertLink('alternate', `${SITE_URL}/en-US/`, 'en-US');
-    this.upsertLink('alternate', `${SITE_URL}/es-AR/`, 'x-default');
-
-    this.upsertJsonLd({
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'Person',
-          '@id': `${SITE_URL}/#person`,
-          name: 'Nahuel Alderete',
-          url: canonicalUrl,
-          sameAs: [
-            'https://github.com/NhlDev',
-            'https://www.linkedin.com/in/nahuel-alderete',
-          ],
-          jobTitle: seo.jobTitle,
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Buenos Aires',
-            addressCountry: 'AR',
-          },
-          knowsLanguage: ['es', 'en'],
-          image: `${SITE_URL}/icon-512.png`,
-          description: seo.description,
-          knowsAbout: [
-            'Artificial Intelligence',
-            'Large Language Models',
-            'Retrieval-Augmented Generation',
-            'Semantic Kernel',
-            'Google Gemini',
-            'Claude',
-            'n8n',
-            'Spec-Driven Development',
-            'OpenSpec',
-            'Conversational AI',
-            'Business Process Automation',
-            'Angular',
-            'TypeScript',
-            '.NET',
-            'C#',
-            'Node.js',
-            'Python',
-            'Ionic Framework',
-            'React Native',
-            'Software Architecture',
-          ],
-          hasOccupation: {
-            '@type': 'Occupation',
-            name: 'AI Engineer',
-            occupationalCategory: '15-1252.00',
-            skills: 'LLMs, RAG, Semantic Kernel, AI automation, .NET, C#, Angular, TypeScript, Node.js, Python',
-          },
-        },
-        {
-          '@type': 'WebSite',
-          '@id': `${SITE_URL}/#website`,
-          url: SITE_URL,
-          name: 'Nahuel Alderete — AI Engineer & Full-Stack Developer',
-          publisher: {
-            '@id': `${SITE_URL}/#person`,
-          },
-          inLanguage: [locale, otherLocale],
-        },
-      ],
-    });
+  constructor() {
+    // Al cambiar de página en el cliente, el foco pasa al contenido para que el lector de
+    // pantalla lo anuncie (la primera navegación es la carga inicial y se ignora).
+    inject(Router)
+      .events.pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        skip(1),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => this.document.getElementById('main')?.focus({ preventScroll: true }));
   }
 
-  private upsertLink(rel: string, href: string, hreflang?: string): void {
-    const selector = hreflang
-      ? `link[rel="${rel}"][hreflang="${hreflang}"]`
-      : `link[rel="${rel}"]`;
-    let link = this.document.head.querySelector<HTMLLinkElement>(selector);
-    if (!link) {
-      link = this.document.createElement('link');
-      link.setAttribute('rel', rel);
-      if (hreflang) link.setAttribute('hreflang', hreflang);
-      this.document.head.appendChild(link);
-    }
-    link.setAttribute('href', href);
-  }
-
-  private upsertJsonLd(data: Record<string, unknown>): void {
-    const id = 'person-jsonld';
-    let script = this.document.getElementById(id) as HTMLScriptElement | null;
-    if (!script) {
-      script = this.document.createElement('script');
-      script.type = 'application/ld+json';
-      script.id = id;
-      this.document.head.appendChild(script);
-    }
-    script.textContent = JSON.stringify(data);
+  /** El skip link no usa el href: con <base href="/es/">, "#main" llevaría al inicio desde una página interna. */
+  skipToContent(event: Event): void {
+    event.preventDefault();
+    const main = this.document.getElementById('main');
+    main?.focus();
+    main?.scrollIntoView();
   }
 
   ngAfterViewInit(): void {
@@ -262,6 +101,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
   private attachToExisting(selectors: string[]): void {
     for (const sel of selectors) {
+      // Al volver al inicio desde una página interna las secciones se vuelven a crear
       const el = document.querySelector(sel);
       if (el && !this.observed.has(el)) {
         this.observed.add(el);
@@ -285,7 +125,9 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     script.setAttribute('data-locale', this.localeId);
     script.setAttribute('data-theme', 'dark');
     script.async = true;
-    
+    // Los botones "Preguntale al asistente" aparecen recién cuando el widget terminó de cargar
+    script.addEventListener('load', () => this.assistant.refresh());
+
     this.document.body.appendChild(script);
   }
 }

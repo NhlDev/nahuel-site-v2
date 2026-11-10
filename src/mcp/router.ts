@@ -22,15 +22,8 @@ function requireToken(req: Request, res: Response, next: NextFunction) {
   return next();
 }
 
-/** Servidor MCP (Streamable HTTP, stateless) con el contenido público del sitio. Se monta en /api/mcp. */
-export function createMcpRouter(): Router {
-  const router = Router();
-
-  router.use(
-    rateLimit({ windowMs: 60_000, max: 60, standardHeaders: true, legacyHeaders: false }),
-    requireToken,
-  );
-
+/** Rutas del protocolo (Streamable HTTP, stateless). Las comparten el endpoint con token y el público. */
+function mountMcp(router: Router): void {
   router.post('/', async (req, res) => {
     const server = createMcpServer();
     const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
@@ -59,6 +52,43 @@ export function createMcpRouter(): Router {
     });
   router.get('/', notAllowed);
   router.delete('/', notAllowed);
+}
 
+/** Servidor MCP con el contenido público del sitio, autenticado con MCP_API_TOKEN (lo consume Chatbot Up). Se monta en /api/mcp. */
+export function createMcpRouter(): Router {
+  const router = Router();
+  router.use(
+    rateLimit({ windowMs: 60_000, max: 60, standardHeaders: true, legacyHeaders: false }),
+    requireToken,
+  );
+  mountMcp(router);
+  return router;
+}
+
+/**
+ * El mismo servidor sin token, para que cualquier cliente MCP (Claude, ChatGPT, un IDE) consulte el perfil.
+ * Es seguro abrirlo porque todo lo que devuelve ya es público en el sitio y las tools son de solo lectura
+ * (no hay escritura, ni envío de mensajes, ni acceso a secretos). Se mitiga el abuso con un límite más bajo
+ * por IP (el body ya tiene el tope global de 1 MB). Se monta en /api/mcp/public, antes del endpoint con token.
+ */
+export function createPublicMcpRouter(): Router {
+  const router = Router();
+
+  // Permite clientes MCP que corren en un navegador. Sin credenciales, así que `*` no expone nada de una sesión.
+  router.use((req, res, next) => {
+    res.set({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Accept, Mcp-Protocol-Version',
+      'Access-Control-Max-Age': '86400',
+      // Helmet lo manda en same-origin y bloquearía la lectura desde otro origen aunque haya CORS
+      'Cross-Origin-Resource-Policy': 'cross-origin',
+    });
+    if (req.method === 'OPTIONS') return res.sendStatus(204);
+    return next();
+  });
+
+  router.use(rateLimit({ windowMs: 60_000, max: 30, standardHeaders: true, legacyHeaders: false }));
+  mountMcp(router);
   return router;
 }

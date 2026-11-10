@@ -1,21 +1,31 @@
 # Nahuel Alderete
 
-> AI Engineer y desarrollador Full-Stack con más de 10 años de experiencia, basado en Buenos Aires, Argentina. Construye asistentes con IA (RAG, tool calling, integración con LLMs como Gemini y Claude), automatizaciones con n8n y desarrolla con Spec-Driven Development (OpenSpec), sobre una base de desarrollo web y mobile con .NET, Angular y Node.js.
+> AI Engineer y desarrollador Full-Stack con más de 10 años de experiencia, basado en Buenos Aires, Argentina. Construye asistentes con IA (RAG, tool calling, integración con LLMs como Gemini y Claude, servidores MCP), automatizaciones con n8n y desarrolla con Spec-Driven Development (OpenSpec), sobre una base de desarrollo web y mobile con .NET, Angular y Node.js.
 
 El sitio está disponible en español e inglés. El contenido es el mismo en ambos idiomas.
 
 ## Sitio
 
-- [Inicio y presentación (español)](https://nahuel.app/es-AR/): rol actual, stack y métricas
-- [Home and introduction (English)](https://nahuel.app/en-US/): current role, stack and highlights
-- [Sobre mí](https://nahuel.app/es-AR/#about-me): enfoque en IA aplicada, stack y productos propios
-- [Experiencia](https://nahuel.app/es-AR/#resume): trayectoria profesional 2014–actualidad
-- [Contacto](https://nahuel.app/es-AR/#contact-me): formulario y canales directos
+- [Inicio y presentación (español)](https://nahuel.app/es/): rol actual, stack y métricas
+- [Home and introduction (English)](https://nahuel.app/en/): current role, stack and highlights
+- [Sobre mí](https://nahuel.app/es/#about-me): enfoque en IA aplicada, stack y productos propios
+- [Experiencia](https://nahuel.app/es/#resume): trayectoria profesional 2014–actualidad
+- [Contacto](https://nahuel.app/es/#contact-me): formulario y canales directos
+- [Caso Chatbot Up](https://nahuel.app/es/proyectos/chatbot-up): qué hace y cómo está construido ([English](https://nahuel.app/en/projects/chatbot-up))
+- [Caso ArcaSuite](https://nahuel.app/es/proyectos/arcasuite): qué hace y cómo está construido ([English](https://nahuel.app/en/projects/arcasuite))
+- [Caso Control Up](https://nahuel.app/es/proyectos/control-up): qué hace y cómo está construido ([English](https://nahuel.app/en/projects/control-up))
 
 ## Productos propios
 
 - [Chatbot Up](https://chatbotup.com.ar/): asistentes con IA (RAG) entrenados con el contenido de cada negocio, para WhatsApp, Telegram, Instagram y la web
 - [Control Up](https://controlup.com.ar/): gestión comercial para pymes (ventas, stock, clientes y reportes)
+- [ArcaSuite](https://arca-suite.controlup.com.ar/): facturación electrónica de ARCA (ex AFIP) con IA: lee facturas de compra desde una foto o PDF, sugiere columnas al importar CSV y expone un servidor MCP para agentes de IA
+
+## MCP para agentes
+
+- Servidor MCP público y de solo lectura (Streamable HTTP, sin autenticación): `https://nahuel.app/api/mcp/public`
+- Herramientas: `get_profile`, `list_projects`, `get_experience`, `get_skills`, `get_contact_options` (con `lang` = `es-AR` o `en-US`)
+- En navegadores con WebMCP (Chrome, origin trial) la página registra esas mismas herramientas con `document.modelContext`
 
 ## Perfiles
 

@@ -1,0 +1,88 @@
+<article class="project" aria-labelledby="project-title">
+  <header class="project-head">
+    <nav class="breadcrumb" [attr.aria-label]="labels.breadcrumbProjects">
+      <ol>
+        <li><a routerLink="/">{{ labels.breadcrumbHome }}</a></li>
+        <li><a routerLink="/" fragment="about-me">{{ labels.breadcrumbProjects }}</a></li>
+        <li aria-current="page">{{ project.name }}</li>
+      </ol>
+    </nav>
+
+    <p class="eyebrow">
+      <mat-icon aria-hidden="true">{{ icon }}</mat-icon>
+      {{ labels.eyebrow }}
+    </p>
+    <h1 id="project-title" class="project-title">{{ project.name }}</h1>
+    <p class="lead">{{ project.lead }}</p>
+    <div class="actions">
+      <a mat-stroked-button [href]="project.url" target="_blank" rel="noopener">
+        {{ labels.visit }} {{ project.name }}
+        <mat-icon iconPositionEnd aria-hidden="true">arrow_outward</mat-icon>
+        <span class="visually-hidden">{{ labels.opensNewTab }}</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="block" aria-labelledby="features-title">
+    <h2 id="features-title">{{ labels.features }}</h2>
+    <dl class="features">
+      @for (f of project.features; track f.title) {
+      <div class="feature">
+        <dt>{{ f.title }}</dt>
+        <dd>{{ f.text }}</dd>
+      </div>
+      }
+    </dl>
+  </section>
+
+  @if (assistant.available()) {
+  <section class="block ask" aria-labelledby="ask-title">
+    <h2 id="ask-title">{{ labels.askTitle }}</h2>
+    <p>{{ labels.askText }}</p>
+    <ul class="questions">
+      @for (q of project.questions; track q) {
+      <li>
+        <button type="button" mat-stroked-button (click)="assistant.ask(q)">{{ q }}</button>
+      </li>
+      }
+    </ul>
+  </section>
+  }
+
+  <section class="block" aria-labelledby="build-title">
+    <h2 id="build-title">{{ labels.build }}</h2>
+    <ul class="build">
+      @for (item of project.build; track $index) {
+      <li>{{ item }}</li>
+      }
+    </ul>
+
+    <h3 class="subhead">{{ labels.stack }}</h3>
+    <ul class="stack">
+      @for (tech of project.stack; track tech) {
+      <li>{{ tech }}</li>
+      }
+    </ul>
+  </section>
+
+  <section class="block contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">{{ labels.contactTitle }}</h2>
+    <p>{{ labels.contactText }}</p>
+    <a mat-flat-button routerLink="/" fragment="contact-me">{{ labels.contactCta }}</a>
+  </section>
+
+  <section class="block" aria-labelledby="others-title">
+    <h2 id="others-title">{{ labels.others }}</h2>
+    <ul class="others">
+      @for (o of others; track o.slug) {
+      <li>
+        <a class="other-card" [routerLink]="['/', segment, o.slug]">
+          <span class="other-card__name">{{ o.name }}</span>
+          <span class="other-card__tagline">{{ o.tagline }}</span>
+          <mat-icon class="other-card__arrow" aria-hidden="true">arrow_forward</mat-icon>
+        </a>
+      </li>
+      }
+    </ul>
+  </section>
+</article>

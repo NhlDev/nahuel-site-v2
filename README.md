@@ -1,20 +1,31 @@
 # nahuel.app
 
 Sitio personal y portfolio de **Nahuel Alderete**, AI Engineer y desarrollador Full-Stack.
-Está en producción en **https://nahuel.app** (español `/es-AR/` e inglés `/en-US/`).
+Está en producción en **https://nahuel.app** (español `/es/` e inglés `/en/`).
 
 Más que una landing, es un proyecto para mostrar criterio técnico: Angular 22 con renderizado
 en el servidor, i18n compilada por idioma, SEO pensado también para buscadores de IA,
 accesibilidad y un despliegue contenerizado en Google Cloud.
 
+Probar el MCP público desde cualquier cliente MCP (por ejemplo `claude mcp add --transport http nahuel https://nahuel.app/api/mcp/public`)
+o a mano con `curl -X POST https://nahuel.app/api/mcp/public -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'`.
+
 ## Qué incluye
 
-- **Una sola página** con cuatro secciones: Inicio, Sobre mí, Experiencia (diagrama de Gantt y
-  timeline) y Contacto.
-- **Bilingüe** (es-AR / en-US), con un build y un conjunto de URLs por idioma.
+- **Inicio** con cuatro secciones: Inicio, Sobre mí, Experiencia (diagrama de Gantt y timeline) y
+  Contacto.
+- **Una página de caso por producto propio** (Chatbot Up, ArcaSuite, Control Up): qué hace, cómo
+  está hecho y stack, en `/es/proyectos/<slug>` y `/en/projects/<slug>`. El contenido está en
+  `src/app/constant/projects.ts`.
+- **Bilingüe** (locales `es-AR` / `en-US`, URLs `/es/` y `/en/` por el `subPath` de `angular.json`), con un build por idioma.
 - **Formulario de contacto** con reCAPTCHA v3, límite de peticiones y envío por SMTP.
-- **Servidor MCP** (`/api/mcp`, solo lectura) que expone el perfil, la experiencia, el stack y los
-  proyectos al asistente; comparte los datos con el sitio (`src/app/constant/profile.ts`).
+- **Servidor MCP de solo lectura** que expone el perfil, la experiencia, el stack y los proyectos.
+  Hay dos entradas al mismo servidor: `/api/mcp/public`, abierta (sin token, 30 peticiones por minuto
+  por IP, CORS habilitado) para cualquier cliente MCP, y `/api/mcp`, con `MCP_API_TOKEN`, que usa el
+  asistente. Comparten los datos con el sitio (`src/app/constant/public-data.ts`).
+- **WebMCP**: en navegadores que lo soportan (hoy Chrome, en origin trial) la página registra esas mismas
+  cinco herramientas para que un agente las use sin raspar el DOM (`src/app/services/web-mcp.ts`).
+  Es mejora progresiva: si el navegador no lo trae, no hace nada.
 - **Asistente conversacional** embebido, basado en [Chatbot Up](https://chatbotup.com.ar/),
   un producto propio.
 - **Sistema de diseño propio**: tokens de color, tipografía, radios y capas (`z-index`)
@@ -30,7 +41,7 @@ accesibilidad y un despliegue contenerizado en Google Cloud.
 | Servidor | Node.js 24, Express 5, Helmet (CSP), compression, express-rate-limit, Nodemailer |
 | i18n | `@angular/localize`, catálogos XLIFF (`src/locale/`), un build por idioma |
 | Lenguaje | TypeScript 6.0 en modo `strict` (`strictTemplates` incluido) |
-| Tests | Karma + Jasmine (44 tests) |
+| Tests | Karma + Jasmine |
 | Contenedores | Docker (multi-stage, `node:24-alpine`) |
 | Nube | Google Cloud Build, Artifact Registry, Cloud Run y Firebase Hosting |
 
@@ -44,15 +55,18 @@ Navegador ──► Firebase Hosting (nahuel.app) ──► Cloud Run (nahu-site
 ```
 
 - **Un solo contenedor** sirve los archivos estáticos, el HTML renderizado en el servidor y la API.
-- **Prefijo por idioma**: `/` redirige (302) a `/es-AR/` o `/en-US/` según `Accept-Language`.
-  Las rutas inexistentes responden `404`.
+- **Prefijo por idioma**: `/` redirige (302) a `/es/` o `/en/` según `Accept-Language`. Los prefijos
+  anteriores `/es-AR/` y `/en-US/` redirigen (301) a los nuevos. Las rutas inexistentes responden `404`.
+- **`www.nahuel.app`** redirige (301) a `nahuel.app` (falta el registro DNS de `www`).
 - **Archivos de raíz** (`robots.txt`, `sitemap.xml`, `llms.txt`, íconos y `og-image.png`) se
   sirven desde `/` aunque el build los genere dentro de cada carpeta de idioma.
 
 ### Decisiones técnicas
 
 - **SEO y buscadores de IA.** El HTML que recibe un crawler ya trae todo el contenido, con canonical,
-  `hreflang`, Open Graph y JSON-LD (`Person` y `WebSite`) generados por idioma. Para lograrlo:
+  `hreflang` (`es`, `en` y `x-default` apuntando a `/`, que redirige por idioma), Open Graph y JSON-LD
+  (`Person`, `WebSite` y, en cada caso, `SoftwareApplication` y `BreadcrumbList`), generados por
+  página en `src/app/services/seo.ts`. Para lograrlo:
   - Las secciones diferidas con `@defer` usan hidratación incremental; así se renderizan en el
     servidor y siguen cargándose de forma perezosa en el cliente.
   - `allowedHosts` está configurado de forma explícita. Si un `Host` no está permitido, Angular cae
@@ -71,7 +85,7 @@ Navegador ──► Firebase Hosting (nahuel.app) ──► Cloud Run (nahu-site
 src/
 ├─ app/
 │  ├─ components/     header y footer
-│  ├─ pages/          home, about-me, resume, contact-me (una carpeta por sección)
+│  ├─ pages/          landing (inicio) con home, about-me, resume, contact-me; project (página de caso)
 │  ├─ constant/       datos de experiencia y claves públicas
 │  ├─ services/       cliente del formulario de contacto
 │  ├─ app.ts          SEO por idioma, JSON-LD y carga del asistente

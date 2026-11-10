@@ -8,7 +8,7 @@
       <div class="about-main">
         <div class="about-text">
           <p i18n="@@aboutP1">Desarrollador Full‑Stack con más de 10 años creando productos web y mobile, hoy enfocado en IA aplicada y automatización.</p>
-          <p i18n="@@aboutP2">Diseño y construyo asistentes conversacionales con RAG, tool calling e integración con LLMs. En Chatbot Up, mi propio producto, uso .NET, Semantic Kernel, Gemini y pgvector para que una pyme atienda a sus clientes por WhatsApp, Telegram, Instagram y su web, con derivación a una persona cuando hace falta.</p>
+          <p i18n="@@aboutP2">Diseño y construyo asistentes conversacionales con RAG, tool calling e integración con LLMs. En Chatbot Up, mi propio producto, uso .NET, Gemini y pgvector para que una pyme atienda a sus clientes por WhatsApp, Telegram, Instagram y su web, con derivación a una persona cuando hace falta. En ArcaSuite llevé la facturación electrónica de ARCA (ex AFIP) a una API y a un servidor MCP para agentes de IA, y uso Gemini para leer facturas de compra desde una foto o un PDF.</p>
           <p i18n="@@aboutP3">Esa capa de IA se apoya en una década de desarrollo: frontends en Angular e Ionic / React Native, APIs en .NET y Node.js, y sistemas críticos en banca y salud. Busco que la IA resuelva un problema concreto del negocio, no que quede en una demo.</p>
         </div>
 
@@ -51,14 +51,13 @@
           <ul class="product-list">
             @for (product of products[lang]; track product.url) {
             <li>
-              <a class="product-card" [href]="product.url" target="_blank" rel="noopener noreferrer">
+              <a class="product-card" [routerLink]="['/', projectsSegment, product.slug]">
                 <mat-icon class="product-card__icon" aria-hidden="true">{{ product.icon }}</mat-icon>
                 <span class="product-card__body">
                   <span class="product-card__name">{{ product.name }}</span>
                   <span class="product-card__tagline">{{ product.tagline }}</span>
                 </span>
-                <mat-icon class="product-card__ext" aria-hidden="true">arrow_outward</mat-icon>
-                <span class="visually-hidden" i18n="@@opensNewTab">(se abre en una pestaña nueva)</span>
+                <mat-icon class="product-card__ext" aria-hidden="true">arrow_forward</mat-icon>
               </a>
             </li>
             }

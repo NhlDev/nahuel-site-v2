@@ -111,8 +111,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="aboutP2" datatype="html">
-        <source>Diseño y construyo asistentes conversacionales con RAG, tool calling e integración con LLMs. En Chatbot Up, mi propio producto, uso .NET, Semantic Kernel, Gemini y pgvector para que una pyme atienda a sus clientes por WhatsApp, Telegram, Instagram y su web, con derivación a una persona cuando hace falta.</source>
-        <target>I design and build conversational assistants with RAG, tool calling and LLM integrations. In Chatbot Up, my own product, I use .NET, Semantic Kernel, Gemini and pgvector so a small business can serve its customers on WhatsApp, Telegram, Instagram and its website, with handoff to a person when needed.</target>
+        <source>Diseño y construyo asistentes conversacionales con RAG, tool calling e integración con LLMs. En Chatbot Up, mi propio producto, uso .NET, Gemini y pgvector para que una pyme atienda a sus clientes por WhatsApp, Telegram, Instagram y su web, con derivación a una persona cuando hace falta. En ArcaSuite llevé la facturación electrónica de ARCA (ex AFIP) a una API y a un servidor MCP para agentes de IA, y uso Gemini para leer facturas de compra desde una foto o un PDF.</source>
+        <target>I design and build conversational assistants with RAG, tool calling and LLM integrations. In Chatbot Up, my own product, I use .NET, Gemini and pgvector so a small business can serve its customers on WhatsApp, Telegram, Instagram and its website, with handoff to a person when needed. In ArcaSuite I turned ARCA (formerly AFIP) e-invoicing into an API and an MCP server for AI agents, and I use Gemini to read purchase invoices from a photo or a PDF.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/about-me/about-me.html</context>
           <context context-type="linenumber">11,12</context>
@@ -560,6 +560,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/resume/resume.html</context>
           <context context-type="linenumber">135,136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="routeProjects" datatype="html">
+        <source>proyectos</source>
+        <target>projects</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
     </body>

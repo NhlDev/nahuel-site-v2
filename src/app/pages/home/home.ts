@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class Home {
 
   coreSkills = [
-    'LLMs', 'Gemini', 'Claude', 'RAG', 'n8n', 'Semantic Kernel', '.NET / C#', 'Angular', 'TypeScript'
+    'LLMs', 'Gemini', 'Claude', 'RAG', 'MCP', 'n8n', '.NET / C#', 'Angular', 'TypeScript'
   ];
 
   scrollTo(anchor: string, event?: Event): void {
