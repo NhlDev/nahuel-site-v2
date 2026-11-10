@@ -1,0 +1,27 @@
+/* Ajustes del widget de Chatbot Up que las variables --cu-* no cubren (se inyecta en su shadow root). */
+
+/* Áreas táctiles de 44px (el botón de enviar y el campo de texto traen 38px) */
+.chatbot-up-send {
+  width: 44px;
+  height: 44px;
+}
+
+.chatbot-up-input {
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+/* Foco visible con el color de acento del sitio */
+.chatbot-up-send:focus-visible,
+.chatbot-up-close:focus-visible,
+.chatbot-up-fab:focus-visible {
+  outline: 2px solid var(--color-accent, #7aa2f7);
+  outline-offset: 2px;
+}
+
+/* En pantallas chicas el panel respeta la barra de gestos del teléfono */
+@media (max-width: 540px) {
+  .chatbot-up-root:not(.mode-inline) {
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}

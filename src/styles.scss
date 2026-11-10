@@ -113,13 +113,42 @@ html {
   --z-drawer: 1210;
   --z-skip-link: 9999;
 
-  /* Widget de Chatbot Up: por defecto usa 2147483000 y taparía el drawer */
+  /* Widget de Chatbot Up: superficies planas y la misma escala de radios que botones y tarjetas.
+     Por defecto usa z-index 2147483000 y taparía el drawer; el resto de ajustes (áreas táctiles)
+     está en public/chatbot-widget.css. */
   --cu-z-index: var(--z-chatbot);
+  --cu-font-family: var(--font-sans);
+  --cu-backdrop-blur: 0px;
+  --cu-surface: var(--color-surface);
+  --cu-surface-border: var(--color-border-strong);
+  --cu-surface-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.7), 0 4px 12px -4px rgb(0 0 0 / 0.5);
+  --cu-divider: var(--color-border);
   --cu-content-bg: var(--color-bg);
-  --cu-launcher-bg: var(--mat-sys-primary);
-  --cu-radius-xl: var(--radius-sm);
-  --cu-header-bg: var(--color-surface-2);
-  --cu-panel-height: 75dvh;
+  --cu-composer-bg: var(--color-surface);
+  --cu-status-bg: var(--color-surface-2);
+  --cu-status-border: var(--color-border);
+  --cu-header-bg: var(--color-surface);
+  --cu-header-fore: var(--color-text);
+  --cu-on-surface: var(--color-text);
+  --cu-on-surface-variant: var(--color-text-muted);
+  /* El visitante en acento; el asistente como una tarjeta del sitio */
+  --cu-user-bg: var(--color-accent);
+  --cu-user-fore: var(--color-on-accent);
+  --cu-assistant-bg: var(--color-surface-2);
+  --cu-assistant-border: var(--color-border);
+  --cu-input-bg: var(--color-bg);
+  --cu-input-border: var(--color-border-strong);
+  /* Ícono oscuro sobre el acento claro: el blanco por defecto daba 2.3:1 */
+  --cu-launcher-bg: var(--color-accent);
+  --cu-theme-contrast: var(--color-on-accent);
+  --cu-launcher-size: 56px;
+  --cu-radius-launcher: 16px;
+  --cu-radius-md: 10px;
+  --cu-radius-lg: 10px;
+  --cu-radius-xl: 14px;
+  --cu-radius-bubble: 12px;
+  --cu-panel-width: min(400px, calc(100vw - 32px));
+  --cu-panel-height: min(640px, calc(100dvh - 120px));
 
   /* Layout */
   --header-height: 64px;

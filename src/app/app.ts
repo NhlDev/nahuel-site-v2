@@ -121,9 +121,11 @@ export class App implements AfterViewInit, OnDestroy {
     script.setAttribute('data-api-key', 'pk_live_26b30110fc3045da');
     script.setAttribute('data-mode', 'live');
     script.setAttribute('data-title', 'Asistente de Nahuel.app');
-    script.setAttribute('data-theme-color', '#404957');
+    script.setAttribute('data-theme-color', '#7aa2f7');
     script.setAttribute('data-locale', this.localeId);
     script.setAttribute('data-theme', 'dark');
+    // Hoja extra con las áreas táctiles; relativa a <base> para que resuelva en /es/ y /en/
+    script.setAttribute('data-stylesheet-url', new URL('chatbot-widget.css', this.document.baseURI).href);
     script.async = true;
     // Los botones "Preguntale al asistente" aparecen recién cuando el widget terminó de cargar
     script.addEventListener('load', () => this.assistant.refresh());
