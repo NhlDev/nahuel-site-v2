@@ -20,6 +20,9 @@ const CHATBOT_API_HOST = 'https://api.chatbotup.com.ar';
 const CHATBOT_UI_HOST = 'https://ui.chatbotup.com.ar';
 const CHATBOT_TTS_HOST = 'wss://api.chatbotup.com.ar';
 
+// Analytics propio de Control Up: script.js y recorder.js se cargan desde acá y envían eventos al mismo origen.
+const ANALYTICS_HOST = 'https://analytics.controlup.com.ar';
+
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
@@ -62,6 +65,7 @@ app.use(
           'https://www.google.com/recaptcha/',
           'https://www.gstatic.com/recaptcha/',
           CHATBOT_WIDGET_HOST,
+          ANALYTICS_HOST,
           // El widget carga su AudioWorklet de captura de voz desde un blob: URL
           'blob:',
         ],
@@ -96,6 +100,7 @@ app.use(
           'https://fonts.gstatic.com',
           CHATBOT_API_HOST,
           CHATBOT_TTS_HOST,
+          ANALYTICS_HOST,
         ],
       },
     },
