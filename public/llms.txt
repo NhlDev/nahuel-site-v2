@@ -19,7 +19,7 @@ El sitio está disponible en español e inglés. El contenido es el mismo en amb
 
 - [Chatbot Up](https://chatbotup.com.ar/): asistentes con IA (RAG) entrenados con el contenido de cada negocio, para WhatsApp, Telegram, Instagram y la web. Contacto: info@chatbotup.com.ar · WhatsApp +54 11 8127-3920
 - [Control Up](https://controlup.com.ar/): gestión comercial para pymes (ventas, stock, clientes y reportes). Contacto: info@controlup.com.ar · WhatsApp +54 11 2551-2106
-- [Comprobado](https://comprobado.com.ar/) (antes ArcaSuite): facturación electrónica de ARCA (ex AFIP) desde una consola web, una API REST o un asistente de IA (MCP). Contacto: admin@comprobado.com.ar
+- [Comprobado](https://comprobado.com.ar/) (antes ArcaSuite): facturación electrónica de ARCA (ex AFIP) desde una consola web, una API REST o un asistente de IA (MCP). Contacto: admin@comprobado.com.ar · WhatsApp +54 9 11 8126-9157
 
 ## MCP para agentes
 

@@ -79,7 +79,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://comprobado.com.ar/',
       icon: 'receipt_long',
       technologies: ['.NET', 'Gemini', 'MCP', 'PostgreSQL', 'Angular'],
-      contact: { email: 'admin@comprobado.com.ar' },
+      contact: { email: 'admin@comprobado.com.ar', whatsapp: '5491181269157', whatsappDisplay: '+54 9 11 8126-9157' },
     },
   ],
   'en-US': [
@@ -108,7 +108,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://comprobado.com.ar/',
       icon: 'receipt_long',
       technologies: ['.NET', 'Gemini', 'MCP', 'PostgreSQL', 'Angular'],
-      contact: { email: 'admin@comprobado.com.ar' },
+      contact: { email: 'admin@comprobado.com.ar', whatsapp: '5491181269157', whatsappDisplay: '+54 9 11 8126-9157' },
     },
   ],
 };

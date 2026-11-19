@@ -87,7 +87,7 @@ Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 - Stack: .NET (backend) y Angular (frontend)
 
 ### Comprobado (antes ArcaSuite) — https://comprobado.com.ar/
-- Contacto: admin@comprobado.com.ar. El dominio anterior (arca-suite.controlup.com.ar) redirige al nuevo
+- Contacto: admin@comprobado.com.ar · WhatsApp +54 9 11 8126-9157. El dominio anterior (arca-suite.controlup.com.ar) redirige al nuevo
 - Facturación electrónica de ARCA (ex AFIP) como servicio, para contribuyentes de Argentina
 - Consola web guiada para configurar y emitir, API REST y servidor MCP para que un
   agente de IA emita y consulte comprobantes
