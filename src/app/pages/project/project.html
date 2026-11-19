@@ -12,7 +12,10 @@
       <mat-icon aria-hidden="true">{{ icon }}</mat-icon>
       {{ labels.eyebrow }}
     </p>
-    <h1 id="project-title" class="project-title">{{ project.name }}</h1>
+    <div class="title-row">
+      <img class="project-icon" [src]="media.icon" alt="" width="56" height="56" />
+      <h1 id="project-title" class="project-title">{{ project.name }}</h1>
+    </div>
     @if (project.formerName) {
     <p class="former">{{ labels.formerly }}{{ project.formerName }}</p>
     }
@@ -25,6 +28,10 @@
       </a>
     </div>
   </header>
+
+  <figure class="shot">
+    <img [src]="media.og" [alt]="screenshotAlt" width="1200" height="630" fetchpriority="high" />
+  </figure>
 
   <section class="block" aria-labelledby="features-title">
     <h2 id="features-title">{{ labels.features }}</h2>
@@ -75,6 +82,9 @@
       <li>{{ labels.email }}: <a [href]="'mailto:' + contact.email">{{ contact.email }}</a></li>
       @if (whatsappUrl) {
       <li>{{ labels.whatsapp }}: <a [href]="whatsappUrl" target="_blank" rel="noopener">{{ contact.whatsappDisplay }}</a></li>
+      }
+      @if (contact.instagram) {
+      <li>{{ labels.instagram }}: <a [href]="contact.instagram" target="_blank" rel="noopener">{{ instagramHandle }}</a></li>
       }
     </ul>
   </section>

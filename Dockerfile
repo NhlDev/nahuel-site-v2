@@ -21,6 +21,9 @@ COPY --from=builder /app/dist ./dist
 # Vistas del servidor MCP (MCP Apps), compiladas por `npm run build:ui`; se leen del disco en runtime
 COPY --from=builder /app/ui-dist ./ui-dist
 
+# No correr como root dentro del contenedor
+USER node
+
 EXPOSE 4000
 
 # Ejecutar SSR

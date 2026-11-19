@@ -18,6 +18,9 @@ export interface PageSeo {
   paths: Record<Lang, string>;
   title: string;
   description: string;
+  /** Ruta (sin el prefijo de idioma) de la imagen 1200×630 de la página; por defecto, la del sitio. */
+  image?: string;
+  imageAlt?: string;
   ogType?: 'profile' | 'website' | 'article';
   /** Nodos extra de schema.org que se suman al grafo (Person y WebSite van siempre). */
   jsonLd?: Record<string, unknown>[];
@@ -53,14 +56,19 @@ export class Seo {
     this.tag('property', 'og:description', page.description);
     this.tag('property', 'og:type', page.ogType ?? 'website');
     this.tag('property', 'og:url', canonical);
-    this.tag('property', 'og:image', OG_IMAGE);
+    const image = page.image ? this.url(this.locale, page.image) : OG_IMAGE;
+    this.tag('property', 'og:image', image);
+    this.tag('property', 'og:image:width', '1200');
+    this.tag('property', 'og:image:height', '630');
+    this.tag('property', 'og:image:alt', page.imageAlt ?? page.title);
     this.tag('property', 'og:locale', OG_LOCALE[this.locale]);
     this.tag('property', 'og:locale:alternate', OG_LOCALE[other]);
 
     this.tag('name', 'twitter:card', 'summary_large_image');
     this.tag('name', 'twitter:title', page.title);
     this.tag('name', 'twitter:description', page.description);
-    this.tag('name', 'twitter:image', OG_IMAGE);
+    this.tag('name', 'twitter:image', image);
+    this.tag('name', 'twitter:image:alt', page.imageAlt ?? page.title);
 
     this.link('canonical', canonical);
     // Quita los hreflang de versiones anteriores (es-AR/en-US) que pudieran quedar en el HTML

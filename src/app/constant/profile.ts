@@ -23,6 +23,8 @@ export interface ProductContact {
   whatsapp?: string;
   /** Para mostrar */
   whatsappDisplay?: string;
+  /** Perfil de Instagram del producto */
+  instagram?: string;
 }
 
 export interface QuickFact {
@@ -61,7 +63,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://chatbotup.com.ar/',
       icon: 'smart_toy',
       technologies: ['.NET', 'Gemini', 'RAG', 'pgvector', 'MCP', 'Angular'],
-      contact: { email: 'info@chatbotup.com.ar', whatsapp: '541181273920', whatsappDisplay: '+54 11 8127-3920' },
+      contact: { email: 'info@chatbotup.com.ar', whatsapp: '541181273920', whatsappDisplay: '+54 11 8127-3920', instagram: 'https://www.instagram.com/chatbotup.ar/' },
     },
     {
       slug: 'control-up',
@@ -70,7 +72,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://controlup.com.ar/',
       icon: 'point_of_sale',
       technologies: ['.NET', 'Angular', 'TypeScript'],
-      contact: { email: 'info@controlup.com.ar', whatsapp: '541125512106', whatsappDisplay: '+54 11 2551-2106' },
+      contact: { email: 'info@controlup.com.ar', whatsapp: '541125512106', whatsappDisplay: '+54 11 2551-2106', instagram: 'https://www.instagram.com/controlup.ar/' },
     },
     {
       slug: 'comprobado',
@@ -79,7 +81,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://comprobado.com.ar/',
       icon: 'receipt_long',
       technologies: ['.NET', 'Gemini', 'MCP', 'PostgreSQL', 'Angular'],
-      contact: { email: 'admin@comprobado.com.ar', whatsapp: '5491181269157', whatsappDisplay: '+54 9 11 8126-9157' },
+      contact: { email: 'admin@comprobado.com.ar', whatsapp: '5491181269157', whatsappDisplay: '+54 9 11 8126-9157', instagram: 'https://www.instagram.com/comprobado.ar/' },
     },
   ],
   'en-US': [
@@ -90,7 +92,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://chatbotup.com.ar/',
       icon: 'smart_toy',
       technologies: ['.NET', 'Gemini', 'RAG', 'pgvector', 'MCP', 'Angular'],
-      contact: { email: 'info@chatbotup.com.ar', whatsapp: '541181273920', whatsappDisplay: '+54 11 8127-3920' },
+      contact: { email: 'info@chatbotup.com.ar', whatsapp: '541181273920', whatsappDisplay: '+54 11 8127-3920', instagram: 'https://www.instagram.com/chatbotup.ar/' },
     },
     {
       slug: 'control-up',
@@ -99,7 +101,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://controlup.com.ar/',
       icon: 'point_of_sale',
       technologies: ['.NET', 'Angular', 'TypeScript'],
-      contact: { email: 'info@controlup.com.ar', whatsapp: '541125512106', whatsappDisplay: '+54 11 2551-2106' },
+      contact: { email: 'info@controlup.com.ar', whatsapp: '541125512106', whatsappDisplay: '+54 11 2551-2106', instagram: 'https://www.instagram.com/controlup.ar/' },
     },
     {
       slug: 'comprobado',
@@ -108,7 +110,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://comprobado.com.ar/',
       icon: 'receipt_long',
       technologies: ['.NET', 'Gemini', 'MCP', 'PostgreSQL', 'Angular'],
-      contact: { email: 'admin@comprobado.com.ar', whatsapp: '5491181269157', whatsappDisplay: '+54 9 11 8126-9157' },
+      contact: { email: 'admin@comprobado.com.ar', whatsapp: '5491181269157', whatsappDisplay: '+54 9 11 8126-9157', instagram: 'https://www.instagram.com/comprobado.ar/' },
     },
   ],
 };

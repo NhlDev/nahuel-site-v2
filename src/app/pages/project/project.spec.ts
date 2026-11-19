@@ -35,7 +35,7 @@ describe('ProjectPage', () => {
   it('shows the product contact channels', () => {
     const hrefs = Array.from(render('chatbot-up').querySelectorAll('.channels a')).map((a) => a.getAttribute('href'));
 
-    expect(hrefs).toEqual(['mailto:info@chatbotup.com.ar', 'https://wa.me/541181273920']);
+    expect(hrefs).toEqual(['mailto:info@chatbotup.com.ar', 'https://wa.me/541181273920', 'https://www.instagram.com/chatbotup.ar/']);
   });
 
   it('links to the other projects only', () => {

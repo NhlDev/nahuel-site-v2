@@ -9,6 +9,7 @@ import {
   PROJECT_SLUGS,
   PROJECTS_SEGMENT,
   ProjectSlug,
+  PROJECT_MEDIA,
   projectDetails,
 } from '../../constant/projects';
 import { Assistant } from '../../services/assistant';
@@ -30,8 +31,11 @@ export class ProjectPage {
   readonly segment = PROJECTS_SEGMENT[this.lang];
   readonly project = projectDetails[this.lang][inject(ActivatedRoute).snapshot.data['slug'] as ProjectSlug];
   private readonly product = products[this.lang].find((p) => p.slug === this.project.slug);
+  readonly media = PROJECT_MEDIA[this.project.slug];
+  readonly screenshotAlt = `${this.labels.screenshot} ${this.project.name}`;
   readonly icon = this.product?.icon ?? 'apps';
   readonly contact = this.product?.contact;
+  readonly instagramHandle = this.contact?.instagram?.match(/instagram\.com\/([^/]+)/)?.[1]?.replace(/^/, '@');
   readonly whatsappUrl = this.contact?.whatsapp ? `https://wa.me/${this.contact.whatsapp}` : null;
   readonly others = PROJECT_SLUGS.filter((s) => s !== this.project.slug).map((s) => ({
     ...projectDetails[this.lang][s],
@@ -52,6 +56,8 @@ export class ProjectPage {
       paths,
       title: p.seoTitle,
       description: p.seoDescription,
+      image: this.media.og,
+      imageAlt: this.screenshotAlt,
       ogType: 'article',
       jsonLd: [
         {
@@ -60,6 +66,9 @@ export class ProjectPage {
           name: p.name,
           ...(p.formerName ? { alternateName: p.formerName } : {}),
           url: p.url,
+          image: this.seo.url(this.lang, this.media.og),
+          screenshot: this.seo.url(this.lang, this.media.og),
+          logo: this.seo.url(this.lang, this.media.icon),
           description: p.lead,
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'Web',
@@ -71,6 +80,7 @@ export class ProjectPage {
                   '@type': 'Organization',
                   name: p.name,
                   url: p.url,
+                  ...(this.contact.instagram ? { sameAs: [this.contact.instagram] } : {}),
                   contactPoint: {
                     '@type': 'ContactPoint',
                     contactType: 'customer support',

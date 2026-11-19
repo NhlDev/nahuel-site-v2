@@ -71,7 +71,7 @@ demo.
 Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 
 ### Chatbot Up — https://chatbotup.com.ar/
-- Contacto: info@chatbotup.com.ar · WhatsApp +54 11 8127-3920
+- Contacto: info@chatbotup.com.ar · WhatsApp +54 11 8127-3920 · Instagram @chatbotup.ar
 - Asistentes con IA (RAG) entrenados con el contenido de cada negocio
 - Canales: WhatsApp, Telegram, Instagram y widget embebible en la web
 - Derivación a una persona cuando el asistente no puede resolver
@@ -82,12 +82,12 @@ Productos SaaS que Nahuel creó y desarrolla como fundador/desarrollador:
 - El asistente del propio sitio nahuel.app funciona con Chatbot Up.
 
 ### Control Up — https://controlup.com.ar/
-- Contacto: info@controlup.com.ar · WhatsApp +54 11 2551-2106
+- Contacto: info@controlup.com.ar · WhatsApp +54 11 2551-2106 · Instagram @controlup.ar
 - Gestión comercial para pymes: ventas, stock, clientes y reportes en un solo lugar
 - Stack: .NET (backend) y Angular (frontend)
 
 ### Comprobado (antes ArcaSuite) — https://comprobado.com.ar/
-- Contacto: admin@comprobado.com.ar · WhatsApp +54 9 11 8126-9157. El dominio anterior (arca-suite.controlup.com.ar) redirige al nuevo
+- Contacto: admin@comprobado.com.ar · WhatsApp +54 9 11 8126-9157 · Instagram @comprobado.ar. El dominio anterior (arca-suite.controlup.com.ar) redirige al nuevo
 - Facturación electrónica de ARCA (ex AFIP) como servicio, para contribuyentes de Argentina
 - Consola web guiada para configurar y emitir, API REST y servidor MCP para que un
   agente de IA emita y consulte comprobantes

@@ -18,6 +18,13 @@ export const PROJECTS_SEGMENT: Record<Lang, string> = {
 
 export const PROJECT_SLUGS: ProjectSlug[] = ['chatbot-up', 'comprobado', 'control-up'];
 
+/** Ícono y captura de cada producto (public/img/<slug>/, relativo al idioma: /es/img/…). La captura es de 1200×630: sirve también como imagen Open Graph. */
+export const PROJECT_MEDIA: Record<ProjectSlug, { icon: string; og: string }> = {
+  'chatbot-up': { icon: 'img/chatbot-up/icon.svg', og: 'img/chatbot-up/og.png' },
+  comprobado: { icon: 'img/comprobado/icon.png', og: 'img/comprobado/og.png' },
+  'control-up': { icon: 'img/control-up/icon.png', og: 'img/control-up/og.png' },
+};
+
 export interface ProjectFeature {
   title: string;
   text: string;
@@ -61,7 +68,9 @@ export const PROJECT_LABELS: Record<Lang, {
   channels: string;
   email: string;
   whatsapp: string;
+  instagram: string;
   formerly: string;
+  screenshot: string;
 }> = {
   'es-AR': {
     breadcrumbHome: 'Inicio',
@@ -81,7 +90,9 @@ export const PROJECT_LABELS: Record<Lang, {
     channels: 'Contacto del producto',
     email: 'Correo',
     whatsapp: 'WhatsApp',
+    instagram: 'Instagram',
     formerly: 'Antes: ',
+    screenshot: 'Captura de',
   },
   'en-US': {
     breadcrumbHome: 'Home',
@@ -101,7 +112,9 @@ export const PROJECT_LABELS: Record<Lang, {
     channels: 'Product contact',
     email: 'Email',
     whatsapp: 'WhatsApp',
+    instagram: 'Instagram',
     formerly: 'Formerly: ',
+    screenshot: 'Screenshot of',
   },
 };
 

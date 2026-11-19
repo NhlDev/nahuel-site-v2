@@ -5,6 +5,7 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import { timingSafeEqual } from 'node:crypto';
 import { join } from 'node:path';
 
 import helmet from 'helmet';
@@ -128,13 +129,36 @@ const contactLimiter = rateLimit({
 
 app.use('/api/contact', contactLimiter);
 
+// Validación de lo que llega por formulario: tipos, largos y forma del mail. Sin esto un body de 1 MB
+// (el tope global) se mandaría entero por SMTP, y un objeto en `name` o `email` llegaría hasta nodemailer.
+const MAX = { name: 120, email: 254, message: 5000 };
+const EMAIL_RE = /^[^\s@<>",;:]+@[^\s@<>",;:]+\.[^\s@<>",;:]+$/;
+function validContactBody(b: Record<string, unknown>): boolean {
+  const { name, email, message } = b;
+  return (
+    typeof name === 'string' && name.trim().length > 0 && name.length <= MAX.name &&
+    typeof email === 'string' && email.length <= MAX.email && EMAIL_RE.test(email) &&
+    typeof message === 'string' && message.trim().length > 0 && message.length <= MAX.message
+  );
+}
+
+/** Comparación de tokens en tiempo constante (no filtra el largo ni el prefijo por timing). */
+function tokenEquals(received: string, expected: string): boolean {
+  const a = Buffer.from(received);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
 // Contact API protegido por reCAPTCHA v3 (antes de la redirección por locales)
 app.post('/api/contact', async (req, res) => {
   try {
-    const { name, email, message, recaptchaToken, locale } = req.body || {};
-    if (!name || !email || !message) {
-      return res.status(400).json({ message: 'Missing fields' });
+    const raw = (req.body ?? {}) as Record<string, unknown>;
+    if (!validContactBody(raw)) {
+      return res.status(400).json({ message: 'Invalid fields' });
     }
+    const { name, email, message } = raw as { name: string; email: string; message: string };
+    const recaptchaToken = typeof raw['recaptchaToken'] === 'string' ? raw['recaptchaToken'] : '';
+    const locale = raw['locale'] === 'en-US' ? 'en-US' : 'es-AR';
 
     // Verificar reCAPTCHA
     const secret = process.env['RECAPTCHA_SECRET'];
@@ -148,7 +172,7 @@ app.post('/api/contact', async (req, res) => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
           secret,
-          response: recaptchaToken || '',
+          response: recaptchaToken,
           remoteip: req.ip || '',
         }),
       },
@@ -176,7 +200,7 @@ app.post('/api/contact', async (req, res) => {
       auth: { user, pass },
     });
 
-    const subject = `Contacto desde nahu-dev (${locale || 'es-AR'})`;
+    const subject = `Contacto desde nahu-dev (${locale})`;
     const text = `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`;
     const html = `<p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
 <p><strong>Email:</strong> ${escapeHtml(email)}</p>
@@ -204,7 +228,8 @@ app.use('/api/mcp/public', createPublicMcpRouter());
 // Servidor MCP con el contenido público del sitio (lo consume Chatbot Up), autenticado con MCP_API_TOKEN
 app.use('/api/mcp', createMcpRouter());
 
-// Endpoint para el Chatbot de IA, autenticado mediante token (CHATBOT_API_TOKEN)
+// Endpoint para el Chatbot de IA, autenticado mediante token (CHATBOT_API_TOKEN). Con límite por IP para que un token filtrado no inunde la casilla.
+app.use('/api/ai', rateLimit({ windowMs: 60_000, max: 10, standardHeaders: true, legacyHeaders: false }));
 app.post('/api/ai/send-email', async (req, res) => {
   try {
     const authHeader =
@@ -214,14 +239,15 @@ app.post('/api/ai/send-email', async (req, res) => {
       : authHeader;
     const expectedToken = process.env['CHATBOT_API_TOKEN'];
 
-    if (!expectedToken || token !== expectedToken) {
+    if (!expectedToken || !tokenEquals(token, expectedToken)) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const { name, email, message } = req.body || {};
-    if (!name || !email || !message) {
-      return res.status(400).json({ message: 'Missing fields' });
+    const body = (req.body ?? {}) as Record<string, unknown>;
+    if (!validContactBody(body)) {
+      return res.status(400).json({ message: 'Invalid fields' });
     }
+    const { name, email, message } = body as { name: string; email: string; message: string };
 
     const to = process.env['SMTP_USER'];
     const host = process.env['SMTP_HOST'];

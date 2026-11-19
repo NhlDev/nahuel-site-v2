@@ -81,6 +81,34 @@
   text-wrap: balance;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-icon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: contain;
+}
+
+.shot {
+  margin: 0 0 3rem;
+  max-width: 46rem;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    border-radius: 12px;
+    border: 1px solid var(--color-border, rgb(128 128 128 / 0.25));
+  }
+}
+
 .former {
   margin: 0.5rem 0 0;
   font-size: 0.9375rem;
