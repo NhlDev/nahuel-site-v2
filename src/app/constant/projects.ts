@@ -8,7 +8,7 @@ import { Lang } from './profile';
 /** Prefijo de URL de cada idioma (`subPath` en angular.json): /es/… y /en/…. */
 export const URL_PREFIX: Record<Lang, string> = { 'es-AR': 'es', 'en-US': 'en' };
 
-export type ProjectSlug = 'chatbot-up' | 'arcasuite' | 'control-up';
+export type ProjectSlug = 'chatbot-up' | 'comprobado' | 'control-up';
 
 /** Primer segmento de la ruta de proyectos en cada idioma. Debe coincidir con `@@routeProjects` en los .xlf. */
 export const PROJECTS_SEGMENT: Record<Lang, string> = {
@@ -16,7 +16,7 @@ export const PROJECTS_SEGMENT: Record<Lang, string> = {
   'en-US': 'projects',
 };
 
-export const PROJECT_SLUGS: ProjectSlug[] = ['chatbot-up', 'arcasuite', 'control-up'];
+export const PROJECT_SLUGS: ProjectSlug[] = ['chatbot-up', 'comprobado', 'control-up'];
 
 export interface ProjectFeature {
   title: string;
@@ -26,6 +26,8 @@ export interface ProjectFeature {
 export interface ProjectDetail {
   slug: ProjectSlug;
   name: string;
+  /** Nombre anterior, si lo hubo (sirve para que quien busque el nombre viejo llegue acá) */
+  formerName?: string;
   url: string;
   /** <title> de la página */
   seoTitle: string;
@@ -56,6 +58,10 @@ export const PROJECT_LABELS: Record<Lang, {
   contactTitle: string;
   contactText: string;
   contactCta: string;
+  channels: string;
+  email: string;
+  whatsapp: string;
+  formerly: string;
 }> = {
   'es-AR': {
     breadcrumbHome: 'Inicio',
@@ -72,6 +78,10 @@ export const PROJECT_LABELS: Record<Lang, {
     contactTitle: '¿Querés algo así para tu negocio?',
     contactText: 'Armo asistentes con IA, integraciones con LLMs y automatizaciones a medida.',
     contactCta: 'Hablemos',
+    channels: 'Contacto del producto',
+    email: 'Correo',
+    whatsapp: 'WhatsApp',
+    formerly: 'Antes: ',
   },
   'en-US': {
     breadcrumbHome: 'Home',
@@ -88,6 +98,10 @@ export const PROJECT_LABELS: Record<Lang, {
     contactTitle: 'Want something like this for your business?',
     contactText: 'I build AI assistants, LLM integrations and custom automations.',
     contactCta: 'Let’s talk',
+    channels: 'Product contact',
+    email: 'Email',
+    whatsapp: 'WhatsApp',
+    formerly: 'Formerly: ',
   },
 };
 
@@ -142,24 +156,25 @@ export const projectDetails: Record<Lang, Record<ProjectSlug, ProjectDetail>> = 
       ],
       stack: ['.NET', 'ASP.NET Core', 'Microsoft.Extensions.AI', 'Gemini', 'RAG', 'pgvector', 'MCP', 'Angular', 'TypeScript'],
     },
-    arcasuite: {
-      slug: 'arcasuite',
-      name: 'ArcaSuite',
-      url: 'https://arca-suite.controlup.com.ar/',
-      seoTitle: 'ArcaSuite: facturación electrónica ARCA con IA y MCP | Nahuel Alderete',
+    comprobado: {
+      slug: 'comprobado',
+      name: 'Comprobado',
+      formerName: 'ArcaSuite',
+      url: 'https://comprobado.com.ar/',
+      seoTitle: 'Comprobado (ex ArcaSuite): facturación ARCA con API y MCP | Nahuel Alderete',
       seoDescription:
-        'Cómo construí ArcaSuite: facturación electrónica de ARCA (ex AFIP) con consola web, API REST, servidor MCP para agentes de IA y lectura de facturas con IA.',
+        'Cómo construí Comprobado (antes ArcaSuite): facturación electrónica de ARCA (ex AFIP) con consola web, API REST, servidor MCP para agentes de IA y ayudas de IA.',
       lead:
-        'ArcaSuite es un servicio de facturación electrónica de ARCA (ex AFIP) para contribuyentes argentinos: una consola web que guía la configuración y la emisión, una API REST para integrar sistemas y un servidor MCP para que agentes de IA emitan y consulten comprobantes.',
+        'Comprobado (antes ArcaSuite) es un servicio de facturación electrónica de ARCA (ex AFIP) para contribuyentes argentinos: una consola web que guía la configuración y la emisión, una API REST para integrar sistemas y un servidor MCP para que agentes de IA emitan y consulten comprobantes.',
       questions: [
-        '¿Qué hace ArcaSuite?',
-        '¿Cómo usa IA ArcaSuite?',
-        '¿Para qué sirve el servidor MCP de ArcaSuite?',
+        '¿Qué es Comprobado?',
+        '¿Cómo usa IA Comprobado?',
+        '¿Para qué sirve el servidor MCP de Comprobado?',
       ],
       features: [
         {
           title: 'Emisión guiada',
-          text: 'Facturas A, B y C con CAE, notas de crédito y débito, y facturas E de exportación. Se puede practicar en homologación antes de tener el certificado.',
+          text: 'Facturas, notas de crédito y débito A, B y C con CAE, facturas E de exportación y Factura de Crédito Electrónica MiPyME. Se puede practicar en el simulador y en homologación antes de pasar a producción.',
         },
         {
           title: 'Lee facturas con IA',
@@ -171,15 +186,15 @@ export const projectDetails: Record<Lang, Record<ProjectSlug, ProjectDetail>> = 
         },
         {
           title: 'Errores en castellano',
-          text: 'Cada rechazo de ARCA llega con una explicación clara además del error original, y la emisión es idempotente: nunca emite dos veces el mismo comprobante.',
+          text: 'Cada rechazo de ARCA llega con una explicación clara además del error original, y una emisión que ARCA no confirma se reconcilia consultando a ARCA: nunca emite dos veces el mismo comprobante.',
         },
         {
-          title: 'Servidor MCP para agentes de IA',
-          text: 'Un agente puede emitir y consultar comprobantes, buscar un CUIT en el padrón de ARCA, explicar un error o resumir las ventas del mes, con las cifras calculadas en el servidor.',
+          title: 'API REST y servidor MCP',
+          text: 'La API es el producto principal, con descripción OpenAPI. Un agente de IA puede emitir y consultar comprobantes, buscar un CUIT en el padrón de ARCA, explicar un error o resumir las ventas del mes, con las cifras calculadas en el servidor.',
         },
         {
-          title: 'Para equipos e integraciones',
-          text: 'Roles y perfiles de permisos, API keys, webhooks, facturación por lotes y abonos recurrentes.',
+          title: 'Para equipos y estudios contables',
+          text: 'Roles y perfiles de permisos, varios CUIT en una cuenta, acceso para estudios contables, facturación masiva por CSV, abonos recurrentes e IVA del mes con libros.',
         },
       ],
       build: [
@@ -195,7 +210,7 @@ export const projectDetails: Record<Lang, Record<ProjectSlug, ProjectDetail>> = 
       slug: 'control-up',
       name: 'Control Up',
       url: 'https://controlup.com.ar/',
-      seoTitle: 'Control Up: sistema de gestión comercial para pymes | Nahuel Alderete',
+      seoTitle: 'Control Up: gestión de ventas y stock para pymes | Nahuel Alderete',
       seoDescription:
         'Cómo construí Control Up: gestión comercial para pymes y comercios con punto de venta, inventario, sucursales, reportes y app para Android.',
       lead:
@@ -288,24 +303,25 @@ export const projectDetails: Record<Lang, Record<ProjectSlug, ProjectDetail>> = 
       ],
       stack: ['.NET', 'ASP.NET Core', 'Microsoft.Extensions.AI', 'Gemini', 'RAG', 'pgvector', 'MCP', 'Angular', 'TypeScript'],
     },
-    arcasuite: {
-      slug: 'arcasuite',
-      name: 'ArcaSuite',
-      url: 'https://arca-suite.controlup.com.ar/',
-      seoTitle: 'ArcaSuite: AI-powered ARCA (AFIP) e-invoicing with MCP | Nahuel Alderete',
+    comprobado: {
+      slug: 'comprobado',
+      name: 'Comprobado',
+      formerName: 'ArcaSuite',
+      url: 'https://comprobado.com.ar/',
+      seoTitle: 'Comprobado (ex ArcaSuite): ARCA e-invoicing, API and MCP | Nahuel Alderete',
       seoDescription:
-        'How I built ArcaSuite: ARCA (formerly AFIP) e-invoicing for Argentina with a web console, REST API, an MCP server for AI agents and AI invoice reading.',
+        'How I built Comprobado (formerly ArcaSuite): ARCA (ex AFIP) e-invoicing for Argentina with a web console, REST API, an MCP server for AI agents and AI helpers.',
       lead:
-        'ArcaSuite is an ARCA (formerly AFIP) e-invoicing service for Argentine taxpayers: a web console that guides setup and issuing, a REST API to integrate systems and an MCP server so AI agents can issue and query invoices.',
+        'Comprobado (formerly ArcaSuite) is an ARCA (formerly AFIP) e-invoicing service for Argentine taxpayers: a web console that guides setup and issuing, a REST API to integrate systems and an MCP server so AI agents can issue and query invoices.',
       questions: [
-        'What does ArcaSuite do?',
-        'How does ArcaSuite use AI?',
-        'What is ArcaSuite’s MCP server for?',
+        'What is Comprobado?',
+        'How does Comprobado use AI?',
+        'What is Comprobado’s MCP server for?',
       ],
       features: [
         {
           title: 'Guided issuing',
-          text: 'Type A, B and C invoices with CAE, credit and debit notes, and type E export invoices. You can practice in the testing environment before having a certificate.',
+          text: 'Type A, B and C invoices, credit and debit notes with CAE, type E export invoices and MiPyME Electronic Credit Invoices. You can practice in the simulator and the testing environment before going to production.',
         },
         {
           title: 'Reads invoices with AI',
@@ -317,15 +333,15 @@ export const projectDetails: Record<Lang, Record<ProjectSlug, ProjectDetail>> = 
         },
         {
           title: 'Errors in plain language',
-          text: 'Every ARCA rejection comes with a clear explanation alongside the original error, and issuing is idempotent: it never issues the same invoice twice.',
+          text: 'Every ARCA rejection comes with a clear explanation alongside the original error, and an issue ARCA doesn’t confirm is reconciled by asking ARCA: it never issues the same invoice twice.',
         },
         {
-          title: 'MCP server for AI agents',
-          text: 'An agent can issue and query invoices, look up a tax ID in ARCA’s registry, explain an error or summarize the month’s sales, with figures computed on the server.',
+          title: 'REST API and MCP server',
+          text: 'The API is the main product, with an OpenAPI description. An AI agent can issue and query invoices, look up a tax ID in ARCA’s registry, explain an error or summarize the month’s sales, with figures computed on the server.',
         },
         {
-          title: 'For teams and integrations',
-          text: 'Roles and permission profiles, API keys, webhooks, batch invoicing and recurring billing.',
+          title: 'For teams and accounting firms',
+          text: 'Roles and permission profiles, several tax IDs in one account, access for accounting firms, batch invoicing from CSV, recurring billing and monthly VAT with ledgers.',
         },
       ],
       build: [

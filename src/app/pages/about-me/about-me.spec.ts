@@ -29,6 +29,6 @@ describe('AboutMe', () => {
     const hrefs = Array.from(
       (fixture.nativeElement as HTMLElement).querySelectorAll<HTMLAnchorElement>('a.product-card'),
     ).map((a) => a.getAttribute('href'));
-    expect(hrefs).toEqual(['/proyectos/chatbot-up', '/proyectos/control-up', '/proyectos/arcasuite']);
+    expect(hrefs).toEqual(['/proyectos/chatbot-up', '/proyectos/control-up', '/proyectos/comprobado']);
   });
 });

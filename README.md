@@ -14,7 +14,7 @@ o a mano con `curl -X POST https://nahuel.app/api/mcp/public -H 'Content-Type: a
 
 - **Inicio** con cuatro secciones: Inicio, Sobre mí, Experiencia (diagrama de Gantt y timeline) y
   Contacto.
-- **Una página de caso por producto propio** (Chatbot Up, ArcaSuite, Control Up): qué hace, cómo
+- **Una página de caso por producto propio** (Chatbot Up, Comprobado, Control Up): qué hace, cómo
   está hecho y stack, en `/es/proyectos/<slug>` y `/en/projects/<slug>`. El contenido está en
   `src/app/constant/projects.ts`.
 - **Bilingüe** (locales `es-AR` / `en-US`, URLs `/es/` y `/en/` por el `subPath` de `angular.json`), con un build por idioma.

@@ -12,14 +12,14 @@ El sitio está disponible en español e inglés. El contenido es el mismo en amb
 - [Experiencia](https://nahuel.app/es/#resume): trayectoria profesional 2014–actualidad
 - [Contacto](https://nahuel.app/es/#contact-me): formulario y canales directos
 - [Caso Chatbot Up](https://nahuel.app/es/proyectos/chatbot-up): qué hace y cómo está construido ([English](https://nahuel.app/en/projects/chatbot-up))
-- [Caso ArcaSuite](https://nahuel.app/es/proyectos/arcasuite): qué hace y cómo está construido ([English](https://nahuel.app/en/projects/arcasuite))
+- [Caso Comprobado (antes ArcaSuite)](https://nahuel.app/es/proyectos/comprobado): qué hace y cómo está construido ([English](https://nahuel.app/en/projects/comprobado))
 - [Caso Control Up](https://nahuel.app/es/proyectos/control-up): qué hace y cómo está construido ([English](https://nahuel.app/en/projects/control-up))
 
 ## Productos propios
 
-- [Chatbot Up](https://chatbotup.com.ar/): asistentes con IA (RAG) entrenados con el contenido de cada negocio, para WhatsApp, Telegram, Instagram y la web
-- [Control Up](https://controlup.com.ar/): gestión comercial para pymes (ventas, stock, clientes y reportes)
-- [ArcaSuite](https://arca-suite.controlup.com.ar/): facturación electrónica de ARCA (ex AFIP) con IA: lee facturas de compra desde una foto o PDF, sugiere columnas al importar CSV y expone un servidor MCP para agentes de IA
+- [Chatbot Up](https://chatbotup.com.ar/): asistentes con IA (RAG) entrenados con el contenido de cada negocio, para WhatsApp, Telegram, Instagram y la web. Contacto: info@chatbotup.com.ar · WhatsApp +54 11 8127-3920
+- [Control Up](https://controlup.com.ar/): gestión comercial para pymes (ventas, stock, clientes y reportes). Contacto: info@controlup.com.ar · WhatsApp +54 11 2551-2106
+- [Comprobado](https://comprobado.com.ar/) (antes ArcaSuite): facturación electrónica de ARCA (ex AFIP) desde una consola web, una API REST o un asistente de IA (MCP). Contacto: admin@comprobado.com.ar
 
 ## MCP para agentes
 

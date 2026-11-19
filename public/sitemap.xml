@@ -6,7 +6,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/" />
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
@@ -14,7 +14,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/" />
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -22,7 +22,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/chatbot-up" />
     <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/chatbot-up" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/chatbot-up" />
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -30,23 +30,23 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/chatbot-up" />
     <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/chatbot-up" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/chatbot-up" />
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nahuel.app/es/proyectos/arcasuite</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/arcasuite" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/arcasuite" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/arcasuite" />
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://nahuel.app/es/proyectos/comprobado</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/comprobado" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/comprobado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/comprobado" />
+    <lastmod>2026-11-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nahuel.app/en/projects/arcasuite</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/arcasuite" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/arcasuite" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/arcasuite" />
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://nahuel.app/en/projects/comprobado</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/comprobado" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/comprobado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/comprobado" />
+    <lastmod>2026-11-19</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -54,7 +54,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/control-up" />
     <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/control-up" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/control-up" />
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -62,7 +62,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://nahuel.app/es/proyectos/control-up" />
     <xhtml:link rel="alternate" hreflang="en" href="https://nahuel.app/en/projects/control-up" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nahuel.app/es/proyectos/control-up" />
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>

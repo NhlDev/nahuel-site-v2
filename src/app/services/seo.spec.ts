@@ -29,15 +29,15 @@ describe('Seo', () => {
 
   it('points inner pages to their translated paths and falls back to Spanish for x-default', () => {
     seo.set({
-      paths: { 'es-AR': 'proyectos/arcasuite', 'en-US': 'projects/arcasuite' },
+      paths: { 'es-AR': 'proyectos/comprobado', 'en-US': 'projects/comprobado' },
       title: 't',
       description: 'd',
     });
 
-    expect(href('link[rel="canonical"]')).toBe('https://nahuel.app/es/proyectos/arcasuite');
-    expect(href('link[rel="alternate"][hreflang="en"]')).toBe('https://nahuel.app/en/projects/arcasuite');
-    expect(href('link[rel="alternate"][hreflang="x-default"]')).toBe('https://nahuel.app/es/proyectos/arcasuite');
-    expect(seo.alternatePath()).toBe('/en/projects/arcasuite');
+    expect(href('link[rel="canonical"]')).toBe('https://nahuel.app/es/proyectos/comprobado');
+    expect(href('link[rel="alternate"][hreflang="en"]')).toBe('https://nahuel.app/en/projects/comprobado');
+    expect(href('link[rel="alternate"][hreflang="x-default"]')).toBe('https://nahuel.app/es/proyectos/comprobado');
+    expect(seo.alternatePath()).toBe('/en/projects/comprobado');
   });
 
   it('keeps a single JSON-LD graph with Person, WebSite and the extra nodes', () => {

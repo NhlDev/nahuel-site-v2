@@ -13,6 +13,9 @@
       {{ labels.eyebrow }}
     </p>
     <h1 id="project-title" class="project-title">{{ project.name }}</h1>
+    @if (project.formerName) {
+    <p class="former">{{ labels.formerly }}{{ project.formerName }}</p>
+    }
     <p class="lead">{{ project.lead }}</p>
     <div class="actions">
       <a mat-stroked-button [href]="project.url" target="_blank" rel="noopener">
@@ -64,6 +67,18 @@
       }
     </ul>
   </section>
+
+  @if (contact) {
+  <section class="block" aria-labelledby="channels-title">
+    <h2 id="channels-title">{{ labels.channels }}</h2>
+    <ul class="channels">
+      <li>{{ labels.email }}: <a [href]="'mailto:' + contact.email">{{ contact.email }}</a></li>
+      @if (whatsappUrl) {
+      <li>{{ labels.whatsapp }}: <a [href]="whatsappUrl" target="_blank" rel="noopener">{{ contact.whatsappDisplay }}</a></li>
+      }
+    </ul>
+  </section>
+  }
 
   <section class="block contact" aria-labelledby="contact-title">
     <h2 id="contact-title">{{ labels.contactTitle }}</h2>

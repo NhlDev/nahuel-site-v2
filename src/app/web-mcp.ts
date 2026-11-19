@@ -66,7 +66,7 @@ export const WEB_MCP_TOOLS: WebMcpToolDescriptor[] = [
     name: 'list_projects',
     title: 'Productos y proyectos',
     description:
-      'Productos propios de Nahuel (Chatbot Up, Control Up y ArcaSuite): qué hace cada uno, tecnologías, enlace y página del caso. Con `tech` filtra por tecnología.',
+      'Productos propios de Nahuel (Chatbot Up, Control Up y Comprobado): qué hace cada uno, tecnologías, enlace y página del caso. Con `tech` filtra por tecnología.',
     inputSchema: { type: 'object', properties: { tech: TECH_PROP, lang: LANG_PROP } },
     annotations: readOnly,
     execute: async (input: Input) => asText(listProjects(langOf(input), input.tech?.slice(0, 60))),

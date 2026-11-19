@@ -69,7 +69,7 @@ describe('WebMCP', () => {
     const projects = await call('list_projects', { tech: 'mcp' });
 
     expect(projects.lang).toBe('en-US');
-    expect(projects.projects.map((p: { name: string }) => p.name)).toContain('ArcaSuite');
+    expect(projects.projects.map((p: { name: string }) => p.name)).toContain('Comprobado');
     expect(projects.projects[0].caseStudy).toMatch(/^https:\/\/nahuel\.app\/en\/projects\//);
   });
 

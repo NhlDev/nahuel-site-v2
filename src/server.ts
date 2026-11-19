@@ -47,6 +47,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// ArcaSuite pasó a llamarse Comprobado: la página del caso cambió de slug y el viejo redirige (301) para no perder los enlaces ni el posicionamiento.
+app.use((req, res, next) => {
+  const m = /^\/(es|en)\/(proyectos|projects)\/arcasuite\/?$/.exec(req.path);
+  if (m) return res.redirect(301, `/${m[1]}/${m[2]}/comprobado`);
+  next();
+});
+
 // JSON body parsing
 app.use(express.json({ limit: '1mb' }));
 

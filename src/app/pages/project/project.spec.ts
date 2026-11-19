@@ -24,19 +24,25 @@ describe('ProjectPage', () => {
   }
 
   it('renders the project with its h1, features and external link', () => {
-    const el = render('arcasuite');
+    const el = render('comprobado');
 
-    expect(el.querySelector('h1')?.textContent?.trim()).toBe('ArcaSuite');
-    expect(el.querySelectorAll('.feature').length).toBe(projectDetails['es-AR'].arcasuite.features.length);
-    expect(el.querySelector('a[target="_blank"]')?.getAttribute('href')).toBe('https://arca-suite.controlup.com.ar/');
-    expect(TestBed.inject(Title).getTitle()).toBe(projectDetails['es-AR'].arcasuite.seoTitle);
+    expect(el.querySelector('h1')?.textContent?.trim()).toBe('Comprobado');
+    expect(el.querySelectorAll('.feature').length).toBe(projectDetails['es-AR'].comprobado.features.length);
+    expect(el.querySelector('a[target="_blank"]')?.getAttribute('href')).toBe('https://comprobado.com.ar/');
+    expect(TestBed.inject(Title).getTitle()).toBe(projectDetails['es-AR'].comprobado.seoTitle);
+  });
+
+  it('shows the product contact channels', () => {
+    const hrefs = Array.from(render('chatbot-up').querySelectorAll('.channels a')).map((a) => a.getAttribute('href'));
+
+    expect(hrefs).toEqual(['mailto:info@chatbotup.com.ar', 'https://wa.me/541181273920']);
   });
 
   it('links to the other projects only', () => {
     const el = render('chatbot-up');
     const hrefs = Array.from(el.querySelectorAll('a.other-card')).map((a) => a.getAttribute('href'));
 
-    expect(hrefs).toEqual(['/proyectos/arcasuite', '/proyectos/control-up']);
+    expect(hrefs).toEqual(['/proyectos/comprobado', '/proyectos/control-up']);
   });
 });
 
@@ -81,7 +87,7 @@ describe('ProjectPage: preguntale al asistente', () => {
 
   it('no muestra los botones si el widget no expone ask (versión vieja o sin cargar)', () => {
     (window as unknown as Win).ChatbotUp = {};
-    const el = render('arcasuite').nativeElement as HTMLElement;
+    const el = render('comprobado').nativeElement as HTMLElement;
 
     expect(el.querySelector('.ask')).toBeNull();
   });
@@ -89,13 +95,13 @@ describe('ProjectPage: preguntale al asistente', () => {
   it('muestra una pregunta por botón y al tocarla se la hace al asistente', () => {
     const ask = jasmine.createSpy('ask').and.resolveTo('ok');
     (window as unknown as Win).ChatbotUp = { ask };
-    const el = render('arcasuite').nativeElement as HTMLElement;
+    const el = render('comprobado').nativeElement as HTMLElement;
 
     const buttons = el.querySelectorAll<HTMLButtonElement>('.ask button');
-    expect(buttons.length).toBe(projectDetails['es-AR'].arcasuite.questions.length);
+    expect(buttons.length).toBe(projectDetails['es-AR'].comprobado.questions.length);
 
     buttons[0].click();
-    expect(ask).toHaveBeenCalledOnceWith(projectDetails['es-AR'].arcasuite.questions[0]);
+    expect(ask).toHaveBeenCalledOnceWith(projectDetails['es-AR'].comprobado.questions[0]);
   });
 
   it('cada proyecto tiene preguntas en los dos idiomas, y que las nombran', () => {

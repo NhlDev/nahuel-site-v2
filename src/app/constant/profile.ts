@@ -7,12 +7,22 @@ export type Lang = 'es-AR' | 'en-US';
 
 export interface Product {
   /** Página del caso en el sitio (ver constant/projects.ts) */
-  slug: 'chatbot-up' | 'arcasuite' | 'control-up';
+  slug: 'chatbot-up' | 'comprobado' | 'control-up';
   name: string;
   tagline: string;
   url: string;
   icon: string;
   technologies: string[];
+  /** Canales públicos del producto, tal como figuran en su propio sitio. */
+  contact: ProductContact;
+}
+
+export interface ProductContact {
+  email: string;
+  /** Solo dígitos con código de país, para wa.me */
+  whatsapp?: string;
+  /** Para mostrar */
+  whatsappDisplay?: string;
 }
 
 export interface QuickFact {
@@ -51,6 +61,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://chatbotup.com.ar/',
       icon: 'smart_toy',
       technologies: ['.NET', 'Gemini', 'RAG', 'pgvector', 'MCP', 'Angular'],
+      contact: { email: 'info@chatbotup.com.ar', whatsapp: '541181273920', whatsappDisplay: '+54 11 8127-3920' },
     },
     {
       slug: 'control-up',
@@ -59,14 +70,16 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://controlup.com.ar/',
       icon: 'point_of_sale',
       technologies: ['.NET', 'Angular', 'TypeScript'],
+      contact: { email: 'info@controlup.com.ar', whatsapp: '541125512106', whatsappDisplay: '+54 11 2551-2106' },
     },
     {
-      slug: 'arcasuite',
-      name: 'ArcaSuite',
-      tagline: 'Facturación electrónica de ARCA (ex AFIP) con IA: lee facturas de compra desde una foto o PDF, sugiere las columnas al importar un CSV y expone un servidor MCP para que agentes de IA emitan y consulten comprobantes.',
-      url: 'https://arca-suite.controlup.com.ar/',
+      slug: 'comprobado',
+      name: 'Comprobado',
+      tagline: 'Facturación electrónica de ARCA (ex AFIP, antes ArcaSuite) desde una consola web, una API REST o un asistente de IA (MCP): emite facturas A, B, C, E y FCE MiPyME, y explica cada error de ARCA en castellano.',
+      url: 'https://comprobado.com.ar/',
       icon: 'receipt_long',
       technologies: ['.NET', 'Gemini', 'MCP', 'PostgreSQL', 'Angular'],
+      contact: { email: 'admin@comprobado.com.ar' },
     },
   ],
   'en-US': [
@@ -77,6 +90,7 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://chatbotup.com.ar/',
       icon: 'smart_toy',
       technologies: ['.NET', 'Gemini', 'RAG', 'pgvector', 'MCP', 'Angular'],
+      contact: { email: 'info@chatbotup.com.ar', whatsapp: '541181273920', whatsappDisplay: '+54 11 8127-3920' },
     },
     {
       slug: 'control-up',
@@ -85,14 +99,16 @@ export const products: Record<Lang, Product[]> = {
       url: 'https://controlup.com.ar/',
       icon: 'point_of_sale',
       technologies: ['.NET', 'Angular', 'TypeScript'],
+      contact: { email: 'info@controlup.com.ar', whatsapp: '541125512106', whatsappDisplay: '+54 11 2551-2106' },
     },
     {
-      slug: 'arcasuite',
-      name: 'ArcaSuite',
-      tagline: 'AI-powered ARCA (formerly AFIP) e-invoicing for Argentina: reads purchase invoices from a photo or PDF, suggests column mappings when importing a CSV and exposes an MCP server so AI agents can issue and query invoices.',
-      url: 'https://arca-suite.controlup.com.ar/',
+      slug: 'comprobado',
+      name: 'Comprobado',
+      tagline: 'ARCA (formerly AFIP) e-invoicing for Argentina (formerly ArcaSuite) from a web console, a REST API or an AI assistant (MCP): issues A, B, C, E and MiPyME credit invoices and explains every ARCA error in plain language.',
+      url: 'https://comprobado.com.ar/',
       icon: 'receipt_long',
       technologies: ['.NET', 'Gemini', 'MCP', 'PostgreSQL', 'Angular'],
+      contact: { email: 'admin@comprobado.com.ar' },
     },
   ],
 };

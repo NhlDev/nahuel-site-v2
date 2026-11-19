@@ -29,7 +29,10 @@ export class ProjectPage {
   readonly labels = PROJECT_LABELS[this.lang];
   readonly segment = PROJECTS_SEGMENT[this.lang];
   readonly project = projectDetails[this.lang][inject(ActivatedRoute).snapshot.data['slug'] as ProjectSlug];
-  readonly icon = products[this.lang].find((p) => p.slug === this.project.slug)?.icon ?? 'apps';
+  private readonly product = products[this.lang].find((p) => p.slug === this.project.slug);
+  readonly icon = this.product?.icon ?? 'apps';
+  readonly contact = this.product?.contact;
+  readonly whatsappUrl = this.contact?.whatsapp ? `https://wa.me/${this.contact.whatsapp}` : null;
   readonly others = PROJECT_SLUGS.filter((s) => s !== this.project.slug).map((s) => ({
     ...projectDetails[this.lang][s],
     tagline: products[this.lang].find((p) => p.slug === s)?.tagline ?? '',
@@ -55,11 +58,30 @@ export class ProjectPage {
           '@type': 'SoftwareApplication',
           '@id': `${p.url}#app`,
           name: p.name,
+          ...(p.formerName ? { alternateName: p.formerName } : {}),
           url: p.url,
           description: p.lead,
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'Web',
+          inLanguage: 'es',
           creator: { '@id': `${SITE_URL}/#person` },
+          ...(this.contact
+            ? {
+                provider: {
+                  '@type': 'Organization',
+                  name: p.name,
+                  url: p.url,
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    contactType: 'customer support',
+                    email: this.contact.email,
+                    ...(this.contact.whatsapp ? { telephone: `+${this.contact.whatsapp}` } : {}),
+                    areaServed: 'AR',
+                    availableLanguage: ['es', 'en'],
+                  },
+                },
+              }
+            : {}),
         },
         {
           '@type': 'WebPage',

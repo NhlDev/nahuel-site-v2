@@ -16,7 +16,7 @@ describe('public-data', () => {
   });
 
   it('filters projects and experience by technology, case-insensitively', () => {
-    expect(listProjects('es-AR', 'mcp').projects.map((p) => p.name)).toContain('ArcaSuite');
+    expect(listProjects('es-AR', 'mcp').projects.map((p) => p.name)).toContain('Comprobado');
     expect(listProjects('es-AR', 'cobol').count).toBe(0);
     expect(getExperience('es-AR', 'angular').count).toBeGreaterThan(0);
   });

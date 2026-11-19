@@ -81,6 +81,24 @@
   text-wrap: balance;
 }
 
+.former {
+  margin: 0.5rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.channels {
+  @include m.list-reset;
+  display: grid;
+  gap: 0.5rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+
+  a {
+    color: var(--color-accent);
+  }
+}
+
 .lead {
   margin: 1.25rem 0 2rem;
   font-size: clamp(1.0625rem, 1.8vw, 1.1875rem);

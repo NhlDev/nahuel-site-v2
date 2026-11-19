@@ -73,7 +73,7 @@ export function createMcpServer(): McpServer {
       _meta: viewMeta('projects'),
       title: 'Productos y proyectos',
       description:
-        'Productos propios de Nahuel (Chatbot Up, Control Up y ArcaSuite): qué hace cada uno, tecnologías y enlace. Usala cuando pregunten por sus proyectos, productos o qué construyó. Muestra tarjetas filtrables en el chat, así que no repitas la lista en texto. Con `tech` filtra por tecnología (ej. "RAG", ".NET").',
+        'Productos propios de Nahuel (Chatbot Up, Control Up y Comprobado): qué hace cada uno, tecnologías y enlace. Usala cuando pregunten por sus proyectos, productos o qué construyó. Muestra tarjetas filtrables en el chat, así que no repitas la lista en texto. Con `tech` filtra por tecnología (ej. "RAG", ".NET").',
       inputSchema: {
         tech: z.string().max(60).optional().describe('Tecnología a filtrar, p. ej. "RAG" o ".NET"'),
         lang: langSchema,
